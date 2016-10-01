@@ -1,1 +1,1 @@
-[Eventbryte Live][http://eventbryte.herokuapp.com/]
+[Eventbryte Live](http://eventbryte.herokuapp.com/)
