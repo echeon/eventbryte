@@ -19,12 +19,12 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 
 
 ## Design Docs
-* [Wireframes](./wireframes)
-* [React Components](./component-heirarchy.md)
-* [Sample State](./sample-state.md)
-* [Redux Architecture](./redux-structure.md)
-* [DB Schema](./schema.md)
-* [API Endpoints](./api-endpoints.md)
+* [Wireframes](docs/wireframes)
+* [React Components](docs/component-heirarchy.md)
+* [Sample State](docs/sample-state.md)
+* [Redux Architecture](docs/redux-structure.md)
+* [DB Schema](docs/schema.md)
+* [API Endpoints](docs/api-endpoints.md)
 
 
 ## Implementation Timeline
