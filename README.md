@@ -2,12 +2,13 @@
 
 [Eventbryte Live](http://eventbryte.herokuapp.com/)
 
+<<<<<<< HEAD
 
 ## Minimum Viable Product
 
 Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.eventbrite.com). It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
 
-- [x] Hosting on Heroku
+- [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] Notes
 - [ ] Notebooks for organizing notes
@@ -120,3 +121,6 @@ the API.
 - [ ] Set reminders on notes
 - [ ] Changelogs for Notes
 - [ ] Multiple sessions
+=======
+Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.eventbrite.com). It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
+>>>>>>> 07da59d8c8df3d4a4f38e7753e5a953a53f00069
