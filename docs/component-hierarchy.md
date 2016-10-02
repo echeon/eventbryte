@@ -1,6 +1,6 @@
 ## Component Hierarchy
 
-### HomeContainer
+### Root
   - Navbar
   - WelcomeScreen
   - EventIndex
@@ -49,7 +49,7 @@
 
  Path                      | Component
 ---------------------------|-------------------------
- "/"                       | "HomeContainer"
+ "/"                       | "Root"
  "/login "                 | "AuthFormContainer"
  "/signup"                 | "AuthFormContainer"
  "/events/create"          | "EventFormContainer"
