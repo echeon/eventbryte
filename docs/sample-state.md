@@ -3,6 +3,7 @@
   currentUser: {
     id: 1,
     username: "app-academy",
+    email: "app@academy.com"
     tickets: {
       1: {
         event_id: 1,
