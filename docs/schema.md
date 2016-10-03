@@ -41,6 +41,12 @@ name            | string    | not null
 quantity        | integer   | not null
 price           | float     | not null
 
+## bookmarks
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+user_id         | integer   | not null, foreign key (references users), indexed
+event_id        | integer   | not null, foreign key (references events), indexed
 
 ## types
 column name     | data type | details
