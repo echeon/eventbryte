@@ -2,7 +2,6 @@
 
 [Eventbryte Live](http://eventbryte.herokuapp.com/)
 
-<<<<<<< HEAD
 
 ## Minimum Viable Product
 
@@ -10,12 +9,11 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
-- [ ] Notes
-- [ ] Notebooks for organizing notes
-- [ ] Tags
-- [ ] Rich Text Editing
-- [ ] Infinite Scroll
-- [ ] [Production README](../README.md)
+- [ ] Events
+- [ ] Registration / Tickets
+- [ ] Categories
+- [ ] Bookmark events
+- [ ] [Production README](#)
 
 
 ## Design Docs
@@ -25,16 +23,6 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 * [Redux Architecture](docs/redux-structure.md)
 * [DB Schema](docs/schema.md)
 * [API Endpoints](docs/api-endpoints.md)
-
-
-## Implementation Timeline
-## Bonus Features (if time allows)
-
-
-
-
-
-
 
 
 ## Implementation Timeline
@@ -53,74 +41,81 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 - [ ] User signup/signin components
 - [ ] Blank landing component after signup/signin
 - [ ] Style signup/signin components
+- [ ] Style navbar component
+- [ ] Style welcome screen for root view
 - [ ] Seed users
 - [ ] Review phase 1
 
-### Phase 2: Notes Model, API, and components (2 days)
 
-**Objective:** Notes can be created, read, edited and destroyed through
-the API.
+### Phase 2: Events Model, API, and components (2 days)
 
-- [ ] `Note` model
-- [ ] Seed database with a small amount of test data
-- [ ] CRUD API for notes (`NotesController`)
-- [ ] JBuilder views for notes
-- Note components and respective Redux loops
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
-- [ ] Autosave notes feature
-- [ ] Style notes components
-- [ ] Seed notes
+**Objective:** Events can be created, read, edited and destroyed through the API.
 
-### Phase 3: Notebooks (2 day)
+- [ ] `Event` model
+- [ ] Seed database with a small amount of test event data
+- [ ] CRUD API for events (EventsController)
+- [ ] JBuilder views for events
+- [ ] Event components and respective redux loops
+  - [ ] `EventsIndex`
+  - [ ] `EventIndexItem`
+  - [ ] `EventForm`
+- [ ] Style event components
+- [ ] Seed database with types/categories/subcategories
+- [ ] Create event
+- [ ] Review phase 2
 
-**Objective:** Notes belong to Notebooks that can be created, read, edited and destroyed through the API.
 
-- [ ] `Notebook` model
-- [ ] Seed database with a small amount of test data
-- [ ] CRUD API for notes (`NotebooksController`)
-- [ ] JBuilder views for notebooks
-- [ ] Adding notes requires a notebook
-- [ ] Moving notes between notebooks
-- [ ] Viewing notes by notebook
-- [ ] Style notebook components
-- [ ] Seed notebooks
+### Phase 3: Categories, bookmarks, and tickets (2 days)
 
-### Phase 4: Tags (1 days)
+**Objective:** Events are created with types, categories, subcategories, and tickets. Users can also bookmark events.
 
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
+- [ ] Modify `EventForm` so users can select correct type and categories
+- [ ] Add bookmark button
+- [ ] Seed database with types, categories, subcategories, and bookmarks
+- [ ] Add ticket-adding feature to `EventForm`
+- [ ] Create user profile pages
+  - [ ] `UpcomingEvents` pane
+  - [ ] `SavedEvents` pane
+  - [ ] `PastEvents` pane
+- [ ] Style user profile page
+- [ ] Update event component accordingly
+- [ ] Style added features for event
 
-- [ ] `Tag` model and `Taggings` join table
-- [ ] Fetching tags for notes
-- [ ] Adding tags to notes
-- [ ] Searching notes by tag
-- [ ] Style search & tag components
-- [ ] Seed tags with seed data
 
-### Phase 5: Allow Complex Styling in Notes (1 days, W2 Th 6pm)
+### Phase 4: More Tickets (1 days)
 
-**objective:** Allow rich text editing of notes.
+**Objective:** Users can register or purchase tickets and can view them on their profiles.
 
-- [ ] Integrate `react-quill` (based on Quill.js).
-- [ ] Rails helpers to sanitize HTML before rendering.
-- [ ] Style Quill components.
-- [ ] Add Quill styling to seeded notes
+- [ ] Add register or purchase ticket button to `EventContainer`
+- [ ] Style tickets component
+- [ ] Seed events with tickets info
+- [ ] Seed registered tickets
+- [ ] Review ticketing feature:
+  - [ ] Works with limited number of tickets?
+  - [ ] Tickets are added to users correctly?
+  - [ ] User profile shows upcoming events and past events with no problem?
+- [ ] Review the styling up to phase 4
+- [ ] Review phase 3 and phase 4
 
-### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2 F 6pm)
 
-**objective:** Add infinite scroll to Notes Index
+### Phase 5: Browse (2 days)
 
-- [ ] Paginate Notes Index API to send 20 results at a time
-- [ ] Append next set of results when user scrolls and is near bottom
-- [ ] Style scroll components and transitions
-- [ ] Ensure seed data demonstrates infinite scroll
+- [ ] Add geolocation feature to get the city and state
+- [ ] Show events in local area by default
+- [ ] Add filters
+  - [ ] Category & Subcategory
+  - [ ] Price
+  - [ ] Date
+  - [ ] Type
+- [ ] Add `order by price` and `order by date` feature
+- [ ] Style browse page
+- [ ] Make sure all browse event buttons are working from different pages
+- [ ] Review phase 5
 
-### Bonus Features (TBD)
-- [ ] Search notes by content
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
-- [ ] Multiple sessions
-=======
-Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.eventbrite.com). It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
->>>>>>> 07da59d8c8df3d4a4f38e7753e5a953a53f00069
+
+## Bonus Features (if time allows)
+- [ ] Google Map API
+- [ ] Responsive web design
+- [ ] Search event
+- [ ] Search by area in the map
+- [ ] Share with friends feature via facebook/twitter/email
