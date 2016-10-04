@@ -4,15 +4,16 @@
   right: auto;
   bottom: auto;
   margin-right: -50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%) translateY(115px);
   border: 1px solid red;
-  padding: 10px;
-  position: absolute;
+  padding: 20px 10px;
+  position: relative;
   background: #ffffff;
   overflow: auto;
   border-radius: 4px;
   outline: 0;
   text-align: center;
+  width: 308px;
 }
 
 .modal-login-overlay {
@@ -24,13 +25,32 @@
   background-color: rgba(10, 10, 20, 0.65);
 }
 
+.user-info-form h2 {
+  font-size: 25px;
+}
+
+.user-info-form .modal-close {
+  position: absolute;
+}
+
 .user-info-form input,
 .user-info-form button {
   display: block;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .user-info-form button {
-  width: 100%;
+  text-transform: uppercase;
   background: #00cc52;
   color: #ffffff;
+  padding: 11px 20px;
+}
+
+.user-info-form input {
+  padding: 9px 12px;
+  border: 1px solid rgb(210, 214, 223);
 }

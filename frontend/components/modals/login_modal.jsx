@@ -19,7 +19,6 @@ class LoginModal extends React.Component {
   }
 
   afterOpenModal() {
-    this.refs.subtitle.style.color = '#f00';
   }
 
   componentWillMount() {
@@ -37,10 +36,10 @@ class LoginModal extends React.Component {
           className="modal-login"
           overlayClassName="modal-login-overlay">
 
-          <h2>Log in</h2>
-          <button onClick={this.closeModal}>close</button>
 
           <form className='user-info-form'>
+            <a className="modal-close" onClick={this.closeModal}>close</a>
+            <h2>Log in</h2>
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />
             <button>Log in</button>
