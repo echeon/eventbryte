@@ -1,12 +1,14 @@
 import React from 'react';
-import GreetingContainer from './greeting/greeting_container';
+import HeaderContainer from './header/header_container';
+import HomeScreen from './home_screen';
+import LoginModal from './modals/login_modal';
 
 const App = ({ children }) => (
   <div>
-    <h1>EVENTBRYTE</h1>
-    <GreetingContainer />
+    <HeaderContainer />
+    <HomeScreen />
     {children}
-    <a href="http://localhost:3000/#">HOME</a>
+    <LoginModal />
   </div>
 );
 

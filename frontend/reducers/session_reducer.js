@@ -1,7 +1,7 @@
 import * as types from '../actions/ActionTypes';
 
 const defaultSession = {
-  currentUser: null,
+  currentUser: undefined,
   errors: []
 };
 
@@ -19,7 +19,7 @@ const SessionReducer = (state = defaultSession, action) => {
 
     case types.RECEIVE_ERRORS:
       return {
-        currentUser: null,
+        currentUser: undefined,
         errors: action.errors
       };
 

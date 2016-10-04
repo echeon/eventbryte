@@ -1,0 +1,36 @@
+.modal-login {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid red;
+  padding: 10px;
+  position: absolute;
+  background: #ffffff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: 0;
+  text-align: center;
+}
+
+.modal-login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 10, 20, 0.65);
+}
+
+.user-info-form input,
+.user-info-form button {
+  display: block;
+}
+
+.user-info-form button {
+  width: 100%;
+  background: #00cc52;
+  color: #ffffff;
+}

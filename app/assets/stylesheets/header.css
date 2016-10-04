@@ -1,0 +1,50 @@
+.header {
+  border-bottom: 1px solid #043d99;
+  height: 60px;
+}
+
+.header a {
+  cursor: pointer;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo {
+  border-right: 1px solid #043d99;
+}
+
+.header-logo > a {
+  display: flex;
+  padding: 17px 18px;
+}
+
+.header-logo img {
+  height: 26px;
+}
+
+.header-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-list > li {
+  display: flex;
+  border-left: 1px solid #043d99;
+}
+
+.header-list > li:hover {
+  background: #eff2f5;
+}
+
+.header-list a {
+  text-transform: uppercase;
+  color: #45494e;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: 24px 20px;
+}
+
+"Benton Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;

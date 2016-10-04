@@ -10,12 +10,21 @@ export default class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
     this.props.processForm(user);
+  }
+
+  handleGuestLogin(e) {
+    e.preventDefault();
+    this.props.processForm({
+      username: "guest",
+      password: "password"
+    });
   }
 
   handleChange(prop) {
@@ -61,6 +70,7 @@ export default class SessionForm extends React.Component {
           Username <input type="text" onChange={this.handleChange("username")}/><br/>
           Password <input type="password" onChange={this.handleChange("password")}/><br/>
           <button>Submit</button>
+          <button onClick={this.handleGuestLogin}>Guest Login</button>
         </form>
       </div>
     );
