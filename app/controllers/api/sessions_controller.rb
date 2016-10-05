@@ -9,13 +9,17 @@ class Api::SessionsController < ApplicationController
       login!(@user)
       render 'api/users/show'
     else
-      render json: ["Invalid username and/or password"], status: 422
+      if User.find_by_username(params[:user][:username])
+        render json: ["Hmmm, we don't recognize that password. Please try again."], status: 422
+      else
+        render json: ["Looks like you don't have an account yet. Let's change that!"], status: 422
+      end
     end
   end
 
   def destroy
     if current_user.nil?
-      render json: ["No one is currently logged in"], status: 404
+      render json: ["Who are you? Nobody is supposed to be logged in."], status: 404
     else
       logout!
       render json: {}

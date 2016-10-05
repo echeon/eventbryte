@@ -49,3 +49,27 @@
   padding: 9px 12px;
   border: 1px solid rgb(210, 214, 223);
 }
+
+.notification-error-table {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.notification-error-table td {
+  border: 1px solid rgb(255, 219, 0);
+  vertical-align: middle;
+}
+
+.notification-error-table .error-icon {
+  background: rgb(255, 219, 0);
+  width: 40px;
+}
+
+.notification-error-table .material-icons {
+  font-size: 28px;
+}
+
+.notification-error-table .error-content {
+  text-align: left;
+  padding: 10px;
+}

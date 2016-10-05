@@ -30,9 +30,33 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
+    let errors, errorNotification;
+
+    if (this.props.errors.length) {
+      errors = (
+        <ul>
+          { this.props.errors.map( (error, i) => <li key={i}>{error}</li> ) }
+        </ul>
+      );
+
+      errorNotification = (
+        <table className="notification-error-table">
+          <tbody>
+            <tr>
+              <td className="error-icon">
+                <i className="material-icons">error_outline</i>
+              </td>
+              <td className="error-content">{errors}</td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    }
+
     return (
       <form className='user-info-form' onSubmit={this.handleSubmit}>
         <h2>Log in</h2>
+        {errorNotification}
         <input type="text"
                placeholder="Username"
                onChange={this.handleChange("username")} />

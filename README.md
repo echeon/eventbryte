@@ -40,14 +40,17 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 - [x] Redux cycle for frontend authentication
 - [x] User signup/signin components
 - [x] Blank landing component after signup/login
-- [ ] Blank landing component after logout
+- [ ] Blank landing component or redirect to login after logout
 - [x] Style signup/signin components
 - [x] Style navbar component'
-- [ ] error message for login/signup
-- [ ] Style welcome screen for root view
-- [ ] Add slideshow for the home screen
-- [ ] Seed users
+- [x] error message for login
+- [ ] error message for signup
+- [ ] clear error messages after closing modal
+- [x] Style welcome screen for root view
+- [x] Add slideshow for the home screen
+- [x] Seed users
 - [ ] Review phase 1
+- [ ] (BONUS) add signup button to login and login button to signup
 
 
 ### Phase 2: Events Model, API, and components (2 days)

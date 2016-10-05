@@ -35,11 +35,12 @@ export default class HeaderList extends React.Component {
 
   render() {
     let form;
+    let { login, signup, errors } = this.props;
+
     if (this.state.login) {
-      form = <LoginForm login={this.props.login}/>;
+      form = <LoginForm login={login} errors={errors} />;
     } else {
-      form = <SignupForm login={this.props.login}
-                         signup={this.props.signup}/>;
+      form = <SignupForm login={login} signup={signup} errors={errors}/>;
     }
 
     if (typeof this.props.currentUser === 'undefined') {

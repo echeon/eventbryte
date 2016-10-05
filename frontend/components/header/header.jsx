@@ -12,6 +12,7 @@ const Header = ({ currentUser, errors, logout, login, signup }) => {
         </div>
 
         <HeaderList currentUser={currentUser}
+                    errors={errors}
                     logout={logout}
                     login={login}
                     signup={signup} />
