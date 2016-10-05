@@ -6,7 +6,7 @@ const HomeScreen = () => {
   return (
     <div className="home-screen">
       <div className="overlay"></div>
-      <img src={window.eventbryteAssets.homeScreenImage[1]} />
+      <img src={window.eventbryteAssets.homeScreenImage["1"]} />
       <div className="home-screen-content">
         <div className="home-btns">
           <button className="home-browse-events-btn">
