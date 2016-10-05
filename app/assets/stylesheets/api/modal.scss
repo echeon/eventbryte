@@ -1,3 +1,11 @@
+.modal-login {
+  z-index: 11;
+}
+
+.modal-login-overlay {
+  z-index: 10;
+}
+
 .modal-close {
   cursor: pointer;
   position: absolute;
