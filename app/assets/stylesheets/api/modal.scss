@@ -1,0 +1,42 @@
+.modal-close {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 1px solid #d2d2d4;
+  border-radius: 50%;
+  color: #d2d2d4;
+  font-size: 10px;
+  padding: 2px 5px;
+}
+
+.modal-close:hover {
+  border: 1px solid #666A73;
+  color: #666A73;
+}
+
+.user-info-form h2 {
+  font-size: 25px;
+}
+
+.user-info-form input,
+.user-info-form button {
+  display: block;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-info-form button {
+  text-transform: uppercase;
+  background: #00cc52;
+  color: #FFFFFF;
+  padding: 11px 20px;
+}
+
+.user-info-form input {
+  padding: 9px 12px;
+  border: 1px solid rgb(210, 214, 223);
+}

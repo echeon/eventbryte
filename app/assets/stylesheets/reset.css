@@ -20,6 +20,7 @@ time, mark, audio, video, button, input {
   color: inherit;
 	vertical-align: baseline;
   text-decoration: inherit;
+	background: transparent;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -27,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Lato', Arial, sans-serif;
 }
 ol, ul {
 	list-style: none;

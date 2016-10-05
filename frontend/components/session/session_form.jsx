@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 import { Link, hashHistory } from 'react-router';
 
 export default class SessionForm extends React.Component {
@@ -21,9 +22,10 @@ export default class SessionForm extends React.Component {
 
   handleGuestLogin(e) {
     e.preventDefault();
-    this.props.processForm({
-      username: "guest",
-      password: "password"
+    const guest = {username: "guest", password: "password"};
+    this.setState(guest, () => {
+      this.props.processForm(this.state);
+      this.setState({ username: "", password: "" });
     });
   }
 
