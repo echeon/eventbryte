@@ -31,18 +31,21 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 
 **Objective:** Functioning rails project with front-end Authentication
 
-- [ ] New Rails project
-- [ ] `User` model/migration
-- [ ] Back end authentication (session/password)
-- [ ] `StaticPages` controller and root view
-- [ ] Webpack & react/redux modules
-- [ ] `APIUtil` to interact with the API
-- [ ] Redux cycle for frontend authentication
-- [ ] User signup/signin components
-- [ ] Blank landing component after signup/signin
-- [ ] Style signup/signin components
-- [ ] Style navbar component
+- [x] New Rails project
+- [x] `User` model/migration
+- [x] Back end authentication (session/password)
+- [x] `StaticPages` controller and root view
+- [x] Webpack & react/redux modules
+- [x] `APIUtil` to interact with the API
+- [x] Redux cycle for frontend authentication
+- [x] User signup/signin components
+- [x] Blank landing component after signup/login
+- [ ] Blank landing component after logout
+- [x] Style signup/signin components
+- [x] Style navbar component'
+- [ ] error message for login/signup
 - [ ] Style welcome screen for root view
+- [ ] Add slideshow for the home screen
 - [ ] Seed users
 - [ ] Review phase 1
 
