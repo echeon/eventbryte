@@ -7,7 +7,7 @@ const Header = ({ currentUser, errors, logout, login, signup }) => {
       <nav className="header-nav">
         <div className="header-logo">
           <a href="#/">
-            <img src="/assets/logo.png"/>
+            <img src={window.eventbryteAssets.headerLogo}/>
           </a>
         </div>
 

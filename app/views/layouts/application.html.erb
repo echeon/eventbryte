@@ -6,6 +6,14 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      window.eventbryteAssets = {
+        headerLogo: "<%= image_url("logo.png") %>",
+        homeScreenImage: {
+          1: "<%= image_url("home-image-1") %>"
+        }
+      }
+    </script>
   </head>
   <body>
 
