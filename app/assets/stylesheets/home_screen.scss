@@ -1,30 +1,3 @@
-
-
-// .overlay {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   left: 0;
-//   background: #ffffff;
-//   opacity: 0.2;
-// }
-
-// .home-btns button {
-//   background: #00a8f2;
-// }
-
-// .home-screen-content {
-//   position: absolute;
-//   z-index: 2;
-//   color: #ffffff;
-// }
-
-// .home-screen {
-//   height: 36vw;
-//   max-height: 500px;
-//   position: relative;
-// }
-
 .home-screen {
   width: 100%;
   height: 36vw;
@@ -40,8 +13,8 @@
   z-index: 1;
 }
 
-
 .slideshow-container {
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -55,4 +28,42 @@
   width: 100%;
   height: 100%;
   transform: translateY(-20%);
+}
+
+.home-screen-content {
+  width: inherit;
+  color: #FFFFFF;
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home-screen-content h2 {
+  font-size: 45px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.home-screen-content p {
+  margin-bottom: 25px;
+}
+
+
+.home-button-container {
+}
+
+.home-button-container button {
+  cursor: pointer;
+  background: #00a8f2;
+  border-radius: 3px;
+  font-size: 15px;
+  width: 200px;
+  padding: 11px 20px;
+  text-transform: uppercase;
+}
+
+.home-button-container button:first-child {
+  margin-right: 20px;
 }
