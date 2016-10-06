@@ -1,0 +1,115 @@
+.event-form-section {
+  width: inherit;
+  background: rgb(248, 248, 250);
+}
+
+.event-form-section hr {
+  background: #45494E;
+  height: 10px;
+}
+
+.event-form-section h1 {
+  font-size: 35px;
+  font-weight: 700;
+  padding: 25px 0 15px 20px;
+}
+
+.create-event-form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.create-event-form div.title-container {
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(210, 214, 223);
+  margin: 20px 0;
+  padding-bottom: 4px;
+}
+
+.create-event-form span.index {
+  background: #00a8f2;
+  color: #ffffff;
+  font-size: 35px;
+  padding: 2px 14px 5px 14px;
+}
+
+.create-event-form span.title {
+  font-size: 25px;
+  line-height: 35px;
+  padding-left: 12px;
+}
+
+.create-event-form h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.create-event-form textarea,
+.create-event-form input {
+  width: 75%;
+  box-sizing:border-box;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.create-event-form textarea {
+
+  height: 30vh;
+}
+
+.create-event-form input {
+  padding: 9px 12px;
+  border-radius: 3px;
+  background: #ffffff;
+  border: 1px solid rgb(210, 214, 223);
+}
+
+.create-event-form input.date-picker,
+.create-event-form input.time-picker {
+}
+
+.create-event-form input.date-picker {
+  width: 185px;
+}
+
+.create-event-form input.time-picker {
+  width: 140px;
+}
+
+.column {
+  width: 100%;
+  display: flex;
+}
+
+.column > div {
+  width: 100%;
+  margin-right: 20px;
+}
+
+.column > div input {
+  margin-right: 10px;
+}
+
+.event-detail-container.address .column {
+  width: 100%;
+  display: flex;
+}
+
+.event-detail-container.address input {
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.column-inside-column {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-inside-column > input {
+  width: 49%;
+}
