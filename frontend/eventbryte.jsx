@@ -34,4 +34,4 @@ import { signup, login, logout } from './actions/session_actions';
 window.signup = signup;
 window.login = login;
 window.logout = logout;
-window.user = {username: "guest", password: "password"};
+window.user = {email: "guest@eventbryte.com", password: "password"};

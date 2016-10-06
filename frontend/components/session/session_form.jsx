@@ -6,7 +6,7 @@ export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,10 +22,10 @@ export default class SessionForm extends React.Component {
 
   handleGuestLogin(e) {
     e.preventDefault();
-    const guest = {username: "guest", password: "password"};
+    const guest = {email: "guest@eventbryte.com", password: "password"};
     this.setState(guest, () => {
       this.props.processForm(this.state);
-      this.setState({ username: "", password: "" });
+      this.setState({ email: "", password: "" });
     });
   }
 
@@ -69,7 +69,7 @@ export default class SessionForm extends React.Component {
         <span>Please {otherHeader} or {link} instead</span>
         {errors}
         <form onSubmit={this.handleSubmit}>
-          Username <input type="text" onChange={this.handleChange("username")}/><br/>
+          Email <input type="text" onChange={this.handleChange("email")}/><br/>
           Password <input type="password" onChange={this.handleChange("password")}/><br/>
           <button>Submit</button>
           <button onClick={this.handleGuestLogin}>Guest Login</button>

@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  username        :string           not null
+#  email           :string           not null
 #  password_digest :string
 #  session_token   :string           not null
 #  created_at      :datetime         not null
@@ -11,16 +11,17 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, :session_token, uniqueness: true, presence: true
+  validates :email, :session_token, uniqueness: true, presence: true
+  validates :email, format: { with: /.+@.+\..+/i, message: "Invalid email address"}
   validates :password_digest, presence: { message: "Password can't be blank" }
-  validates :password, length: { in: 6..20, allow_nil: true }
+  validates :password, length: { minimum: 8, allow_nil: true }
 
   after_initialize :ensure_session_token
 
   attr_reader :password
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by_email(email)
     return nil if user.nil?
     user.is_password?(password) ? user : nil
   end

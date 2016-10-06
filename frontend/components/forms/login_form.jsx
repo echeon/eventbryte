@@ -3,7 +3,7 @@ import React from 'react';
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: "", password: ""};
+    this.state = {email: "", password: ""};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +19,7 @@ export default class LoginForm extends React.Component {
 
   handleGuestLogin(e) {
     e.preventDefault();
-    const guest = {username: "guest", password: "password"};
+    const guest = {email: "guest@eventbryte.com", password: "password"};
     this.props.login(guest);
   }
 
@@ -58,8 +58,8 @@ export default class LoginForm extends React.Component {
         <h2>Log in</h2>
         {errorNotification}
         <input type="text"
-               placeholder="Username"
-               onChange={this.handleChange("username")} />
+               placeholder="Email"
+               onChange={this.handleChange("email")} />
         <input type="password"
                placeholder="Password"
                onChange={this.handleChange("password")} />

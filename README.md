@@ -44,13 +44,15 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 - [x] Style signup/signin components
 - [x] Style navbar component'
 - [x] error message for login
-- [ ] error message for signup
+- [x] error message for signup
 - [ ] clear error messages after closing modal
 - [x] Style welcome screen for root view
 - [x] Add slideshow for the home screen
 - [x] Seed users
 - [ ] Review phase 1
+- [x] Change username to email
 - [ ] (BONUS) add signup button to login and login button to signup
+- [ ] (BONUS) add special effect for invalid email and password in forms
 
 
 ### Phase 2: Events Model, API, and components (2 days)

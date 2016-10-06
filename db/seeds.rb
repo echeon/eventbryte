@@ -1,6 +1,6 @@
 User.destroy_all
 
 User.create!(
-  username: "guest",
+  email: "guest@eventbryte.com",
   password: "password"
 )
