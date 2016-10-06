@@ -73,6 +73,7 @@
 
 .create-event-form input.date-picker {
   width: 185px;
+  margin-right: 10px;
 }
 
 .create-event-form input.time-picker {
@@ -89,27 +90,34 @@
   margin-right: 20px;
 }
 
-.column > div input {
-  margin-right: 10px;
-}
-
 .event-detail-container.address .column {
   width: 100%;
   display: flex;
 }
 
-.event-detail-container.address input {
+.event-detail-container.address .column input {
   width: 100%;
   display: block;
   margin-bottom: 5px;
 }
 
 .column-inside-column {
-  width: 100%;
+  width: inherit;
   display: flex;
   justify-content: space-between;
 }
 
-.column-inside-column > input {
-  width: 49%;
+.column-inside-column input:first-child {
+  margin-right: 5px;
+}
+
+.map-container {
+  width: inherit;
+  height: inherit;
+}
+
+#thumb-map {
+  width: 100%;
+  height: calc(100% - 5px);
+  border-radius: 3px;
 }

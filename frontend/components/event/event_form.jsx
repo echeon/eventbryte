@@ -1,4 +1,6 @@
 import React from 'react';
+import ThumbMap from './thumb_map';
+import update from 'react-addons-update';
 
 export default class Eventform extends React.Component {
   constructor(props) {
@@ -20,10 +22,12 @@ export default class Eventform extends React.Component {
         imageUrl: ""
       },
       address: {
-
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
       }
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -50,6 +54,16 @@ export default class Eventform extends React.Component {
     return `${year}-${month}-${date}`;
   }
 
+  handleAddressChange(prop) {
+    return e => {
+      e.preventDefault();
+      const val = e.currentTarget.value;
+      this.setState( oldState => update(oldState, {
+        address: { [prop]: {$set: val} }
+      }));
+    };
+  }
+
   render() {
     const eventTitle = (
       <div className="event-detail-container">
@@ -58,29 +72,30 @@ export default class Eventform extends React.Component {
       </div>
     );
 
+    const venueAddress = Object.keys(this.state.address).map(k => this.state.address[k]).join(" ");
     const address = (
       <div className="event-detail-container address">
         <h3>location</h3>
         <div className="column">
           <div>
             <input type="text" placeholder="Enter the venue's name" onChange={this.handleChange("venueName")}/>
-            <input type="text" placeholder="Address" />
-            <input type="text" placeholder="Address 2" />
-            <input type="text" placeholder="City" />
+            <input type="text" placeholder="Address" onChange={this.handleAddressChange("address")}/>
+            <input type="text" placeholder="Address 2 (optional)" />
+            <input type="text" placeholder="City" onChange={this.handleAddressChange("city")}/>
             <div className="column-inside-column">
-              <input type="text" placeholder="State" />
-              <input type="text" placeholder="Zip/Postal" />
+              <input type="text" placeholder="State" onChange={this.handleAddressChange("state")}/>
+              <input type="text" placeholder="Zip/Postal" onChange={this.handleAddressChange("zip")} />
             </div>
           </div>
-          <div className="thumb-map">
-            MAPS
+          <div className="map-container">
+            <ThumbMap address={venueAddress}/>
           </div>
         </div>
       </div>
     );
 
     const dateTime = (
-      <div className="event-detail-container column">
+      <div className="event-detail-container column date-time">
         <div>
           <h3>starts</h3>
           <input type="date" className="date-picker" onChange={this.handleChange("startDate")}/>
