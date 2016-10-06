@@ -22,10 +22,10 @@ export default class Eventform extends React.Component {
         imageUrl: ""
       },
       address: {
-        address: "",
-        city: "",
-        state: "",
-        zip: ""
+        address: "598 Broadway",
+        city: "New York",
+        state: "NY",
+        zip: "10012"
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);

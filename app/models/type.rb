@@ -9,4 +9,10 @@
 #
 
 class Type < ActiveRecord::Base
+  has_many(
+    :events,
+    class_name: "Event",
+    foreign_key: :type_id,
+    primary_key: :id
+  )
 end
