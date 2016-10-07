@@ -2,7 +2,7 @@ import * as t from './ActionTypes';
 
 export const requestTypes = () => {
   return {
-    type: t.REQUEST_TYPES,
+    type: t.REQUEST_TYPES
   };
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import ThumbMap from './thumb_map';
 import update from 'react-addons-update';
+import TypeSelector from './type_selector';
+import CategorySelector from './category_selector';
 
 export default class Eventform extends React.Component {
   constructor(props) {
@@ -22,10 +24,10 @@ export default class Eventform extends React.Component {
         imageUrl: ""
       },
       address: {
-        address: "598 Broadway",
-        city: "New York",
-        state: "NY",
-        zip: "10012"
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -62,6 +64,11 @@ export default class Eventform extends React.Component {
         address: { [prop]: {$set: val} }
       }));
     };
+  }
+
+  componentDidMount() {
+    this.props.requestTypes();
+    this.props.requestCategories();
   }
 
   render() {
@@ -116,41 +123,11 @@ export default class Eventform extends React.Component {
       </div>
     );
 
-    const selectType = (
-      <div className="event-detail-container">
-        <h3>event type</h3>
-        <select>
-          <option>1</option>
-          <option>2</option>
-        </select>
-      </div>
-    );
-
-    const selectTopic = (
-      <div className="event-detail-container">
-        <h3>event topic</h3>
-        <div className="column">
-          <div>
-            <select>
-              <option>1</option>
-              <option>2</option>
-            </select>
-          </div>
-          <div>
-            <select>
-              <option>1</option>
-              <option>2</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    );
-
     return (
       <section className="event-form-section">
         <h1>Create An Event</h1>
         <hr/>
-        <form onSubmit={this.handleSubmit} className="create-event-form">
+        <form className="create-event-form">
           <div className="title-container">
             <span className="index">1</span>
             <span className="title">Event Details</span>
@@ -161,13 +138,23 @@ export default class Eventform extends React.Component {
           {eventDescription}
 
           <div className="title-container">
+            <span className="index">2</span>
+            <span className="title">Create Tickets</span>
+          </div>
+
+          <div className="title-container">
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
-          {selectType}
-          {selectTopic}
+          <TypeSelector types={this.props.types} />
+          <CategorySelector categories={this.props.categories} />
+
         </form>
 
+        <div className="save-button-container">
+          <h1>Nice job! You're almost done.</h1>
+          <button onClick={this.handleSubmit}>save</button>
+        </div>
       </section>
     );
   }

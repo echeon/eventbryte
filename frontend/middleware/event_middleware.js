@@ -1,6 +1,6 @@
 import * as types from '../actions/ActionTypes';
-import * as actions from '../actions/events_actions';
-import * as API from '../util/events_api_util';
+import * as actions from '../actions/event_actions';
+import * as API from '../util/event_api_util';
 
 export default({ getState, dispatch }) => next => action => {
   const error = xhr => dispatch(actions.receiveErrors(xhr.responseJSON));

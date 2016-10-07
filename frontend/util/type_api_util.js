@@ -1,4 +1,4 @@
-export const fetchTypes = (success) => {
+export const fetchTypes = success => {
   $.ajax({
     method: 'GET',
     url: '/api/types',

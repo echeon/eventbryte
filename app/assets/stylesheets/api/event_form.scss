@@ -52,7 +52,8 @@
   width: 75%;
   box-sizing:border-box;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  border: 1px solid rgb(210, 214, 223);
 }
 
 .create-event-form textarea {
@@ -64,7 +65,6 @@
   padding: 9px 12px;
   border-radius: 3px;
   background: #ffffff;
-  border: 1px solid rgb(210, 214, 223);
 }
 
 .create-event-form input.date-picker,
@@ -117,7 +117,60 @@
 }
 
 #thumb-map {
-  width: 100%;
+  width: 80%;
+  max-width: 400px;
   height: calc(100% - 5px);
   border-radius: 3px;
+}
+
+.type-selector-container select,
+.category-selector-container select {
+  background: transparent;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid rgb(210, 214, 223);
+  border-radius: 3px;
+  letter-spacing: 1px;
+}
+
+.type-selector-container {
+  width: 60%;
+}
+
+.category-selector-container {
+  width: 40%;
+}
+
+.save-button-container {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 100px;
+  background: #ffffff;
+  height: 500px;
+  border-top: 1px solid rgb(210, 214, 223);
+  border-bottom: 1px solid rgb(210, 214, 223);
+}
+
+.save-button-container h1 {
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.save-button-container button {
+  text-transform: uppercase;
+  border: 2px solid rgb(0, 161, 238);
+  border-radius: 3px;
+  color: rgb(0, 161, 238);
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+.save-button-container button:hover {
+  background: rgb(0, 161, 238);
+  color: #ffffff;
 }

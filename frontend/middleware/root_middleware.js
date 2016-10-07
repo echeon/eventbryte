@@ -1,10 +1,12 @@
 import { applyMiddleware } from 'redux';
 import SessionMiddleware from './session_middleware';
-import EventsMiddleware from './events_middleware';
-import TypesMiddleware from './types_middleware';
+import EventMiddleware from './event_middleware';
+import TypeMiddleware from './type_middleware';
+import CategoryMiddleware from './category_middleware';
 
 export default applyMiddleware(
   SessionMiddleware,
-  EventsMiddleware,
-  TypesMiddleware
+  EventMiddleware,
+  TypeMiddleware,
+  CategoryMiddleware
 );
