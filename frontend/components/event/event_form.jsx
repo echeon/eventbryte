@@ -11,7 +11,7 @@ export default class Eventform extends React.Component {
       singleEvent: {
         title: "",
         description: "",
-        organizerId: 0, //DO THIS!,
+        organizerId: this.props.currentUser.id,
         typeId: 0,
         categoryId: 0,
         subcategoryId: 0,
@@ -75,23 +75,38 @@ export default class Eventform extends React.Component {
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
-        <input type="text" placeholder="Give it a short distinct name" onChange={this.handleChange("title")}/>
+        <input type="text"
+               placeholder="Give it a short distinct name"
+               onChange={this.handleChange("title")}/>
       </div>
     );
 
-    const venueAddress = Object.keys(this.state.address).map(k => this.state.address[k]).join(" ");
+    const venueAddress = Object.keys(this.state.address).map(k => {
+      return this.state.address[k];
+    }).join(" ");
+
     const address = (
       <div className="event-detail-container address">
         <h3>location</h3>
         <div className="column">
           <div>
-            <input type="text" placeholder="Enter the venue's name" onChange={this.handleChange("venueName")}/>
-            <input type="text" placeholder="Address" onChange={this.handleAddressChange("address")}/>
+            <input type="text"
+                   placeholder="Enter the venue's name"
+                   onChange={this.handleChange("venueName")}/>
+            <input type="text"
+                   placeholder="Address"
+                   onChange={this.handleAddressChange("address")}/>
             <input type="text" placeholder="Address 2 (optional)" />
-            <input type="text" placeholder="City" onChange={this.handleAddressChange("city")}/>
+            <input type="text"
+                   placeholder="City"
+                   onChange={this.handleAddressChange("city")}/>
             <div className="column-inside-column">
-              <input type="text" placeholder="State" onChange={this.handleAddressChange("state")}/>
-              <input type="text" placeholder="Zip/Postal" onChange={this.handleAddressChange("zip")} />
+              <input type="text"
+                     placeholder="State"
+                     onChange={this.handleAddressChange("state")}/>
+              <input type="text"
+                     placeholder="Zip/Postal"
+                     onChange={this.handleAddressChange("zip")} />
             </div>
           </div>
           <div className="map-container">
@@ -105,13 +120,21 @@ export default class Eventform extends React.Component {
       <div className="event-detail-container column date-time">
         <div>
           <h3>starts</h3>
-          <input type="date" className="date-picker" onChange={this.handleChange("startDate")}/>
-          <input type="time" className="time-picker" onChange={this.handleChange("startTime")}/>
+          <input type="date"
+                 className="date-picker"
+                 onChange={this.handleChange("startDate")}/>
+          <input type="time"
+                 className="time-picker"
+                 onChange={this.handleChange("startTime")}/>
         </div>
         <div>
           <h3>ends</h3>
-          <input type="date" className="date-picker" onChange={this.handleChange("endDate")}/>
-          <input type="time" className="time-picker" onChange={this.handleChange("endTime")}/>
+          <input type="date"
+                 className="date-picker"
+                 onChange={this.handleChange("endDate")}/>
+          <input type="time"
+                 className="time-picker"
+                 onChange={this.handleChange("endTime")}/>
         </div>
       </div>
     );
@@ -119,7 +142,8 @@ export default class Eventform extends React.Component {
     const eventDescription = (
       <div className="event-detail-container">
         <h3>event description</h3>
-        <textarea placeholder="Give it a short distinct name" onChange={this.handleChange("title")}/>
+        <textarea placeholder="Give it a short distinct name"
+                  onChange={this.handleChange("title")}/>
       </div>
     );
 
