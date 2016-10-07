@@ -17,8 +17,8 @@ export default class TypeSelector extends React.Component {
       <div className="event-detail-container">
         <h3>event type</h3>
         <div className="type-selector-container">
-          <select>
-            <option value="" disabled selected>Select the type of event</option>
+          <select value="0">
+            <option value="0" disabled>Select the type of event</option>
             {typeList}
           </select>
         </div>

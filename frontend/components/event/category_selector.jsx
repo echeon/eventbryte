@@ -17,8 +17,8 @@ export default class CategorySelector extends React.Component {
       <div className="event-detail-container">
         <h3>event topic</h3>
         <div className="category-selector-container">
-          <select>
-            <option value="" disabled selected>Select a topic</option>
+          <select value="0">
+            <option value="0" disabled>Select a topic</option>
             {categoryList}
           </select>
         </div>
