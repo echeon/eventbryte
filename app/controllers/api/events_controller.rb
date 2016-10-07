@@ -4,7 +4,7 @@ class Api::EventsController < ApplicationController
   end
 
   def show
-
+    @event = Event.find_by_id(params[:id])
   end
 
   def create
@@ -13,7 +13,7 @@ class Api::EventsController < ApplicationController
     if @event.save
       render :show
     else
-      render json: @user.errors.full_messages, status: 422
+      render json: @event.errors.full_messages, status: 422
     end
   end
 
@@ -31,7 +31,7 @@ class Api::EventsController < ApplicationController
     params.require(:event).permit(
       :title, :description, :organizer_id, :type_id, :category_id,
       :subcategory_id, :start_date, :start_time, :end_date, :end_time,
-      :lat_long, :image_url
+      :venue_name, :lat, :lng, :image_url
     )
   end
 

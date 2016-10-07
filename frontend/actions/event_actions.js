@@ -1,22 +1,22 @@
 import * as t from './ActionTypes';
 
-export const createEvent = singleEvent => {
+export const createEvent = thisEvent => {
   return {
     type: t.CREATE_EVENT,
-    singleEvent
+    thisEvent
   };
 };
 
-export const receiveEvent = singleEvent => {
+export const receiveEvent = thisEvent => {
   return {
     type: t.RECEIVE_EVENT,
-    singleEvent
+    thisEvent
   };
 };
 
-export const receiveErrors = errors => {
+export const requestEvent = id => {
   return {
-    type: t.RECEIVE_ERRORS,
-    errors
+    type: t.REQUEST_EVENT,
+    id
   };
 };

@@ -1,6 +1,8 @@
 .header {
-  border-bottom: 1px solid #eff2f5;
   height: 60px;
+  width: 100%
+  border-bottom: 1px solid #eff2f5;
+  background: #ffffff;
 }
 
 .header a {
@@ -14,6 +16,7 @@
 
 .header-logo {
   border-right: 1px solid #eff2f5;
+  box-sizing: border-box;
 }
 
 .header-logo > a {
@@ -33,6 +36,7 @@
 .header-list li {
   display: flex;
   border-left: 1px solid #eff2f5;
+  box-sizing: border-box;
 }
 
 .header-list li:hover {
@@ -43,7 +47,7 @@
   cursor: pointer;
   text-transform: uppercase;
   color: #45494e;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.5px;
-  padding: 24px 20px;
+  padding: 22px 20px;
 }

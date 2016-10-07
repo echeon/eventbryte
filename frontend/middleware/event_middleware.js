@@ -3,13 +3,16 @@ import * as actions from '../actions/event_actions';
 import * as API from '../util/event_api_util';
 
 export default({ getState, dispatch }) => next => action => {
-  const error = xhr => dispatch(actions.receiveErrors(xhr.responseJSON));
   let success;
   switch(action.type) {
     case types.CREATE_EVENT:
       success = data => dispatch(actions.receiveEvent(data));
-      API.createEvent(action.singleEvent, success, error);
+      API.createEvent(action.thisEvent, success);
       return next(action);
+    case types.REQUEST_EVENT:
+      success = data => dispatch(actions.receiveEvent(data));
+      API.fetchEvent(action.id, success);
+      break;
     default:
       return next(action);
   }

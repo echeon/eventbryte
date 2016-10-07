@@ -37,7 +37,10 @@ export default class ThumbMap extends React.Component {
 
   componentDidMount() {
     const defaultOptions = {
-      center: { lat: 40.7250239, lng: -73.99679200000003 },
+      center: {
+        lat: parseFloat(this.props.lat),
+        lng: parseFloat(this.props.lng)
+      },
       zoom: 15,
       disableDefaultUI: true,
     };
@@ -48,18 +51,13 @@ export default class ThumbMap extends React.Component {
     this.addMarker(defaultOptions.center);
   }
 
-  componentWillReceiveProps() {
+  componentWillUpdate() {
     this.deleteMarkers();
 
-    const address = this.props.address;
-    const geocoder = new google.maps.Geocoder();
+    const LatLng = new google.maps.LatLng(this.props.lat, this.props.lng);
 
-    geocoder.geocode({'address': address}, (results, status) => {
-      if (status === 'OK') {
-        this.map.setCenter(results[0].geometry.location);
-        this.addMarker(results[0].geometry.location);
-      }
-    });
+    this.map.setCenter(LatLng);
+    this.addMarker({lat: LatLng.lat(), lng: LatLng.lng()});
   }
 
   render() {

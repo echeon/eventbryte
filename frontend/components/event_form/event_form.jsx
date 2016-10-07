@@ -4,31 +4,39 @@ import update from 'react-addons-update';
 import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 
+const defaultDate = () => {
+  const afterOneMonth = new Date(Date.now() + (60 * 86400000));
+  let year, month, date;
+  year = afterOneMonth.getFullYear();
+  month = `0${afterOneMonth.getMonth()}`.slice(-2);
+  date = `0${afterOneMonth.getDate()}`.slice(-2);
+  return `${year}-${month}-${date}`;
+};
+
 export default class Eventform extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      singleEvent: {
-        title: "",
-        description: "",
-        organizerId: this.props.currentUser.id,
-        typeId: 0,
-        categoryId: 0,
-        subcategoryId: 0,
-        startDate: "",
-        startTime: "",
-        endDate: "",
-        endTime: "",
-        venueName: "",
-        latLong: "",
-        imageUrl: ""
-      },
-      address: {
-        address: "",
-        city: "",
-        state: "",
-        zip: ""
-      }
+      title: "",
+      description: "",
+      organizer_id: this.props.currentUser.id,
+      type_id: "",
+      category_id: "",
+      subcategory_id:"",
+      start_date: defaultDate(),
+      start_time: "19:00",
+      end_date: defaultDate(),
+      end_time: "22:00",
+      venue_name: "",
+      lat: "40.7250239",
+      lng: "-73.99679200000003"
+    };
+
+    this.venueAddress = {
+      address: "",
+      city: "",
+      state: "",
+      zip: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -43,26 +51,28 @@ export default class Eventform extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const singleEvent = this.state;
-    this.props.createEvent(singleEvent);
+    const thisEvent = this.state;
+    this.props.createEvent(thisEvent);
   }
 
-  getFullDate() {
-    const timeNow = new Date();
-    let year, month, date;
-    year = timeNow.getFullYear();
-    month = `0${timeNow.getMonth() + 2}`.slice(-2);
-    date = `0${timeNow.getDate()}`.slice(-2);
-    return `${year}-${month}-${date}`;
-  }
+
 
   handleAddressChange(prop) {
     return e => {
-      e.preventDefault();
-      const val = e.currentTarget.value;
-      this.setState( oldState => update(oldState, {
-        address: { [prop]: {$set: val} }
-      }));
+      this.venueAddress[prop] = e.currentTarget.value;
+      const address = Object.keys(this.venueAddress).map(key => {
+        return this.venueAddress[key];
+      }).join(" ");
+
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address }, (results, status) => {
+        if (status === 'OK') {
+          const lat = results[0].geometry.location.lat().toString();
+          const lng = results[0].geometry.location.lng().toString();
+          this.setState({ lat, lng });
+        }
+      });
+
     };
   }
 
@@ -81,10 +91,6 @@ export default class Eventform extends React.Component {
       </div>
     );
 
-    const venueAddress = Object.keys(this.state.address).map(k => {
-      return this.state.address[k];
-    }).join(" ");
-
     const address = (
       <div className="event-detail-container address">
         <h3>location</h3>
@@ -92,7 +98,7 @@ export default class Eventform extends React.Component {
           <div>
             <input type="text"
                    placeholder="Enter the venue's name"
-                   onChange={this.handleChange("venueName")}/>
+                   onChange={this.handleChange("venue_name")}/>
             <input type="text"
                    placeholder="Address"
                    onChange={this.handleAddressChange("address")}/>
@@ -110,7 +116,7 @@ export default class Eventform extends React.Component {
             </div>
           </div>
           <div className="map-container">
-            <ThumbMap address={venueAddress}/>
+            <ThumbMap lat={this.state.lat} lng={this.state.lng} />
           </div>
         </div>
       </div>
@@ -122,19 +128,23 @@ export default class Eventform extends React.Component {
           <h3>starts</h3>
           <input type="date"
                  className="date-picker"
-                 onChange={this.handleChange("startDate")}/>
+                 defaultValue={this.state.start_date}
+                 onChange={this.handleChange("start_date")}/>
           <input type="time"
                  className="time-picker"
-                 onChange={this.handleChange("startTime")}/>
+                 defaultValue={this.state.start_time}
+                 onChange={this.handleChange("start_time")}/>
         </div>
         <div>
           <h3>ends</h3>
           <input type="date"
                  className="date-picker"
-                 onChange={this.handleChange("endDate")}/>
+                 defaultValue={this.state.end_date}
+                 onChange={this.handleChange("end_date")}/>
           <input type="time"
                  className="time-picker"
-                 onChange={this.handleChange("endTime")}/>
+                 defaultValue={this.state.end_time}
+                 onChange={this.handleChange("end_time")}/>
         </div>
       </div>
     );
@@ -143,7 +153,7 @@ export default class Eventform extends React.Component {
       <div className="event-detail-container">
         <h3>event description</h3>
         <textarea placeholder="Give it a short distinct name"
-                  onChange={this.handleChange("title")}/>
+                  onChange={this.handleChange("description")}/>
       </div>
     );
 
@@ -170,8 +180,10 @@ export default class Eventform extends React.Component {
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
-          <TypeSelector types={this.props.types} />
-          <CategorySelector categories={this.props.categories} />
+          <TypeSelector types={this.props.types}
+                        onChange={this.handleChange("type_id")}/>
+          <CategorySelector categories={this.props.categories}
+                            onChange={this.handleChange("category_id")}/>
 
         </form>
 

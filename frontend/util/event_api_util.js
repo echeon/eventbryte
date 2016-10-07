@@ -1,9 +1,16 @@
-export const createEvent = (singleEvent, success, error) => {
+export const createEvent = (thisEvent, success) => {
   $.ajax({
     method: 'POST',
     url: '/api/events',
-    data: { singleEvent },
-    success,
-    error
+    data: {event: thisEvent},
+    success
+  });
+};
+
+export const fetchEvent = (id, success) => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/events/${id}`,
+    success
   });
 };

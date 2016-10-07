@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   font-family: 'Lato', Arial, sans-serif;
+	background-color: rgb(248, 248, 250);
 }
 ol, ul {
 	list-style: none;

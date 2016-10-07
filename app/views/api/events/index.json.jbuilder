@@ -1,3 +1,3 @@
 json.array! @events do |event|
-  json.extract! event, :title
+  json.partial! "api/events/event", event: event
 end
