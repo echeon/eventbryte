@@ -1,7 +1,8 @@
 .event-show-header-image {
   position: absolute;
   width: 100%;
-  height: 500px;
+  height: 66vh;
+  min-height: 500px;
   z-index: -10;
   overflow: hidden;
 }
@@ -9,12 +10,12 @@
 .event-show-header-image img {
   position: absolute;
   width: 100%;
-  transform: scale(1.1);
-  filter: blur(10px);
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
+  transform: scale(1.5);
+  filter: blur(50px);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: auto;
 }
 
@@ -99,6 +100,7 @@
 
 .event-detail p {
   font-size: 15px;
+  margin-bottom: 5px;
 }
 
 .event-detail-right {
@@ -111,4 +113,9 @@
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.event-detail-main h3,
+.event-detail-right {
+  letter-spacing: 1px;
 }

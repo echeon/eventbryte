@@ -2,9 +2,11 @@ import React from 'react';
 import dateFormat from 'dateformat';
 
 const EventDetail = ({ thisEvent }) => {
-
+  console.log(thisEvent.image_url);
   const startDate = thisEvent.start_date ? new Date(thisEvent.start_date) : "";
   const endDate = thisEvent.end_date ? new Date(thisEvent.end_date): "";
+  const startTime = thisEvent.start_time ? new Date(thisEvent.start_time) : "";
+  const endTime = thisEvent.end_time ? new Date(thisEvent.end_time) : "";
 
   return (
     <section className="event-show-detail-container">
@@ -24,11 +26,17 @@ const EventDetail = ({ thisEvent }) => {
         <div className="event-detail">
           <div className="event-detail-left">
             <h3>description</h3>
+            <p>{thisEvent.description}</p>
             <h3>tags</h3>
           </div>
           <div className="event-detail-right">
             <h3>date and time</h3>
             <p>{dateFormat(startDate, "ddd, mmmm d, yyyy")}</p>
+            <p>
+              {dateFormat(startTime, "h:MM TT")}
+              -
+              {dateFormat(endTime, "h:MM TT")}
+            </p>
             <h3>location</h3>
           </div>
         </div>

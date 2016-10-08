@@ -1,5 +1,5 @@
 class Api::CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.all.includes(:subcategories)
   end
 end

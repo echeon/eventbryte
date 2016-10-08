@@ -19,7 +19,7 @@ class Category < ActiveRecord::Base
   has_many(
     :subcategories,
     class_name: "Subcategory",
-    foreign_key: :subcategory_id,
+    foreign_key: :category_id,
     primary_key: :id
   )
 end

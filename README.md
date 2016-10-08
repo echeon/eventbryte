@@ -68,7 +68,7 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
   - [ ] `EventIndexItem`
   - [ ] `EventForm`
 - [ ] Style event components
-- [ ] Seed database with types/categories/subcategories
+- [x] Seed database with types/categories/subcategories
 - [ ] Create event
 - [ ] Review phase 2
 

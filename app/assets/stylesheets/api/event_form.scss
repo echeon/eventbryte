@@ -11,11 +11,15 @@
 .event-form-section h1 {
   font-size: 35px;
   font-weight: 700;
-  padding: 25px 0 15px 20px;
+  width: 80%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 25px 0 15px 0;
 }
 
 .create-event-form {
   width: 80%;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
@@ -124,7 +128,8 @@
 }
 
 .type-selector-container select,
-.category-selector-container select {
+.category-selector-container select,
+.subcategory-selector-container select {
   background: transparent;
   width: 100%;
   padding: 10px;
@@ -141,7 +146,8 @@
   width: 60%;
 }
 
-.category-selector-container {
+.category-selector-container,
+.subcategory-selector-container {
   width: 40%;
 }
 

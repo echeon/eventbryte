@@ -1,3 +1,4 @@
 json.array! @types do |type|
-  json.extract! type, :id, :name
+  json.value type.id
+  json.label type.name
 end

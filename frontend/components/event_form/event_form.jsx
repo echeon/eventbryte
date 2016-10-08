@@ -45,6 +45,9 @@ export default class Eventform extends React.Component {
   handleChange(prop) {
     return e => {
       e.preventDefault();
+      if (prop === "category_id") {
+        this.setState({ subcategory_id: 0 });
+      }
       this.setState({ [prop]: e.currentTarget.value });
     };
   }
@@ -82,6 +85,8 @@ export default class Eventform extends React.Component {
   }
 
   render() {
+    const { lat, lng } = this.state;
+
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
@@ -116,7 +121,7 @@ export default class Eventform extends React.Component {
             </div>
           </div>
           <div className="map-container">
-            <ThumbMap lat={this.state.lat} lng={this.state.lng} />
+            <ThumbMap lat={lat} lng={lng} />
           </div>
         </div>
       </div>
@@ -157,6 +162,11 @@ export default class Eventform extends React.Component {
       </div>
     );
 
+    const { types, categories } = this.props;
+    const subcategories = this.state.category_id ?
+                          categories[this.state.category_id].subcategories :
+                          [];
+
     return (
       <section className="event-form-section">
         <h1>Create An Event</h1>
@@ -180,10 +190,13 @@ export default class Eventform extends React.Component {
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
-          <TypeSelector types={this.props.types}
+          <TypeSelector types={types}
                         onChange={this.handleChange("type_id")}/>
-          <CategorySelector categories={this.props.categories}
-                            onChange={this.handleChange("category_id")}/>
+          <CategorySelector
+            categories={categories}
+            subcategories={subcategories}
+            onCategoryChange={this.handleChange("category_id")}
+            onSubcategoryChange={this.handleChange("subcategory_id")}/>
 
         </form>
 

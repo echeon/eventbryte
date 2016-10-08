@@ -10,6 +10,9 @@ class Api::EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
+    # !!! DELETE AFTER IMPLEMENTING SUBCATEGORY
+    @event.subcategory_id = 1
+
     if @event.save
       render :show
     else
