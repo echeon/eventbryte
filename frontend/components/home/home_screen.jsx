@@ -16,7 +16,7 @@ const HomeScreen = () => {
         <p>blah blah blah blah blah blah blah blah blah blah blah blah</p>
         <div className="home-button-container">
           <button className="browse-events-button">
-            <Link to="/">Browse Events</Link>
+            <Link to="/browse">Browse Events</Link>
           </button>
           <button className="create-event-button">
             <Link to="/events/create">Create Event</Link>

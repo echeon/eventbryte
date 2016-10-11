@@ -72,7 +72,7 @@ export default class HeaderList extends React.Component {
       return (
         <ul className="header-list">
           <li>
-            <Link to="/">
+            <Link to="/browse">
               <button className="header-browse-event">browse events</button>
             </Link>
           </li>
