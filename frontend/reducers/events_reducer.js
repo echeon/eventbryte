@@ -4,7 +4,11 @@ const EventsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case types.RECEIVE_EVENTS:
-      return action.events;
+      const newEvents = {};
+      action.events.forEach(thisEvent => {
+        newEvents[thisEvent.id] = thisEvent;
+      });
+      return Object.assign({}, state, newEvents);
 
     case types.RECEIVE_EVENT:
       const newEvent = {[action.thisEvent.id]: action.thisEvent};
@@ -12,7 +16,7 @@ const EventsReducer = (state = {}, action) => {
 
     case types.REMOVE_EVENT:
       const newState = Object.assign({}, state);
-      delete newState[action.id];
+      delete newState[action.thisEvent.id];
       return newState;
 
     default:

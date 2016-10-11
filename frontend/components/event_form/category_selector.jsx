@@ -18,7 +18,6 @@ export default class CategorySelector extends React.Component {
     });
 
     const subcategoryList = subcategories.map(subcategory => {
-      console.log(subcategory);
       return (
         <option key={subcategory.id} value={subcategory.id}>
           {subcategory.name}
@@ -40,7 +39,7 @@ export default class CategorySelector extends React.Component {
     //     return <div className="subcategory-selector-container"></div>;
     //   }
     // };
-    
+
     return (
       <div className="event-detail-container">
         <h3>event topic</h3>

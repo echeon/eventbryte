@@ -42,10 +42,10 @@ export const receiveEvents = events => {
   };
 };
 
-export const removeEvent = id => {
+export const removeEvent = thisEvent => {
   return {
     type: t.REMOVE_EVENT,
-    id
+    thisEvent
   };
 };
 
