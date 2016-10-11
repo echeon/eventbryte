@@ -1,7 +1,7 @@
 .header {
   height: 60px;
   width: 100%;
-  border-bottom: 1px solid #eff2f5;
+  border-bottom: 1px solid rgb(210, 214, 223);
   background: #ffffff;
 }
 
@@ -50,4 +50,67 @@
   font-size: 13px;
   letter-spacing: 0.5px;
   padding: 22px 20px;
+  max-height: 60px;
+}
+
+.header-list button > i {
+  color: #D2D6DF;
+  font-size: 27px;
+  transform: translateY(-5px);
+}
+
+.header-list button > i:first-child {
+  margin-right: 5px;
+}
+
+.menu-logged-in {
+  width: 250px;
+  display: none;
+  position: absolute;
+  font-size: 13px;
+  background: #fff;
+  z-index: 5;
+  text-transform: uppercase;
+  color: #45494e;
+  white-space: nowrap;
+  right: 0;
+  top: 61px;
+  border: 1px solid rgb(210, 214, 223);
+  border-top: none;
+  letter-spacing: 0.5px;
+}
+
+.menu-logged-in hr {
+  background: #eff2f5;
+  height: 1px;
+  border: none;
+  margin: 0;
+}
+
+li:hover .menu-logged-in {
+  display: block;
+}
+
+.menu-logged-in > li:hover {
+  background: #EFF2F5;
+}
+
+.menu-logged-in a {
+  width: 100%;
+  padding: 22px 20px;
+}
+
+button.header-create-event {
+  color: #00a1ee;
+  font-weight: 700;
+}
+
+button.header-create-event:hover {
+  color: #22b8ff;
+  background: #ffffff;
+}
+
+button.header-browse-event:hover {
+  color: #00a1ee;
+  background: #ffffff;
 }

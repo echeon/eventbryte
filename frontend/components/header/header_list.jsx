@@ -71,7 +71,26 @@ export default class HeaderList extends React.Component {
     } else {
       return (
         <ul className="header-list">
-          <li><button onClick={this.props.logout}>log out</button></li>
+          <li>
+            <button className="header-browse-event">browse events</button>
+          </li>
+          <li>
+            <button className="header-create-event">create event</button>
+          </li>
+          <li>
+            <button>
+              <i className="material-icons">account_circle</i>
+              <i className="material-icons">expand_more</i>
+            </button>
+            <ul className="menu-logged-in">
+              <li><Link to="/">Tickets</Link></li>
+              <li><Link to="/">Saved</Link></li>
+              <hr/>
+              <li><Link to="/events/manage">Manage Events</Link></li>
+              <hr/>
+              <li><a onClick={this.props.logout}>Log Out</a></li>
+            </ul>
+          </li>
         </ul>
       );
     }
