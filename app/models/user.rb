@@ -18,6 +18,19 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many(
+    :bookmarks,
+    class_name: "Bookmark",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :bookmarked_events,
+    through: :bookmarks,
+    source: :event
+  )
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)

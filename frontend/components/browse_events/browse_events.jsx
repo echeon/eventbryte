@@ -1,4 +1,5 @@
 import React from 'react';
+import EventsList from './events_list';
 
 export default class BrowseEvents extends React.Component {
   constructor(props) {
@@ -18,10 +19,18 @@ export default class BrowseEvents extends React.Component {
   // }
 
   render() {
+    const events = Object.keys(this.props.events).map(key => {
+      return this.props.events[key];
+    });
+
     return (
-      <div>
-        <h1>Total number of events</h1>
-        <p>{Object.keys(this.props.events).length}</p>
+      <div className="browse-events-container">
+        <aside className="browse-events-filter">
+          
+        </aside>
+        <div className="browse-events-list-container">
+          <EventsList events={events} />
+        </div>
       </div>
     );
   }
