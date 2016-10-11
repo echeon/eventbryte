@@ -292,3 +292,9 @@ Event.create!(
   venue_name: "2112 inc",
   place_id: "ChIJtfD-TjbMD4gRWYATzd1Qrkg"
 )
+
+
+Bookmark.destroy_all
+Bookmark.create!(user_id: 2, event_id: 1)
+Bookmark.create!(user_id: 2, event_id: 2)
+Bookmark.create!(user_id: 1, event_id: 3)
