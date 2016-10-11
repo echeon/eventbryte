@@ -25,11 +25,11 @@ export default class CategorySelector extends React.Component {
       );
     });
 
-    // const SubcategorySelector = () => {
+    // const SubcategorySelector = ({ onSubcategoryChange }) => {
     //   if (subcategoryList.length) {
     //     return (
     //       <div className="subcategory-selector-container">
-    //         <select defaultValue="0" onChange={this.props.onSubcategoryChange}>
+    //         <select defaultValue="0" onChange={onSubcategoryChange}>
     //           <option value="0">Select a sub-topic</option>
     //           {subcategoryList}
     //         </select>
@@ -49,12 +49,12 @@ export default class CategorySelector extends React.Component {
             {categoryList}
           </select>
         </div>
-          <div className="subcategory-selector-container">
-            <select value={this.props.subcategoryId} onChange={this.props.onSubcategoryChange}>
-              <option value="0">Select a sub-topic</option>
-              {subcategoryList}
-            </select>
-          </div>
+        <div className="subcategory-selector-container">
+          <select value={this.props.subcategoryId} onChange={this.props.onSubcategoryChange}>
+            <option value="0">Select a sub-topic</option>
+            {subcategoryList}
+          </select>
+        </div>
       </div>
     );
   }
