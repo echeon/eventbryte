@@ -10,10 +10,6 @@ export default class ManageEvents extends React.Component {
     this.props.requestEvents();
   }
 
-  componentWillMount() {
-    this.props.updateFilter('user_id', this.props.currentUser.id);
-  }
-
   render() {
     const myEvents = Object.keys(this.props.events).map(key => {
       return this.props.events[key];
