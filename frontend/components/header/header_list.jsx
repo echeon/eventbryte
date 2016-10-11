@@ -87,8 +87,8 @@ export default class HeaderList extends React.Component {
               <i className="material-icons">expand_more</i>
             </button>
             <ul className="menu-logged-in">
-              <li><Link to="/">Tickets</Link></li>
-              <li><Link to="/">Saved</Link></li>
+              <li><Link to="/myprofile">Tickets</Link></li>
+              <li><Link to="/myprofile/saved">Saved</Link></li>
               <hr/>
               <li><Link to="/events/manage">Manage Events</Link></li>
               <hr/>
