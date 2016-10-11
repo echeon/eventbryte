@@ -3,16 +3,26 @@ import * as actions from '../actions/event_actions';
 import * as API from '../util/event_api_util';
 
 export default({ getState, dispatch }) => next => action => {
-  let success;
+  const eventSuccess = data => dispatch(actions.receiveEvent(data));
+  const eventsSuccess = data => dispatch(actions.receiveEvents(data));
   switch(action.type) {
     case types.CREATE_EVENT:
-      success = data => dispatch(actions.receiveEvent(data));
-      API.createEvent(action.thisEvent, success);
+      API.createEvent(action.thisEvent, eventSuccess);
       return next(action);
-    case types.REQUEST_EVENT:
-      success = data => dispatch(actions.receiveEvent(data));
-      API.fetchEvent(action.id, success);
+
+    case types.REQUEST_EVENTS:
+      const filters = getState().filters;
+      API.fetchEvents(filters, eventsSuccess);
       break;
+
+    case types.REQUEST_EVENT:
+      API.fetchEvent(action.id, eventSuccess);
+      return next(action);
+
+    case types.UPDATE_EVENT:
+      API.updateEvent(action.id, action.thisEvent, eventSuccess);
+      return next(action);
+
     default:
       return next(action);
   }

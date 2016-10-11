@@ -61,15 +61,15 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 
 - [ ] `Event` model
 - [ ] Seed database with a small amount of test event data
-- [ ] CRUD API for events (EventsController)
+- [x] CRUD API for events (EventsController)
 - [ ] JBuilder views for events
 - [ ] Event components and respective redux loops
   - [ ] `EventsIndex`
   - [ ] `EventIndexItem`
   - [ ] `EventForm`
-- [ ] Style event components
+- [x] Style event components
 - [x] Seed database with types/categories/subcategories
-- [ ] Create event
+- [x] Create event
 - [ ] Review phase 2
 
 

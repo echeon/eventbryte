@@ -14,3 +14,21 @@ export const fetchEvent = (id, success) => {
     success
   });
 };
+
+export const updateEvent = (id, thisEvent, success) => {
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/events/${id}`,
+    data: {event: thisEvent},
+    success
+  });
+};
+
+export const fetchEvents = (filters, success) => {
+  $.ajax({
+    method: 'GET',
+    url: '/api/events',
+    data: filters,
+    success
+  });
+};

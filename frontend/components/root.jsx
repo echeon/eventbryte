@@ -6,6 +6,7 @@ import SessionFormContainer from './session/session_form_container';
 import EventFormContainer from './event_form/event_form_container';
 import HomeScreen from './home/home_screen';
 import EventShowContainer from './event_show/event_show_container';
+import ManageEventsContainer from './manage_events/manage_events_container';
 
 
 const Root = ({ store }) => {
@@ -21,6 +22,10 @@ const Root = ({ store }) => {
     }
   };
 
+  const _redirectIfNotOrganizer = () => {
+
+  };
+
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
@@ -29,7 +34,9 @@ const Root = ({ store }) => {
           <Route path="/login" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
           <Route path="/signup" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
           <Route path="/events/create" component={EventFormContainer} onEnter={_redirectIfNotLoggedIn} />
+          <Route path="/events/manage" component={ManageEventsContainer} onEnter={_redirectIfNotLoggedIn} />
           <Route path="/events/:eventId" component={EventShowContainer} />
+          <Route path="/events/:eventId/edit" component={EventFormContainer} onEnter={_redirectIfNotOrganizer} />
         </Route>
       </Router>
     </Provider>

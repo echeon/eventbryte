@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Eventbryte</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100i,300i,400i,700i,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -8,17 +9,6 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript">
-      window.eventbryteAssets = {
-        headerLogo: "<%= image_url("logo.png") %>",
-        homeScreenImages: {
-          1: "<%= image_url("slideshow-image-1.jpg") %>",
-          2: "<%= image_url("slideshow-image-2.jpg") %>",
-          3: "<%= image_url("slideshow-image-3.jpg") %>",
-          4: "<%= image_url("slideshow-image-4.jpg") %>",
-        }
-      }
-    </script>
   </head>
   <body>
 

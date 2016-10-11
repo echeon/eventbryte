@@ -1,6 +1,5 @@
 import React from 'react';
 import EventDetail from './event_detail';
-import dateFormat from 'dateformat';
 
 export default class EventShow extends React.Component {
   constructor(props) {

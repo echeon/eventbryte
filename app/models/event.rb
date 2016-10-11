@@ -9,23 +9,22 @@
 #  type_id        :integer          not null
 #  category_id    :integer          not null
 #  subcategory_id :integer          not null
-#  start_date     :date             not null
-#  start_time     :time             not null
-#  end_date       :date             not null
-#  end_time       :time             not null
+#  start_date     :string           not null
+#  start_time     :string           not null
+#  end_date       :string           not null
+#  end_time       :string           not null
 #  image_url      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  venue_name     :string           not null
-#  lat            :string           not null
-#  lng            :string           not null
+#  place_id       :string           not null
 #
 
 class Event < ActiveRecord::Base
   validates :title, :description, presence: true
   validates :organizer_id, :type_id, :category_id, :subcategory_id, presence: true
   validates :start_date, :start_time, :end_date, :end_time, presence: true
-  validates :venue_name, :lat, :lng, presence: true
+  validates :venue_name, :place_id, presence: true
 
   belongs_to(
     :organizer,

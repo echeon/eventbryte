@@ -11,7 +11,7 @@
   position: absolute;
   width: 100%;
   transform: scale(1.5);
-  filter: blur(50px);
+  filter: blur(50px) brightness(0.9);
   top: 0;
   bottom: 0;
   left: 0;
@@ -25,8 +25,6 @@
   margin: 0 auto;
   color: #45494E;
   letter-spacing: 0.5px;
-
-  height: 1000px;
 }
 
 @media screen and (min-width: 1080px) {
@@ -40,11 +38,13 @@
   height: 33vw;
   max-height: 360px;
   display: flex;
+  border-bottom: 1px solid rgb(210, 214, 223);
 }
 
 .event-image-container {
   width: 66.67%;
   border-top-left-radius: 3px;
+  overflow: hidden;
 }
 
 .event-image-container img {
@@ -73,7 +73,17 @@
   padding-bottom: 20px;
 }
 
-.event-main-info p {
+.event-main-info h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin-top: 30px;
+  letter-spacing: 1px;
+}
+
+.event-main-info h4 {
+  font-size: 15px;
+  color: #666A73;
+  margin-top: 20px;
 }
 
 .event-month {
@@ -88,6 +98,7 @@
 .event-detail-main {
   width: 100%;
   background: #ffffff;
+  letter-spacing: 1px;
 }
 
 .event-detail {
@@ -115,7 +126,34 @@
   margin-bottom: 10px;
 }
 
-.event-detail-main h3,
-.event-detail-right {
+.event-detail-left a {
+  border: 1px solid #D2D6DF;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 4px 9px;
   letter-spacing: 1px;
+  margin-right: 5px;
+}
+
+.event-detail-left a:hover {
+  border: 1px solid #00a8f2;
+  color: #00a8f2;
+}
+
+.event-detail-left h3:nth-child(n+2),
+.event-detail-right h3:nth-child(n+2) {
+  margin-top: 100px;
+}
+
+.event-detail-map-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  height: 360px;
+}
+
+#event-detail-map {
+  width: 100%;
+  height: 100%;
 }

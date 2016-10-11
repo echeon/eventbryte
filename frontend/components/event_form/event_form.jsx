@@ -20,16 +20,15 @@ export default class Eventform extends React.Component {
       title: "",
       description: "",
       organizer_id: this.props.currentUser.id,
-      type_id: "",
-      category_id: "",
-      subcategory_id:"",
+      type_id: 0,
+      category_id: 0,
+      subcategory_id: 0,
       start_date: defaultDate(),
       start_time: "19:00",
       end_date: defaultDate(),
-      end_time: "22:00",
+      end_time: "21:00",
       venue_name: "",
-      lat: "40.7250239",
-      lng: "-73.99679200000003"
+      place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU"
     };
 
     this.venueAddress = {
@@ -40,6 +39,25 @@ export default class Eventform extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.requestTypes();
+    this.props.requestCategories();
+    if (this.props.formType === 'edit') {
+      this.props.requestEvent(this.props.eventId);
+    } else if (this.props.formType === 'create') {
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.formType === 'edit') {
+      if (this.props.eventId !== parseInt(nextProps.params.eventId)) {
+        this.props.requestEvent(nextProps.params.eventId);
+      } else {
+        this.setState(nextProps.thisEvent);
+      }
+    }
   }
 
   handleChange(prop) {
@@ -55,10 +73,8 @@ export default class Eventform extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
-    this.props.createEvent(thisEvent);
+    this.props.processForm(thisEvent);
   }
-
-
 
   handleAddressChange(prop) {
     return e => {
@@ -70,29 +86,22 @@ export default class Eventform extends React.Component {
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode({ address }, (results, status) => {
         if (status === 'OK') {
-          const lat = results[0].geometry.location.lat().toString();
-          const lng = results[0].geometry.location.lng().toString();
-          this.setState({ lat, lng });
+          const placeId = results[0].place_id;
+          this.setState({ place_id: placeId });
         }
       });
 
     };
   }
 
-  componentDidMount() {
-    this.props.requestTypes();
-    this.props.requestCategories();
-  }
-
   render() {
-    const { lat, lng } = this.state;
-
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
         <input type="text"
                placeholder="Give it a short distinct name"
-               onChange={this.handleChange("title")}/>
+               onChange={this.handleChange("title")}
+               value={this.state.title}/>
       </div>
     );
 
@@ -103,7 +112,8 @@ export default class Eventform extends React.Component {
           <div>
             <input type="text"
                    placeholder="Enter the venue's name"
-                   onChange={this.handleChange("venue_name")}/>
+                   onChange={this.handleChange("venue_name")}
+                   value={this.state.venue_name}/>
             <input type="text"
                    placeholder="Address"
                    onChange={this.handleAddressChange("address")}/>
@@ -121,7 +131,7 @@ export default class Eventform extends React.Component {
             </div>
           </div>
           <div className="map-container">
-            <ThumbMap lat={lat} lng={lng} />
+            <ThumbMap placeId={this.state.place_id} />
           </div>
         </div>
       </div>
@@ -133,22 +143,22 @@ export default class Eventform extends React.Component {
           <h3>starts</h3>
           <input type="date"
                  className="date-picker"
-                 defaultValue={this.state.start_date}
+                 value={this.state.start_date}
                  onChange={this.handleChange("start_date")}/>
           <input type="time"
                  className="time-picker"
-                 defaultValue={this.state.start_time}
+                 value={this.state.start_time}
                  onChange={this.handleChange("start_time")}/>
         </div>
         <div>
           <h3>ends</h3>
           <input type="date"
                  className="date-picker"
-                 defaultValue={this.state.end_date}
+                 value={this.state.end_date}
                  onChange={this.handleChange("end_date")}/>
           <input type="time"
                  className="time-picker"
-                 defaultValue={this.state.end_time}
+                 value={this.state.end_time}
                  onChange={this.handleChange("end_time")}/>
         </div>
       </div>
@@ -157,8 +167,10 @@ export default class Eventform extends React.Component {
     const eventDescription = (
       <div className="event-detail-container">
         <h3>event description</h3>
-        <textarea placeholder="Give it a short distinct name"
-                  onChange={this.handleChange("description")}/>
+        <textarea
+          placeholder="Give it a short distinct name"
+          onChange={this.handleChange("description")}
+          value={this.state.description}/>
       </div>
     );
 
@@ -169,7 +181,7 @@ export default class Eventform extends React.Component {
 
     return (
       <section className="event-form-section">
-        <h1>Create An Event</h1>
+        <h1>{this.props.formType} An Event</h1>
         <hr/>
         <form className="create-event-form">
           <div className="title-container">
@@ -190,19 +202,24 @@ export default class Eventform extends React.Component {
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
+
           <TypeSelector types={types}
-                        onChange={this.handleChange("type_id")}/>
+                        value={this.state.type_id}
+                        onTypeChange={this.handleChange("type_id")}/>
           <CategorySelector
+            categoryId={this.state.category_id}
+            subcategoryId={this.state.subcategory_id}
             categories={categories}
             subcategories={subcategories}
             onCategoryChange={this.handleChange("category_id")}
             onSubcategoryChange={this.handleChange("subcategory_id")}/>
-
         </form>
 
-        <div className="save-button-container">
-          <h1>Nice job! You're almost done.</h1>
-          <button onClick={this.handleSubmit}>save</button>
+        <div className="event-form-footer">
+          <div className="save-button-container">
+            <h1>Nice job! You're almost done.</h1>
+            <button onClick={this.handleSubmit}>make your event live</button>
+          </div>
         </div>
       </section>
     );

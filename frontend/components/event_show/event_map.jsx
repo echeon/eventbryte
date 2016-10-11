@@ -1,30 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export default class ThumbMap extends React.Component {
+export default class EventMap extends React.Component {
   constructor(props) {
     super(props);
     this.markers = [];
 
-    this.deleteMarkers = this.deleteMarkers.bind(this);
-    this.clearMarkers = this.clearMarkers.bind(this);
-    this.setMapOnAll = this.setMapOnAll.bind(this);
     this.addMarker = this.addMarker.bind(this);
-  }
-
-  setMapOnAll(map) {
-    for (var i = 0; i < this.markers.length; i++) {
-      this.markers[i].setMap(map);
-    }
-  }
-
-  clearMarkers() {
-    this.setMapOnAll(null);
-  }
-
-  deleteMarkers() {
-    this.clearMarkers();
-    this.markers = [];
   }
 
   addMarker(location) {
@@ -41,28 +23,28 @@ export default class ThumbMap extends React.Component {
         lat: 40.7250239,
         lng: -73.99679200000003
       },
-      zoom: 15,
-      disableDefaultUI: true,
+      zoom: 13,
+      mapTypeControl: false,
     };
 
     const map = ReactDOM.findDOMNode(this.refs.map);
     this.map = new google.maps.Map(map, defaultOptions);
-
-    this.addMarker(defaultOptions.center);
   }
 
-  componentWillUpdate() {
+  componentWillReceiveProps() {
     const geocoder = new google.maps.Geocoder();
+    const infowindow = new google.maps.InfoWindow;
     geocoder.geocode({'placeId': this.props.placeId}, (results, status) => {
       if (status === 'OK') {
-        this.deleteMarkers();
         this.map.setCenter(results[0].geometry.location);
         this.addMarker(results[0].geometry.location);
+        infowindow.setContent(results[0].formatted_address);
+        infowindow.open(this.map, this.markers[0]);
       }
     });
   }
 
   render() {
-    return <div id="thumb-map" ref="map"></div>;
+    return <div id="event-detail-map" ref="map"></div>;
   }
 }
