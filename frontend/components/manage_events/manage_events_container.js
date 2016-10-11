@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ManageEvents from './manage_events';
 import { updateFilter } from '../../actions/filter_actions';
-import { requestEvents } from '../../actions/event_actions';
+import { requestEvents, destroyEvent } from '../../actions/event_actions';
 
 const mapStateToProps = state => {
   return {
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     requestEvents: () => dispatch(requestEvents()),
+    destroyEvent: id => dispatch(destroyEvent(id)),
     updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
   };
 };

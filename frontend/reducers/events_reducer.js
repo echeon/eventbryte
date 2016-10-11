@@ -10,6 +10,11 @@ const EventsReducer = (state = {}, action) => {
       const newEvent = {[action.thisEvent.id]: action.thisEvent};
       return Object.assign({}, state, newEvent);
 
+    case types.REMOVE_EVENT:
+      const newState = Object.assign({}, state);
+      delete newState[action.id];
+      return newState;
+
     default:
       return state;
   }

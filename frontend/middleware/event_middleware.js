@@ -5,6 +5,7 @@ import * as API from '../util/event_api_util';
 export default({ getState, dispatch }) => next => action => {
   const eventSuccess = data => dispatch(actions.receiveEvent(data));
   const eventsSuccess = data => dispatch(actions.receiveEvents(data));
+  const eventRemoved = data => dispatch(actions.removeEvent(data));
   switch(action.type) {
     case types.CREATE_EVENT:
       API.createEvent(action.thisEvent, eventSuccess);
@@ -22,6 +23,10 @@ export default({ getState, dispatch }) => next => action => {
     case types.UPDATE_EVENT:
       API.updateEvent(action.id, action.thisEvent, eventSuccess);
       return next(action);
+
+    case types.DESTROY_EVENT:
+      API.destroyEvent(action.id, eventRemoved);
+      break;
 
     default:
       return next(action);

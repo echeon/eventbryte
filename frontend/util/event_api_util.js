@@ -32,3 +32,11 @@ export const fetchEvents = (filters, success) => {
     success
   });
 };
+
+export const destroyEvent = (id, success) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/events/${id}`,
+    success
+  });
+};

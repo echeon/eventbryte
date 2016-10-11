@@ -41,3 +41,17 @@ export const receiveEvents = events => {
     events
   };
 };
+
+export const removeEvent = id => {
+  return {
+    type: t.REMOVE_EVENT,
+    id
+  };
+};
+
+export const destroyEvent = id => {
+  return {
+    type: t.DESTROY_EVENT,
+    id
+  };
+};

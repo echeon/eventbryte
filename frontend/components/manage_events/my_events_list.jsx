@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import dateFormat from 'dateformat';
 
-const MyEventsListItem = ({ myEvent }) => {
+const MyEventsListItem = ({ myEvent, destroyEvent }) => {
   const eventStarts = new Date(myEvent.start_date);
   eventStarts.setHours(...myEvent.start_time.split(":"));
 
@@ -29,16 +29,22 @@ const MyEventsListItem = ({ myEvent }) => {
         </Link>
         <Link to={`/events/${myEvent.id}`}>
           <i className="material-icons">open_in_browser</i>
-            View
+          <span>View</span>
         </Link>
+        <a onClick={destroyEvent.bind(null, myEvent.id)}>
+          <i className="material-icons">delete_forever</i>
+          <span>Delete</span>
+        </a>
       </div>
     </div>
   );
 };
 
-const MyEventsList = ({ myEvents }) => {
+const MyEventsList = ({ myEvents, destroyEvent }) => {
   const myEventsIndex = myEvents.map(myEvent => {
-    return <MyEventsListItem myEvent={myEvent} key={myEvent.id}/>;
+    return <MyEventsListItem myEvent={myEvent}
+                             destroyEvent={destroyEvent}
+                             key={myEvent.id}/>;
   });
 
   return (

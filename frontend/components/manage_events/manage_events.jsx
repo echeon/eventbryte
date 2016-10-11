@@ -18,7 +18,7 @@ export default class ManageEvents extends React.Component {
     const myEvents = Object.keys(this.props.events).map(key => {
       return this.props.events[key];
     });
-    
+
     return (
       <div className="my-events-container">
         <div className="my-events-header">
@@ -26,7 +26,8 @@ export default class ManageEvents extends React.Component {
         </div>
         <hr/>
         <div className="my-events-list-container">
-          <MyEventsList myEvents={myEvents} />
+          <MyEventsList myEvents={myEvents}
+                        destroyEvent={this.props.destroyEvent}/>
         </div>
       </div>
     );
