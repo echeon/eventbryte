@@ -74,10 +74,13 @@
   color: #45494e;
   white-space: nowrap;
   right: 0;
-  top: 61px;
+  top: 60px;
   border: 1px solid rgb(210, 214, 223);
-  border-top: none;
   letter-spacing: 0.5px;
+}
+
+.menu-logged-in li {
+  border: none;
 }
 
 .menu-logged-in hr {
