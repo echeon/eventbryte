@@ -1,7 +1,5 @@
 class Api::EventsController < ApplicationController
   def index
-    @types = Type.all
-    @categories = Category.all
     if params[:user_id]
       @events = Event.all.where(organizer_id: params[:user_id])
     else
@@ -10,8 +8,6 @@ class Api::EventsController < ApplicationController
   end
 
   def show
-    @types = Type.all
-    @categories = Category.all
     @event = Event.find_by_id(params[:id])
   end
 
@@ -38,7 +34,7 @@ class Api::EventsController < ApplicationController
   def destroy
     @event = Event.find_by_id(params[:id])
     @event.destroy
-    render json: @event      
+    render json: @event
   end
 
   private
