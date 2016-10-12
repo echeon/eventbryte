@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import ModalStyle from './modal_style';
 import LoginForm from '../forms/login_form';
 import SignupForm from '../forms/signup_form';
-import { Link, hashHistory } from 'react-router';
+import { Link, hashHistory, router } from 'react-router';
 
 export default class HeaderList extends React.Component {
   constructor(props) {
