@@ -7,7 +7,7 @@ const mapStateToProps = state => {
   const currentUser = state.session.currentUser;
   return {
     currentUser,
-    savedEvents: selectSavedEvents(state.events, currentUser.bookmarks)
+    savedEvents: selectSavedEvents(state.events, state.bookmarks)
   };
 };
 

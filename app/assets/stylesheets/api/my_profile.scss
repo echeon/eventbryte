@@ -118,11 +118,22 @@
 
 .myprofile-event-bookmark i {
   font-size: 24px;
-  color: #979aa0;
   position: absolute;
   transform: translate(6px, 8px);
 }
 
-.myprofile-event-bookmark:hover i {
+.myprofile-event-bookmark i.no-bookmark {
+  color: #979aa0;
+}
+
+.myprofile-event-bookmark:hover i.no-bookmark {
   color: #00A8F2;
+}
+
+.myprofile-event-bookmark i.bookmark {
+  color: #00a8f2;
+}
+
+.myprofile-event-bookmark:hover i.bookmark {
+  color: #26bdff;
 }

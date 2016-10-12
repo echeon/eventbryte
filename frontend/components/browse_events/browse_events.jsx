@@ -17,16 +17,14 @@ export default class BrowseEvents extends React.Component {
   }
 
   render() {
-    const { types, categories, bookmarks } = this.props;
+    const { types, categories } = this.props;
     return (
       <div className="browse-events-container">
         <aside className="browse-events-filter">
 
         </aside>
         <div className="browse-events-list-container">
-          <EventsListContainer                      types={types}
-                      bookmarks={bookmarks}
-                      cagetories={categories}/>
+          <EventsListContainer types={types} cagetories={categories}/>
         </div>
       </div>
     );

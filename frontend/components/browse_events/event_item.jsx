@@ -8,10 +8,6 @@ export default class EventItem extends React.Component {
     this.toggleBookmark = this.toggleBookmark.bind(this);
   }
 
-  // componentWillReceiveProps() {
-  //   this.setState({ isBookmarked: this.props.isBookmarked });
-  // }
-
   toggleBookmark() {
     if (this.props.currentUser) {
       if (this.props.bookmarkId) {

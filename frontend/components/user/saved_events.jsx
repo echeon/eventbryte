@@ -1,5 +1,5 @@
 import React from 'react';
-import EventItem from './event_item';
+import EventItemContainer from './event_item_container';
 
 
 export default class SavedEvents extends React.Component {
@@ -8,18 +8,36 @@ export default class SavedEvents extends React.Component {
   }
 
   componentDidMount() {
+    this.props.requestEvents();
     this.props.requestTypes();
     this.props.requestCategories();
+    this.props.requestBookmarks(this.props.currentUser);
   }
 
   render() {
-    const { savedEvents, types, categories } = this.props;
+    const { savedEvents, types, categories, bookmarks } = this.props;
 
     let savedEventsList = Object.keys(savedEvents).map(key => {
-      return <EventItem key={key}
-                        eventItem={savedEvents[key]}
-                        types={types}
-                        categories={categories} />;
+      const eventItem = savedEvents[key];
+
+      const type = types[eventItem.type_id];
+      const typeName = type ? type.name : "";
+
+      const category = categories[eventItem.category_id];
+      const categoryName = category ? category.name : "";
+
+      let bookmarkId = 0;
+      Object.keys(bookmarks).forEach(k => {
+        if (bookmarks[k].event_id === eventItem.id) {
+          bookmarkId = bookmarks[k].id;
+        }
+      });
+
+      return <EventItemContainer key={key}
+                                 eventItem={eventItem}
+                                 typeName={typeName}
+                                 categoryName={categoryName}
+                                 bookmarkId={bookmarkId} />;
     });
 
     if (typeof savedEvents[Object.keys(savedEvents)[0]] === 'undefined') {

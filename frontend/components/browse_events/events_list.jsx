@@ -38,8 +38,7 @@ export default class EventsList extends React.Component {
                                  key={thisEvent.id}
                                  typeName={typeName}
                                  categoryName={categoryName}
-                                 bookmarkId={bookmarkId}
-                                 currentUser={currentUser}/>;
+                                 bookmarkId={bookmarkId} />;
     });
 
     return (
