@@ -60,9 +60,7 @@ export default class HeaderList extends React.Component {
           <Modal isOpen={this.state.isModalOpen}
                  onRequestClose={this.closeModal}
                  onAfterOpen={this.onModalOpen}
-                 style={ModalStyle}
-                 className="modal-login"
-                 overlayClassName="modal-login-overlay">
+                 style={ModalStyle}>
             <button className="modal-close" onClick={this.closeModal}>X</button>
             {form}
           </Modal>
