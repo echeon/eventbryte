@@ -11,17 +11,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const pathname = ownProps.location.pathname;
-  if (pathname === '/login') {
-    return {
-      formType: 'login',
-      processForm: user => dispatch(login(user))
-    };
-  } else if (pathname === '/signup') {
-    return {
-      formType: 'signup',
-      processForm: user => dispatch(signup(user))
-    };
-  }
+  const formType = pathname === '/login' ? 'login' : 'signup';
+  return {
+    formType,
+    login: user => dispatch(login(user)),
+    signup: user => dispatch(signup(user))
+  };
 };
 
 export default connect(

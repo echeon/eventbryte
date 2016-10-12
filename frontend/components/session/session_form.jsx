@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { Link, hashHistory } from 'react-router';
+import LoginForm from '../forms/login_form';
+import SignupForm from '../forms/signup_form';
 
 export default class SessionForm extends React.Component {
   constructor(props) {
@@ -9,32 +11,8 @@ export default class SessionForm extends React.Component {
       email: "",
       password: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const user = this.state;
-    this.props.processForm(user);
-  }
-
-  handleGuestLogin(e) {
-    e.preventDefault();
-    const guest = {email: "guest@eventbryte.com", password: "password"};
-    this.setState(guest, () => {
-      this.props.processForm(this.state);
-      this.setState({ email: "", password: "" });
-    });
-  }
-
-  handleChange(prop) {
-    return (e) => {
-      e.preventDefault();
-      this.setState({ [prop]: e.currentTarget.value });
-    };
-  }
 
   componentDidUpdate() {
     if (this.props.loggedIn) {
@@ -43,38 +21,58 @@ export default class SessionForm extends React.Component {
   }
 
   render() {
-    let header, otherHeader, link, errors;
+    const { formType, login, errors, signup } = this.props;
 
-    if (this.props.formType === 'login') {
-      header = "Log in";
-      otherHeader = "login";
-      link = <Link to="/signup">Sign Up</Link>;
-    } else {
-      header = "Sign up";
-      otherHeader = "signup";
-      link = <Link to="/login">Log In</Link>;
-    }
-
-    if (this.props.errors.length) {
-      errors = (
-        <ul>
-          { this.props.errors.map( (error, i) => <li key={i}>{error}</li> ) }
-        </ul>
-      );
+    let form;
+    if (formType === 'login') {
+      form = <LoginForm login={login} errors={errors} />;
+    } else if (formType === 'signup') {
+      form = <SignupForm login={login} signup={signup} errors={errors}/>;
     }
 
     return (
-      <div>
-        <h1>{header}</h1>
-        <span>Please {otherHeader} or {link} instead</span>
-        {errors}
-        <form onSubmit={this.handleSubmit}>
-          Email <input type="text" onChange={this.handleChange("email")}/><br/>
-          Password <input type="password" onChange={this.handleChange("password")}/><br/>
-          <button>Submit</button>
-          <button onClick={this.handleGuestLogin}>Guest Login</button>
-        </form>
+      <div className="user-info-form-container">
+        {form}
       </div>
     );
   }
 }
+
+
+
+// render() {
+//   let header, otherHeader, link, errors;
+//
+//   if (this.props.formType === 'login') {
+//     header = "Log in";
+//     otherHeader = "login";
+//     link = <Link to="/signup">Sign Up</Link>;
+//   } else {
+//     header = "Sign up";
+//     otherHeader = "signup";
+//     link = <Link to="/login">Log In</Link>;
+//   }
+//
+//   if (this.props.errors.length) {
+//     errors = (
+//       <ul>
+//         { this.props.errors.map( (error, i) => <li key={i}>{error}</li> ) }
+//       </ul>
+//     );
+//   }
+//
+//   return (
+//     <div>
+//
+//       <h1>{header}</h1>
+//       <span>Please {otherHeader} or {link} instead</span>
+//       {errors}
+//       <form onSubmit={this.handleSubmit}>
+//         Email <input type="text" onChange={this.handleChange("email")}/><br/>
+//         Password <input type="password" onChange={this.handleChange("password")}/><br/>
+//         <button>Submit</button>
+//         <button onClick={this.handleGuestLogin}>Guest Login</button>
+//       </form>
+//     </div>
+//   );
+// }
