@@ -297,4 +297,10 @@ Event.create!(
 Bookmark.destroy_all
 Bookmark.create!(user_id: 2, event_id: 1)
 Bookmark.create!(user_id: 2, event_id: 2)
-Bookmark.create!(user_id: 1, event_id: 3)
+Bookmark.create!(user_id: 2, event_id: 5)
+Bookmark.create!(user_id: 2, event_id: 7)
+Bookmark.create!(user_id: 1, event_id: 8)
+Bookmark.create!(user_id: 1, event_id: 1)
+Bookmark.create!(user_id: 1, event_id: 6)
+Bookmark.create!(user_id: 1, event_id: 8)
+Bookmark.create!(user_id: 1, event_id: 9)
