@@ -1,9 +1,13 @@
 import * as types from '../actions/ActionTypes';
 import * as actions from '../actions/event_actions';
 import * as API from '../util/event_api_util';
+import { hashHistory } from 'react-router';
 
 export default({ getState, dispatch }) => next => action => {
-  const eventSuccess = data => dispatch(actions.receiveEvent(data));
+  const eventSuccess = data => {
+    dispatch(actions.receiveEvent(data));
+    hashHistory.push(`/events/${data.id}`);
+  };
   const eventsSuccess = data => dispatch(actions.receiveEvents(data));
   const eventRemoved = data => dispatch(actions.removeEvent(data));
   switch(action.type) {
