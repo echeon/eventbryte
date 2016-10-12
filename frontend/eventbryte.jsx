@@ -21,17 +21,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(<Root store={store} />, root);
 });
-
-
-
-
-
-
-
-// FOR TESTING ONLY!
-window.store = configureStore();
-import { signup, login, logout } from './actions/session_actions';
-window.signup = signup;
-window.login = login;
-window.logout = logout;
-window.user = {email: "guest@eventbryte.com", password: "password"};
