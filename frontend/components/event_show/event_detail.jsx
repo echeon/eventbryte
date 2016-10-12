@@ -47,12 +47,18 @@ export default class EventDetail extends React.Component {
   }
 
   render() {
-    const { thisEvent } = this.props;
-    
+    const { thisEvent, types, categories } = this.props;
+
     const startDate = thisEvent.start_date ? new Date(thisEvent.start_date) : "";
     const endDate = thisEvent.end_date ? new Date(thisEvent.end_date): "";
     const startTime = thisEvent.start_time ? new Date().setHours(...thisEvent.start_time.split(":")) : "";
     const endTime = thisEvent.end_time ? new Date().setHours(...thisEvent.end_time.split(":")) : "";
+
+    const type = types[thisEvent.type_id];
+    const typeName = type ? type.name : "";
+
+    const category = categories[thisEvent.category_id];
+    const categoryName = category ? category.name : "";
 
     this.translateLatLng(thisEvent.place_id);
 
@@ -81,8 +87,8 @@ export default class EventDetail extends React.Component {
               <p>{thisEvent.description}</p>
               <h3>tags</h3>
               <Link to="/">{`Things to do in ${this.state.city}, ${this.state.state}`}</Link>
-              <Link to="/">{thisEvent.type_name}</Link>
-              <Link to="/">{thisEvent.category_name}</Link>
+              <Link to="/">{typeName}</Link>
+              <Link to="/">{categoryName}</Link>
             </div>
             <div className="event-detail-right">
               <h3>date and time</h3>

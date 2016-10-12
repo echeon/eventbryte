@@ -95,11 +95,22 @@
 
 .bookmark-action i {
   font-size: 24px;
-  color: #979aa0;
   position: absolute;
   transform: translate(6px, 6px);
 }
 
-.bookmark-action:hover i {
-  color: #00A8F2;;
+.bookmark-action i.no-bookmark {
+  color: #979aa0;
+}
+
+.bookmark-action:hover i.no-bookmark {
+  color: #00A8F2;
+}
+
+.bookmark-action i.bookmark {
+  color: #00a8f2;
+}
+
+.bookmark-action:hover i.bookmark {
+  color: #26bdff;
 }

@@ -3,10 +3,12 @@ import SessionMiddleware from './session_middleware';
 import EventMiddleware from './event_middleware';
 import TypeMiddleware from './type_middleware';
 import CategoryMiddleware from './category_middleware';
+import BookmarkMiddleware from './bookmark_middleware';
 
 export default applyMiddleware(
   SessionMiddleware,
   EventMiddleware,
   TypeMiddleware,
-  CategoryMiddleware
+  CategoryMiddleware,
+  BookmarkMiddleware
 );

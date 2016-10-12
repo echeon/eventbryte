@@ -1,55 +1,51 @@
 import React from 'react';
-import { Link } from 'react-router';
-import dateFormat from 'dateformat';
+import EventItemContainer from './event_item_container';
 
-const EventsListItem = ({ thisEvent }) => {
-  const eventStarts = new Date(thisEvent.start_date);
-  eventStarts.setHours(...thisEvent.start_time.split(":"));
+export default class EventsList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="single-event-container">
-      <div className="single-event-top-row">
-        <div className="single-event-thumbnail">
-          <img src={thisEvent.image_url}/>
-        </div>
-        <div className="single-event-detail">
-          <div className="single-event-detail-1">
-            <p>{dateFormat(eventStarts, "ddd, mmm d @ h:MM TT")}</p>
-            <p>{thisEvent.title}</p>
-          </div>
-          <div className="single-event-detail-2">
-            <p>{thisEvent.venue_name}</p>
-          </div>
-        </div>
+  componentDidMount() {
+    this.props.requestEvents();
+    if (this.props.currentUser) {
+      this.props.requestBookmarks(this.props.currentUser);
+    }
+  }
+
+  render() {
+    const { types, categories, bookmarks, currentUser } = this.props;
+
+    const events = Object.keys(this.props.events).map(key => {
+      return this.props.events[key];
+    });
+
+    const eventsIndex = events.map(thisEvent => {
+      const type = types[thisEvent.type_id];
+      const typeName = type ? type.name : "";
+
+      const category = categories[thisEvent.category_id];
+      const categoryName = category ? category.name : "";
+
+      let bookmarkId = 0;
+      Object.keys(bookmarks).forEach(key => {
+        if (bookmarks[key].event_id === thisEvent.id) {
+          bookmarkId = bookmarks[key].id;
+        }
+      });
+
+      return <EventItemContainer thisEvent={thisEvent}
+                                 key={thisEvent.id}
+                                 typeName={typeName}
+                                 categoryName={categoryName}
+                                 bookmarkId={bookmarkId}
+                                 currentUser={currentUser}/>;
+    });
+
+    return (
+      <div className="browse-results-container">
+        {eventsIndex}
       </div>
-      <div className="single-event-bottom-row">
-        <div className="single-event-price-info">
-          FREE
-        </div>
-        <div className="single-event-others">
-          <div className="single-event-tags">
-            <a>#Party</a>
-            <a>#Music</a>
-          </div>
-          <div className="bookmark-action">
-            <i className="material-icons">bookmark_border</i>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-const EventsList = ({ events }) => {
-  const eventsIndex = events.map(thisEvent => {
-    return <EventsListItem thisEvent={thisEvent}
-                           key={thisEvent.id}/>;
-  });
-
-  return (
-    <div className="browse-results-container">
-      {eventsIndex}
-    </div>
-  );
-};
-
-export default EventsList;
+    );
+  }
+}

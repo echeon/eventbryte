@@ -8,15 +8,21 @@ export default class EventShow extends React.Component {
 
   componentDidMount() {
     this.props.requestEvent(this.props.eventId);
+    this.props.requestTypes();
+    this.props.requestCategories();
   }
 
   render() {
+    const { thisEvent, types, categories } = this.props;
+
     return (
       <main className="event-show-container">
         <div className="event-show-header-image">
           <img src={this.props.thisEvent.image_url}/>
         </div>
-        <EventDetail thisEvent={this.props.thisEvent} />
+        <EventDetail thisEvent={thisEvent}
+                     types={types}
+                     categories={categories} />
       </main>
     );
   }

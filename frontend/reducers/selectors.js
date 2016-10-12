@@ -9,3 +9,11 @@ export const selectMyEvents = (events, userId) => {
   });
   return myEvents;
 };
+
+export const selectSavedEvents = (events, bookmarks) => {
+  const bookmarkedEvents = {};
+  bookmarks.forEach(bookmark => {
+    bookmarkedEvents[bookmark.event_id] = events[bookmark.event_id];
+  });
+  return bookmarkedEvents;
+};

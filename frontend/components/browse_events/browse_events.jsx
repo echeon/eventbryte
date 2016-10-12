@@ -1,16 +1,9 @@
 import React from 'react';
-import EventsList from './events_list';
+import EventsListContainer from './events_list_container';
 
 export default class BrowseEvents extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.requestEvents();
-  }
-
-  componentWillMount() {
   }
 
   // To be added when adding filters
@@ -18,18 +11,22 @@ export default class BrowseEvents extends React.Component {
   //   this.props.updateFilter('user_id', this.props.currentUser.id);
   // }
 
-  render() {
-    const events = Object.keys(this.props.events).map(key => {
-      return this.props.events[key];
-    });
+  componentDidMount() {
+    this.props.requestTypes();
+    this.props.requestCategories();
+  }
 
+  render() {
+    const { types, categories, bookmarks } = this.props;
     return (
       <div className="browse-events-container">
         <aside className="browse-events-filter">
-          
+
         </aside>
         <div className="browse-events-list-container">
-          <EventsList events={events} />
+          <EventsListContainer                      types={types}
+                      bookmarks={bookmarks}
+                      cagetories={categories}/>
         </div>
       </div>
     );

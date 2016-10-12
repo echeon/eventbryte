@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-import EventShow from './event_show';
-import { requestEvent } from '../../actions/event_actions';
-import { selectEvent } from '../../reducers/selectors';
+import SavedEvents from './saved_events';
+import { selectSavedEvents } from '../../reducers/selectors';
 import { requestTypes } from '../../actions/type_actions';
 import { requestCategories } from '../../actions/category_actions';
 
-const mapStateToProps = (state, ownProps) => {
-  const eventId = parseInt(ownProps.params.eventId);
-  const thisEvent = selectEvent(state.events, eventId);
+const mapStateToProps = state => {
+  const currentUser = state.session.currentUser;
   return {
-    eventId,
-    thisEvent,
+    currentUser,
+    savedEvents: selectSavedEvents(state.events, currentUser.bookmarks),
     types: state.types,
     categories: state.categories
   };
@@ -18,7 +16,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestEvent: id => dispatch(requestEvent(id)),
     requestTypes: () => dispatch(requestTypes()),
     requestCategories: () => dispatch(requestCategories())
   };
@@ -27,4 +24,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EventShow);
+)(SavedEvents);
