@@ -272,6 +272,9 @@ export default class Eventform extends React.Component {
       <div className="event-detail-container">
           <h3>event image</h3>
           <ImageUpload onUpload={this.handleImageUpload}/>
+          <button className="image-remove" onClick={this.handleRemoveImage}>
+            <i className="material-icons">delete_forever</i> Remove Image
+          </button>
       </div>
     );
 
@@ -304,9 +307,6 @@ export default class Eventform extends React.Component {
           {address}
           {dateTime}
           {eventImage}
-          <button className="image-remove" onClick={this.handleRemoveImage}>
-            <i className="material-icons">delete_forever</i> Remove Image
-          </button>
           {eventDescription}
 
           <div className="title-container">
