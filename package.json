@@ -29,7 +29,6 @@
     "babel-preset-react": "^6.16.0",
     "dateformat": "^1.0.12",
     "react": "^15.3.2",
-    "react-addons-update": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-modal": "^1.4.0",
     "react-redux": "^4.4.5",

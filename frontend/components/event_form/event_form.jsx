@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ThumbMap from './thumb_map';
-import update from 'react-addons-update';
 import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 import { hashHistory } from 'react-router';
