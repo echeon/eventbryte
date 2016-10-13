@@ -144,6 +144,9 @@ export default class Eventform extends React.Component {
               addressState.value = formattedAddress[2].split(" ")[0];
               addressZip.value = formattedAddress[2].split(" ")[1];
             }
+
+            const img = `<img src=${thisEvent.image_url} />`;
+            document.getElementById('image-preview').innerHTML = img;
           }
         });
 
@@ -180,10 +183,10 @@ export default class Eventform extends React.Component {
     } else if (this.props.formType === 'edit') {
       this.props.updateEvent(this.props.eventId, thisEvent);
     }
-    // this.props.processForm(thisEvent);
   }
 
   render() {
+    console.log(this.state);
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
@@ -275,7 +278,7 @@ export default class Eventform extends React.Component {
     );
 
     const { types, categories } = this.props;
-    
+
     const subcategories = categories[this.state.category_id] ?
                           categories[this.state.category_id].subcategories :
                           [];

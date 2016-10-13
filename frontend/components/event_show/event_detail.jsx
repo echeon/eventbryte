@@ -101,6 +101,7 @@ export default class EventDetail extends React.Component {
               <h3>location</h3>
               <p>{thisEvent.venue_name}</p>
               <p>{this.state.address1}</p>
+              <p>{thisEvent.address_detail}</p>
               <p>{this.state.address2}</p>
             </div>
           </div>

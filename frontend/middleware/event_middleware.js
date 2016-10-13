@@ -26,7 +26,10 @@ export default({ getState, dispatch }) => next => action => {
       return next(action);
 
     case types.UPDATE_EVENT:
-      success = data => dispatch(actions.receiveEvent(data));
+      success = data => {
+        dispatch(actions.receiveEvent(data));
+        hashHistory.push(`/events/${data.id}`);
+      };
       API.updateEvent(action.id, action.thisEvent, success);
       return next(action);
 
