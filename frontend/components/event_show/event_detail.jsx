@@ -80,6 +80,14 @@ export default class EventDetail extends React.Component {
             <div className="event-price-info">FREE</div>
           </div>
         </div>
+        <div className="event-actions-container">
+          <div>
+
+          </div>
+          <div className="event-register-button">
+            <button>register</button>
+          </div>
+        </div>
         <div className="event-detail-main">
           <div className="event-detail">
             <div className="event-detail-left">

@@ -5,6 +5,7 @@ import TypesReducer from './types_reducer';
 import CategoriesReducer from './categories_reducer';
 import FiltersReducer from './filters_reducer';
 import BookmarksReducer from './bookmarks_reducer';
+import TicketsReducer from './tickets_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -12,7 +13,8 @@ const RootReducer = combineReducers({
   types: TypesReducer,
   categories: CategoriesReducer,
   filters: FiltersReducer,
-  bookmarks: BookmarksReducer
+  bookmarks: BookmarksReducer,
+  tickets: TicketsReducer,
 });
 
 export default RootReducer;

@@ -4,6 +4,7 @@ import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 import { hashHistory } from 'react-router';
 import ImageUpload from './image_upload';
+// import TicketEditorContainer from './ticket_editor_container';
 
 const defaultDate = () => {
   const afterOneMonth = new Date(Date.now() + (60 * 86400000));
@@ -31,13 +32,15 @@ export default class Eventform extends React.Component {
       venue_name: "",
       address_detail: "",
       image_url: "",
-      place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU"
+      place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU",
+      max_seats: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleRemoveImage = this.handleRemoveImage.bind(this);
+    this.handleUpdateNumber = this.handleUpdateNumber.bind(this);
   }
 
   initMap() {
@@ -153,13 +156,6 @@ export default class Eventform extends React.Component {
 
       }
     }
-    // if (this.props.formType === 'edit') {
-    //   if (this.props.eventId !== parseInt(nextProps.params.eventId)) {
-    //     this.props.requestEvent(nextProps.params.eventId);
-    //   } else {
-    //     this.setState(nextProps.thisEvent);
-    //   }
-    // }
   }
 
   handleChange(prop) {
@@ -183,6 +179,11 @@ export default class Eventform extends React.Component {
     document.getElementById('image-preview').innerHTML = box;
   }
 
+  handleUpdateNumber(e) {
+    e.preventDefault();
+    this.setState({ max_seats: parseInt(e.currentTarget.value) });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
@@ -194,7 +195,6 @@ export default class Eventform extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
@@ -288,6 +288,15 @@ export default class Eventform extends React.Component {
       </div>
     );
 
+    const maxNumSeats = (
+      <div className="event-detail-container">
+        <h3>number of seats</h3>
+        <input type="number"
+               className="number"
+               onChange={this.handleUpdateNumber}/>
+      </div>
+    );
+
     const { types, categories } = this.props;
 
     const subcategories = categories[this.state.category_id] ?
@@ -309,15 +318,12 @@ export default class Eventform extends React.Component {
           {eventImage}
           {eventDescription}
 
-          <div className="title-container">
-            <span className="index">2</span>
-            <span className="title">Create Tickets</span>
-          </div>
 
           <div className="title-container">
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
+          {maxNumSeats}
 
           <TypeSelector types={types}
                         value={this.state.type_id}

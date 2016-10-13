@@ -110,30 +110,46 @@
   margin-right: 10px;
 }
 
-.myprofile-event-bookmark {
+.myprofile-event-action {
   cursor: pointer;
   width: 36px;
   border-left: 1px solid rgb(239, 242, 245);
 }
 
-.myprofile-event-bookmark i {
+.myprofile-event-action i {
   font-size: 24px;
   position: absolute;
   transform: translate(6px, 8px);
 }
 
-.myprofile-event-bookmark i.no-bookmark {
+.myprofile-event-action i.no-bookmark {
   color: #979aa0;
 }
 
-.myprofile-event-bookmark:hover i.no-bookmark {
+.myprofile-event-action:hover i.no-bookmark {
   color: #00A8F2;
 }
 
-.myprofile-event-bookmark i.bookmark {
+.myprofile-event-action i.bookmark {
   color: #00a8f2;
 }
 
-.myprofile-event-bookmark:hover i.bookmark {
+.myprofile-event-action:hover i.bookmark {
+  color: #26bdff;
+}
+
+.myprofile-event-action i.no-ticket {
+  color: #979aa0;
+}
+
+.myprofile-event-action:hover i.no-ticket {
+  color: #00A8F2;
+}
+
+.myprofile-event-action i.ticket {
+  color: #00a8f2;
+}
+
+.myprofile-event-action:hover i.ticket {
   color: #26bdff;
 }

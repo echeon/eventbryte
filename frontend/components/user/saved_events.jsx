@@ -7,13 +7,6 @@ export default class SavedEvents extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.requestEvents();
-    this.props.requestTypes();
-    this.props.requestCategories();
-    this.props.requestBookmarks(this.props.currentUser);
-  }
-
   render() {
     const { savedEvents, types, categories, bookmarks } = this.props;
 
@@ -33,11 +26,12 @@ export default class SavedEvents extends React.Component {
         }
       });
 
-      return <EventItemContainer key={key}
+      return <EventItemContainer formType="bookmark"
+                                 key={key}
                                  eventItem={eventItem}
                                  typeName={typeName}
                                  categoryName={categoryName}
-                                 bookmarkId={bookmarkId} />;
+                                 helperId={bookmarkId} />;
     });
 
     if (typeof savedEvents[Object.keys(savedEvents)[0]] === 'undefined') {

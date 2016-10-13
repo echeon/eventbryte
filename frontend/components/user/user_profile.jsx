@@ -8,10 +8,14 @@ export default class UserProfile extends React.Component {
 
   componentWillMount() {
     this.props.requestEvents();
+    this.props.requestTypes();
+    this.props.requestCategories();
+    this.props.requestTickets(this.props.currentUser);
+    this.props.requestBookmarks(this.props.currentUser);
   }
 
   render() {
-    const { savedEvents } = this.props;
+    const { savedEvents, upcomingEvents, pastEvents } = this.props;
 
     const selected = pathname => (
       (this.props.location.pathname.endsWith(pathname)) ? "selected" : ""
@@ -23,7 +27,7 @@ export default class UserProfile extends React.Component {
           <Link to="/myprofile"
                 className={`myprofile-header-tab ${selected("myprofile")}`}>
             <div className="myprofile-header-count">
-              0
+              {Object.keys(upcomingEvents).length}
             </div>
             <div>
               upcoming events
@@ -41,7 +45,7 @@ export default class UserProfile extends React.Component {
           <Link to="/myprofile/past"
                 className={`myprofile-header-tab ${selected("past")}`}>
             <div className="myprofile-header-count">
-              0
+              {Object.keys(pastEvents).length}
             </div>
             <div>
               past events

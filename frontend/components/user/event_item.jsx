@@ -5,12 +5,24 @@ import { Link } from 'react-router';
 export default class EventItem extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleTicket = this.toggleTicket.bind(this);
     this.toggleBookmark = this.toggleBookmark.bind(this);
   }
 
+  toggleTicket() {
+    if (this.props.helperId) {
+      this.props.destroyTicket(this.props.helperId);
+    } else {
+      this.props.createTicket({
+        user_id: this.props.currentUser.id,
+        event_id: this.props.thisEvent.id
+      });
+    }
+  }
+
   toggleBookmark() {
-    if (this.props.bookmarkId) {
-      this.props.destroyBookmark(this.props.bookmarkId);
+    if (this.props.helperId) {
+      this.props.destroyBookmark(this.props.helperId);
     } else {
       this.props.createBookmark({
         user_id: this.props.currentUser.id,
@@ -20,20 +32,28 @@ export default class EventItem extends React.Component {
   }
 
   render() {
-    const { eventItem, typeName, categoryName, bookmarkId } = this.props;
+    const { formType, eventItem, typeName, categoryName, helperId } = this.props;
 
     const eventStarts = new Date(eventItem.start_date);
     eventStarts.setHours(...eventItem.start_time.split(":"));
 
-    const bookmarked = <i onClick={this.toggleBookmark}
-                          className="material-icons bookmark">
-                         bookmark
-                       </i>;
-    const notBookmarked = <i onClick={this.toggleBookmark}
-                             className="material-icons no-bookmark">
-                            bookmark_border
-                          </i>;
-    const bookmarkButton = bookmarkId ? bookmarked : notBookmarked;
+    let actionButton = "";
+    if (formType === 'bookmark') {
+      const bookmarked = <i onClick={this.toggleBookmark}
+                            className="material-icons bookmark">
+                            bookmark</i>;
+      const notBookmarked = <i onClick={this.toggleBookmark}
+                               className="material-icons no-bookmark">
+                               bookmark_border</i>;
+      actionButton = helperId ? bookmarked : notBookmarked;
+    } else if (formType === 'upcoming') {
+      actionButton = (
+        <i onClick={this.toggleTicket}
+           className="material-icons ticket">remove_circle</i>
+      );
+    }
+
+
 
     return (
       <div className="myprofile-event-item">
@@ -56,8 +76,8 @@ export default class EventItem extends React.Component {
             <a href="#">#{typeName}</a>
             <a href="#">#{categoryName}</a>
           </div>
-          <div className="myprofile-event-bookmark">
-            {bookmarkButton}
+          <div className="myprofile-event-action">
+            {actionButton}
           </div>
         </div>
       </div>
