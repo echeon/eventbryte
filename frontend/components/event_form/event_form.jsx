@@ -36,6 +36,7 @@ export default class Eventform extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   initMap() {
@@ -127,6 +128,10 @@ export default class Eventform extends React.Component {
     };
   }
 
+  handleImageUpload(imageUrl) {
+    this.setState({ image_url: imageUrl });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
@@ -134,7 +139,6 @@ export default class Eventform extends React.Component {
   }
 
   render() {
-    console.log(this.state.image_url);
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
@@ -211,7 +215,7 @@ export default class Eventform extends React.Component {
     const eventImage = (
       <div className="event-detail-container">
           <h3>event image</h3>
-          <ImageUpload onUpload={this.handleChange("image_url")}/>
+          <ImageUpload onUpload={this.handleImageUpload}/>
       </div>
     );
 
