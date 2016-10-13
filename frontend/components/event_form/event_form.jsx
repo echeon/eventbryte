@@ -1,9 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ThumbMap from './thumb_map';
 import update from 'react-addons-update';
 import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 import { hashHistory } from 'react-router';
+import ImageUpload from './image_upload';
 
 const defaultDate = () => {
   const afterOneMonth = new Date(Date.now() + (60 * 86400000));
@@ -29,25 +31,81 @@ export default class Eventform extends React.Component {
       end_date: defaultDate(),
       end_time: "21:00",
       venue_name: "",
+      address_detail: "",
+      image_url: "",
       place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU"
     };
 
-    this.venueAddress = {
-      address: "",
-      city: "",
-      state: "",
-      zip: ""
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  initMap() {
+    const map = ReactDOM.findDOMNode(this.refs.map);
+    this.map = new google.maps.Map(map, {
+      center: {lat: 40.7250239, lng: -73.99679200000003},
+      zoom: 15,
+      disableDefaultUI: true,
+    });
+    const input = document.getElementById('address-input');
+
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', this.map);
+
+    const marker = new google.maps.Marker({
+      map: this.map
+    });
+
+    autocomplete.addListener('place_changed', () => {
+
+      marker.setVisible(false);
+
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        window.alert("Autocomplete's returned place contains no geometry");
+        return "";
+      }
+
+      this.map.setCenter(place.geometry.location);
+      this.map.setZoom(15);
+
+      marker.setPosition(place.geometry.location);
+      marker.setVisible(true);
+
+      document.querySelectorAll('.address input').forEach(el => {
+        el.setAttribute('type', 'text');
+      });
+      const venueName = document.getElementById('venue-name');
+      const addressDetail = document.getElementById('address-detail');
+      const addressCity = document.getElementById('address-city');
+      const addressState = document.getElementById('address-state');
+      const addressZip = document.getElementById('address-zip');
+
+      this.setState({ place_id: place.place_id, address_detail: "" });
+      if (place.types.includes("point_of_interest")) {
+        this.setState({ venue_name: place.name });
+        venueName.value = place.name;
+      } else {
+        this.setState({ venue_name: "" });
+        venueName.value = "";
+      }
+      const formattedAddress = place.formatted_address.split(", ");
+      input.value = formattedAddress[0];
+      addressDetail.value = "";
+      addressCity.value = formattedAddress[1];
+      addressState.value = formattedAddress[2].split(" ")[0];
+      addressZip.value = formattedAddress[2].split(" ")[1];
+    });
   }
 
   componentDidMount() {
     this.props.requestTypes();
     this.props.requestCategories();
+    this.initMap();
     if (this.props.formType === 'edit') {
       this.props.requestEvent(this.props.eventId);
     } else if (this.props.formType === 'create') {
+
     }
   }
 
@@ -77,25 +135,8 @@ export default class Eventform extends React.Component {
     this.props.processForm(thisEvent);
   }
 
-  handleAddressChange(prop) {
-    return e => {
-      this.venueAddress[prop] = e.currentTarget.value;
-      const address = Object.keys(this.venueAddress).map(key => {
-        return this.venueAddress[key];
-      }).join(" ");
-
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address }, (results, status) => {
-        if (status === 'OK') {
-          const placeId = results[0].place_id;
-          this.setState({ place_id: placeId });
-        }
-      });
-
-    };
-  }
-
   render() {
+    console.log(this.state.image_url);
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
@@ -111,32 +152,36 @@ export default class Eventform extends React.Component {
         <h3>location</h3>
         <div className="column">
           <div>
+            <input type="hidden"
+                   id="venue-name"
+                   placeholder="Enter the venue's name (optional)"
+                   onChange={this.handleChange("venue_name")} />
             <input type="text"
-                   placeholder="Enter the venue's name"
-                   onChange={this.handleChange("venue_name")}
-                   value={this.state.venue_name}/>
-            <input type="text"
-                   placeholder="Address"
-                   onChange={this.handleAddressChange("address")}/>
-            <input type="text" placeholder="Address 2 (optional)" />
-            <input type="text"
-                   placeholder="City"
-                   onChange={this.handleAddressChange("city")}/>
+                   id="address-input"
+                   placeholder="Please enter address here" />
+            <input type="hidden"
+                   id="address-detail"
+                   placeholder="Address 2 (optional)"
+                   onChange={this.handleChange("address_detail")} />
+            <input type="hidden"
+                   id="address-city"
+                   disabled />
             <div className="column-inside-column">
-              <input type="text"
-                     placeholder="State"
-                     onChange={this.handleAddressChange("state")}/>
-              <input type="text"
-                     placeholder="Zip/Postal"
-                     onChange={this.handleAddressChange("zip")} />
+              <input type="hidden"
+                     id="address-state"
+                     disabled />
+              <input type="hidden"
+                     id="address-zip"
+                     disabled />
             </div>
           </div>
           <div className="map-container">
-            <ThumbMap placeId={this.state.place_id} />
+            <div id="thumb-map" ref="map"></div>
           </div>
         </div>
       </div>
     );
+
 
     const dateTime = (
       <div className="event-detail-container column date-time">
@@ -162,6 +207,13 @@ export default class Eventform extends React.Component {
                  value={this.state.end_time}
                  onChange={this.handleChange("end_time")}/>
         </div>
+      </div>
+    );
+
+    const eventImage = (
+      <div className="event-detail-container">
+          <h3>event image</h3>
+          <ImageUpload onUpload={this.handleChange("image_url")}/>
       </div>
     );
 
@@ -192,6 +244,7 @@ export default class Eventform extends React.Component {
           {eventTitle}
           {address}
           {dateTime}
+          {eventImage}
           {eventDescription}
 
           <div className="title-container">
