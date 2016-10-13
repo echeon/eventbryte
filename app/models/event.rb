@@ -55,4 +55,12 @@ class Event < ActiveRecord::Base
     primary_key: :id
   )
 
+  after_initialize :ensure_image_url
+
+  def ensure_image_url
+    if self.image_url == ""
+      self.image_url = "http://res.cloudinary.com/dldbslv2a/image/upload/w_720,h_360,c_crop,c_fill/v1476370258/black-1675383_1280_el9xfh.jpg"
+    end
+  end
+
 end
