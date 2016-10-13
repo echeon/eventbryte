@@ -103,19 +103,59 @@ export default class Eventform extends React.Component {
     this.initMap();
     if (this.props.formType === 'edit') {
       this.props.requestEvent(this.props.eventId);
-    } else if (this.props.formType === 'create') {
-
+      this.setState(this.props.thisEvent);
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { thisEvent } = nextProps;
     if (this.props.formType === 'edit') {
       if (this.props.eventId !== parseInt(nextProps.params.eventId)) {
         this.props.requestEvent(nextProps.params.eventId);
       } else {
-        this.setState(nextProps.thisEvent);
+        this.setState(thisEvent);
+
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'placeId': thisEvent.place_id}, (results, status) => {
+          if (status === 'OK') {
+            //Populating address inputs
+            document.querySelectorAll('.address input').forEach(el => {
+              el.setAttribute('type', 'text');
+            });
+
+            const formattedAddress = results[0].formatted_address.split(", ");
+            const venueName = document.getElementById('venue-name');
+            const addressInput = document.getElementById('address-input');
+            const addressDetail = document.getElementById('address-detail');
+            const addressCity = document.getElementById('address-city');
+            const addressState = document.getElementById('address-state');
+            const addressZip = document.getElementById('address-zip');
+
+            venueName.value = thisEvent.venue_name;
+            addressDetail.value = thisEvent.address_detail;
+            if (results[0].types.includes("point_of_interest")) {
+              addressInput.value = formattedAddress[1];
+              addressCity.value = formattedAddress[2];
+              addressState.value = formattedAddress[3].split(" ")[0];
+              addressZip.value = formattedAddress[3].split(" ")[1];
+            } else {
+              addressInput.value = formattedAddress[0];
+              addressCity.value = formattedAddress[1];
+              addressState.value = formattedAddress[2].split(" ")[0];
+              addressZip.value = formattedAddress[2].split(" ")[1];
+            }
+          }
+        });
+
       }
     }
+    // if (this.props.formType === 'edit') {
+    //   if (this.props.eventId !== parseInt(nextProps.params.eventId)) {
+    //     this.props.requestEvent(nextProps.params.eventId);
+    //   } else {
+    //     this.setState(nextProps.thisEvent);
+    //   }
+    // }
   }
 
   handleChange(prop) {
@@ -135,7 +175,12 @@ export default class Eventform extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
-    this.props.processForm(thisEvent);
+    if (this.props.formType === 'create') {
+      this.props.createEvent(thisEvent);
+    } else if (this.props.formType === 'edit') {
+      this.props.updateEvent(this.props.eventId, thisEvent);
+    }
+    // this.props.processForm(thisEvent);
   }
 
   render() {
@@ -230,7 +275,8 @@ export default class Eventform extends React.Component {
     );
 
     const { types, categories } = this.props;
-    const subcategories = this.state.category_id ?
+    
+    const subcategories = categories[this.state.category_id] ?
                           categories[this.state.category_id].subcategories :
                           [];
 

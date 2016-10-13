@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   if (ownProps.location.pathname.endsWith("edit")) {
     return {
       formType: "edit",
-      processForm: thisEvent => dispatch(updateEvent(thisEvent)),
+      updateEvent: (id, thisEvent) => dispatch(updateEvent(id, thisEvent)),
       requestTypes: () => dispatch(requestTypes()),
       requestCategories: () => dispatch(requestCategories()),
       requestEvent: id => dispatch(requestEvent(id))
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   } else if (ownProps.location.pathname.endsWith("create")) {
     return {
       formType: "create",
-      processForm: thisEvent => dispatch(createEvent(thisEvent)),
+      createEvent: thisEvent => dispatch(createEvent(thisEvent)),
       requestTypes: () => dispatch(requestTypes()),
       requestCategories: () => dispatch(requestCategories())
     };

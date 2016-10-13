@@ -4,32 +4,35 @@ import * as API from '../util/event_api_util';
 import { hashHistory } from 'react-router';
 
 export default({ getState, dispatch }) => next => action => {
-  const eventSuccess = data => {
-    dispatch(actions.receiveEvent(data));
-    hashHistory.push(`/events/${data.id}`);
-  };
-  const eventsSuccess = data => dispatch(actions.receiveEvents(data));
-  const eventRemoved = data => dispatch(actions.removeEvent(data));
+  let success;
   switch(action.type) {
     case types.CREATE_EVENT:
-      API.createEvent(action.thisEvent, eventSuccess);
+      success = data => {
+        dispatch(actions.receiveEvent(data));
+        hashHistory.push(`/events/${data.id}`);
+      };
+      API.createEvent(action.thisEvent, success);
       return next(action);
 
     case types.REQUEST_EVENTS:
       const filters = getState().filters;
-      API.fetchEvents(filters, eventsSuccess);
+      success = data => dispatch(actions.receiveEvents(data));
+      API.fetchEvents(filters, success);
       break;
 
     case types.REQUEST_EVENT:
-      API.fetchEvent(action.id, eventSuccess);
+      success = data => dispatch(actions.receiveEvent(data));
+      API.fetchEvent(action.id, success);
       return next(action);
 
     case types.UPDATE_EVENT:
-      API.updateEvent(action.id, action.thisEvent, eventSuccess);
+      success = data => dispatch(actions.receiveEvent(data));
+      API.updateEvent(action.id, action.thisEvent, success);
       return next(action);
 
     case types.DESTROY_EVENT:
-      API.destroyEvent(action.id, eventRemoved);
+      success = data => dispatch(actions.removeEvent(data));
+      API.destroyEvent(action.id, success);
       break;
 
     default:
