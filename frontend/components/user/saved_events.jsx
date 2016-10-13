@@ -9,7 +9,7 @@ export default class SavedEvents extends React.Component {
 
   render() {
     const { savedEvents, types, categories, bookmarks } = this.props;
-
+    
     let savedEventsList = Object.keys(savedEvents).map(key => {
       const eventItem = savedEvents[key];
 

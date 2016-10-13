@@ -1,5 +1,5 @@
 import React from 'react';
-import EventDetail from './event_detail';
+import EventDetailContainer from './event_detail_container';
 
 export default class EventShow extends React.Component {
   constructor(props) {
@@ -20,9 +20,9 @@ export default class EventShow extends React.Component {
         <div className="event-show-header-image">
           <img src={this.props.thisEvent.image_url}/>
         </div>
-        <EventDetail thisEvent={thisEvent}
-                     types={types}
-                     categories={categories} />
+        <EventDetailContainer thisEvent={thisEvent}
+                              types={types}
+                              categories={categories} />
       </main>
     );
   }

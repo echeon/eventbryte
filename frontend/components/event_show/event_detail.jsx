@@ -12,7 +12,50 @@ export default class EventDetail extends React.Component {
       city: "",
       state: ""
     };
+    this.bookmarkId = 0;
+    this.ticketId = 0;
     this.translateLatLng = this.translateLatLng.bind(this);
+    this.toggleBookmark = this.toggleBookmark.bind(this);
+    this.toggleTicket = this.toggleTicket.bind(this);
+  }
+
+  componentDidMount() {
+    const { currentUser } = this.props;
+    if (currentUser) {
+      this.props.requestBookmarks(currentUser);
+      this.props.requestTickets(currentUser);
+    }
+  }
+
+  toggleBookmark() {
+    if (this.props.currentUser) {
+      if (this.bookmarkId) {
+        this.props.destroyBookmark(this.bookmarkId);
+        this.bookmarkId = 0;
+      } else {
+        this.props.createBookmark({
+          user_id: this.props.currentUser.id,
+          event_id: this.props.thisEvent.id
+        });
+      }
+    }
+  }
+
+  toggleTicket() {
+    if (this.props.currentUser) {
+      if (this.ticketId) {
+        this.props.destroyTicket(this.ticketId);
+        this.ticketId = 0;
+      } else {
+        this.props.createTicket({
+          user_id: this.props.currentUser.id,
+          event_id: this.props.thisEvent.id
+        });
+      }
+    } else {
+      window.alert("LOGIN FIRST!!!!");
+      //redirect to login page;
+    }
   }
 
   translateLatLng(placeId) {
@@ -47,7 +90,37 @@ export default class EventDetail extends React.Component {
   }
 
   render() {
-    const { thisEvent, types, categories } = this.props;
+    const { thisEvent, types, categories, bookmarks, tickets } = this.props;
+
+    const bookmarked = <i onClick={this.toggleBookmark}
+                          className="material-icons bookmark">
+                         bookmark
+                       </i>;
+    const notBookmarked = <i onClick={this.toggleBookmark}
+                             className="material-icons no-bookmark">
+                            bookmark_border
+                          </i>;
+
+    let bookmarkButton = notBookmarked;
+    Object.keys(bookmarks).forEach(key => {
+      if (thisEvent.id === bookmarks[key].event_id) {
+        this.bookmarkId = key;
+        bookmarkButton = bookmarked;
+      }
+    });
+
+    const ticketed = <button onClick={this.toggleTicket}
+                             className="ticket">Unregister</button>;
+    const notTicketed = <button onClick={this.toggleTicket}
+                                className="no-ticket">Register</button>;
+
+    let ticketButton = notTicketed;
+    Object.keys(tickets).forEach(key => {
+      if (thisEvent.id === tickets[key].event_id) {
+        this.ticketId = key;
+        ticketButton = ticketed;
+      }
+    });
 
     const startDate = thisEvent.start_date ? new Date(thisEvent.start_date) : "";
     const endDate = thisEvent.end_date ? new Date(thisEvent.end_date): "";
@@ -81,11 +154,11 @@ export default class EventDetail extends React.Component {
           </div>
         </div>
         <div className="event-actions-container">
-          <div>
-
+          <div className="event-bookmark-button">
+            {bookmarkButton}
           </div>
           <div className="event-register-button">
-            <button>register</button>
+            {ticketButton}
           </div>
         </div>
         <div className="event-detail-main">

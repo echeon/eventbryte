@@ -7,7 +7,7 @@ export default({ getState, dispatch }) => next => action => {
   switch(action.type) {
     case types.CREATE_TICKET:
       success = data => dispatch(actions.receiveTicket(data));
-      API.createBookmark(action.ticket, success);
+      API.createTicket(action.ticket, success);
       break;
 
     case types.REQUEST_TICKETS:
