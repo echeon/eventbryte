@@ -235,3 +235,19 @@
 .upload-form > div:hover i {
   color: #22b8ff;
 }
+
+button.image-remove {
+  font-size: 14px;
+  padding: 5px;
+  cursor: pointer;
+  color: #00a1ee;
+}
+
+button.image-remove i {
+  font-size: 17px;
+  transform: translateY(2px);
+}
+
+button.image-remove:hover {
+  color: #22b8ff;
+}

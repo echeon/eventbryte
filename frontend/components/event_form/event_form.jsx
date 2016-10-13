@@ -37,6 +37,7 @@ export default class Eventform extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleRemoveImage = this.handleRemoveImage.bind(this);
   }
 
   initMap() {
@@ -175,6 +176,13 @@ export default class Eventform extends React.Component {
     this.setState({ image_url: imageUrl });
   }
 
+  handleRemoveImage(e) {
+    e.preventDefault();
+    this.setState({ image_url: "" });
+    const box = '<div><i class="material-icons">camera_enhance</i></div>';
+    document.getElementById('image-preview').innerHTML = box;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
@@ -296,6 +304,9 @@ export default class Eventform extends React.Component {
           {address}
           {dateTime}
           {eventImage}
+          <button className="image-remove" onClick={this.handleRemoveImage}>
+            <i className="material-icons">delete_forever</i> Remove Image
+          </button>
           {eventDescription}
 
           <div className="title-container">
