@@ -222,3 +222,8 @@
 .event-register-button:hover > button.ticket {
   background: #ec4741;
 }
+
+.event-register-button > button.past-event {
+  background: grey;
+  cursor: default;
+}

@@ -89,6 +89,14 @@ export default class EventDetail extends React.Component {
     });
   }
 
+  getParsedToday() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ("0" + (today.getMonth() + 1)).slice(-2);
+    const date = today.getDate();
+    return [year, month, date].join("-");
+  }
+
   render() {
     const { thisEvent, types, categories, bookmarks, tickets } = this.props;
 
@@ -121,6 +129,10 @@ export default class EventDetail extends React.Component {
         ticketButton = ticketed;
       }
     });
+
+    if (thisEvent.start_date < this.getParsedToday()) {
+      ticketButton = <button className="past-event">Past Event</button>;
+    }
 
     const startDate = thisEvent.start_date ? new Date(thisEvent.start_date) : "";
     const endDate = thisEvent.end_date ? new Date(thisEvent.end_date): "";
