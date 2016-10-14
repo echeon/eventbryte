@@ -1,50 +1,29 @@
 import React from 'react';
 import Select from 'react-select';
 
-// var options = [
-//     { value: 'one', label: 'One' },
-//     { value: 'two', label: 'Two' }
-// ];
-//
-// function logChange(val) {
-//     console.log("Selected: " + val);
-// }
-//
-// <Select
-//     name="form-field-name"
-//     value="one"
-//     options={options}
-//     onChange={logChange}
-// />
-
 export default class FilterForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      typeId: 0,
-      categoryId: 0,
-      subcategoryId: 0
+  }
+
+  componentWillUnmount() {
+    const { updateFilter } = this.props;
+    updateFilter('typeId', 0);
+    updateFilter('categoryId', 0);
+    updateFilter('subcategoryId', 0);
+  }
+
+  handleChange(filter, updateFilter) {
+    return e => {
+      updateFilter(filter, e.value);
+      if (filter === 'categoryId') {
+        updateFilter('subcategoryId', 0);
+      }
     };
-
-    this.filterByType = this.filterByType.bind(this);
-    this.filterByCategory = this.filterByCategory.bind(this);
-    this.filterBySubcategory = this.filterBySubcategory.bind(this);
-  }
-
-  filterByType(option) {
-    this.setState({ typeId: option.value });
-  }
-
-  filterByCategory(option) {
-    this.setState({ categoryId: option.value, subcategoryId: 0 });
-  }
-
-  filterBySubcategory(option) {
-    this.setState({ subcategoryId: option.value });
   }
 
   render() {
-    const { categories, types } = this.props;
+    const { categories, types, typeId, categoryId, subcategoryId } = this.props;
 
     let typeOptions = Object.keys(types).map(key => ({
       value: types[key].id,
@@ -58,8 +37,8 @@ export default class FilterForm extends React.Component {
 
     let subcategories;
     let subcategoryOptions = [];
-    if (this.state.categoryId && categories[this.state.categoryId]) {
-      subcategories = categories[this.state.categoryId].subcategories;
+    if (categoryId && categories[categoryId]) {
+      subcategories = categories[categoryId].subcategories;
       subcategories.forEach(subcategory => {
         subcategoryOptions.push({
           value: subcategory.id,
@@ -76,6 +55,8 @@ export default class FilterForm extends React.Component {
     categoryOptions = allCategoriesOption.concat(categoryOptions);
     subcategoryOptions = allSubcategoriesOption.concat(subcategoryOptions);
 
+    const { updateFilter } = this.props;
+
     return (
       <div>
         <h2>Show Results For</h2>
@@ -85,8 +66,8 @@ export default class FilterForm extends React.Component {
           clearable={false}
           className="type-select"
           options={typeOptions}
-          value={this.state.typeId}
-          onChange={this.filterByType} />
+          value={typeId}
+          onChange={this.handleChange('typeId', updateFilter)} />
 
         <h3>Category</h3>
         <Select
@@ -94,8 +75,8 @@ export default class FilterForm extends React.Component {
           clearable={false}
           className="category-select"
           options={categoryOptions}
-          value={this.state.categoryId}
-          onChange={this.filterByCategory} />
+          value={categoryId}
+          onChange={this.handleChange('categoryId', updateFilter)} />
 
         <h3>Subcategory</h3>
         <Select
@@ -103,8 +84,8 @@ export default class FilterForm extends React.Component {
           clearable={false}
           className="subcategory-select"
           options={subcategoryOptions}
-          value={this.state.subcategoryId}
-          onChange={this.filterBySubcategory} />
+          value={subcategoryId}
+          onChange={this.handleChange('subcategoryId', updateFilter)} />
       </div>
     );
   }

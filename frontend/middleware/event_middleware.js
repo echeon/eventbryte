@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router';
 
 export default({ getState, dispatch }) => next => action => {
   let success;
+
   switch(action.type) {
     case types.CREATE_EVENT:
       success = data => {
@@ -14,12 +15,17 @@ export default({ getState, dispatch }) => next => action => {
       API.createEvent(action.thisEvent, success);
       return next(action);
 
+    case types.UPDATE_FILTER:
+      const newFilter = {[action.filter]: action.value};
+      dispatch(actions.requestEvents(newFilter));
+      return next(action);
+
     case types.REQUEST_EVENTS:
       const filters = getState().filters;
-      console.log(filters);
+      let newFilters = Object.assign({}, filters, action.newFilter);
       success = data => dispatch(actions.receiveEvents(data));
-      API.fetchEvents(filters, success);
-      break;
+      API.fetchEvents(newFilters, success);
+      return next(action);
 
     case types.REQUEST_EVENT:
       success = data => dispatch(actions.receiveEvent(data));

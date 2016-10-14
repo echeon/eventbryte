@@ -19,6 +19,8 @@
 #  venue_name     :string
 #  place_id       :string           not null
 #  address_detail :string
+#  num_tickets    :integer
+#  ticket_price   :float            not null
 #
 
 class Event < ActiveRecord::Base
@@ -63,4 +65,23 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def self.by_type_and_category_and_subcategory(type_id, category_id, subcategory_id)
+    type_id = type_id.to_i
+    category_id = category_id.to_i
+    subcategory_id = subcategory_id.to_i
+
+    if type_id > 0 && category_id > 0 && subcategory_id > 0
+      return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id)
+    elsif type_id > 0 && category_id > 0 && subcategory_id == 0
+      return self.where(type_id: type_id, category_id: category_id)
+    elsif type_id > 0 && category_id == 0
+      return self.where(type_id: type_id)
+    elsif type_id == 0 && category_id > 0 && subcategory_id > 0
+      return self.where(category_id: category_id, subcategory_id: subcategory_id)
+    elsif type_id == 0 && category_id > 0 && subcategory_id == 0
+      return self.where(category_id: category_id)
+    else
+      return self.all
+    end
+  end
 end

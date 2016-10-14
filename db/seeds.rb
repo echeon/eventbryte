@@ -126,7 +126,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F23758028%2F78370782%2F1%2Foriginal.jpg?w=800&rect=347%2C0%2C312%2C156&s=74dd9cf5340495b49941d5227facfe1c",
   venue_name: "SUNY Downstate Medical",
   place_id: "ChIJ1x7fQWZbwokRQw0xIkN0_HU",
-  max_seats: 10
+  num_tickets: 10,
+  ticket_price: 15.95
 )
 Event.create!(
   title: "Dance for Dance 2016",
@@ -142,7 +143,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F22568018%2F71848482273%2F1%2Foriginal.jpg?w=800&rect=0%2C1036%2C7000%2C3500&s=f87e4d696a7d0ef97b195e352c089814",
   venue_name: "Falmboyan Theater, The Clemente Center",
   place_id: "ChIJR-Q6CIFZwokRJ3awXmc49QU",
-  max_seats: 5
+  num_tickets: 5,
+  ticket_price: 3.50
 )
 Event.create!(
   title: "NYC WINE TASTING EVENT",
@@ -158,7 +160,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24378566%2F31569815541%2F1%2Foriginal.jpg?w=800&rect=110%2C0%2C630%2C315&s=bc345c8d532225ae6803376e77271d33",
   venue_name: "NYC Wine Company",
   place_id: "ChIJP6UiLLtZwokRmmEpN75bO88",
-  max_seats: 20
+  num_tickets: 20,
+  ticket_price: 10.50
 )
 Event.create!(
   title: "Children's Fashion Show in Manhattan New York",
@@ -174,7 +177,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F18764072%2F143309020817%2F1%2Foriginal.jpg?w=800&rect=0%2C9%2C600%2C300&s=ded8baff4be147fc16af43a38791ef6a",
   venue_name: "The Ritz",
   place_id: "ChIJXRLW4VNYwokROWXypVDs7hk",
-  max_seats: 100
+  num_tickets: 100,
+  ticket_price: 0.75
 )
 Event.create!(
   title: "New York City New Year's Eve Pub Crawl",
@@ -190,7 +194,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24481731%2F131949733542%2F1%2Foriginal.jpg?w=800&rect=0%2C198%2C650%2C325&s=79a141cbde67e8f77be9fec67d3ce1cd",
   venue_name: "Bar None",
   place_id: "ChIJBSxtyJ5ZwokRHc-BD4eJ0OA",
-  max_seats: 300
+  num_tickets: 300,
+  ticket_price: 2
 )
 Event.create!(
   title: "Gang of the French Caribbean - NYADIFF 2016 Centerpiece",
@@ -206,7 +211,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24671274%2F3218157509%2F1%2Foriginal.jpg?w=800&rect=0%2C78%2C780%2C390&s=c4f5fd3c293d98156a1922c6a40f4cec",
   venue_name: "Cinépolis Chelsea",
   place_id: "ChIJOf6_VLpZwokRKXjVKeBJDdY",
-  max_seats: 1
+  num_tickets: 1,
+  ticket_price: 100.25
 )
 Event.create!(
   title: "Sam Eaton's The Quantum Eye - Mentalism and Magic Show",
@@ -222,7 +228,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24275626%2F3731031672%2F1%2Foriginal.jpg?w=800&rect=3%2C0%2C300%2C150&s=cf66f7f32f6ba216ac99d20beeeabe51",
   venue_name: "Theatre 80",
   place_id: "ChIJAx8pBZ1ZwokRkvoc-l_eoqw",
-  max_seats: 10
+  num_tickets: 10,
+  ticket_price: 9.99
 )
 Event.create!(
   title: "Music Composition Hackathon",
@@ -238,7 +245,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24248592%2F36290066614%2F1%2Foriginal.jpg?w=800&rect=0%2C21%2C368%2C184&s=2c69a18dc464bc0f7da35cbc4843d18e",
   venue_name: "Spotify Headquarters",
   place_id: "ChIJ0YSSKKNZwokRR3hLnbxkKew",
-  max_seats: 10
+  num_tickets: 10,
+  ticket_price: 5.00
 )
 Event.create!(
   title: "BKFaux V: The Faux Classic",
@@ -254,7 +262,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F22799677%2F31595518209%2F1%2Foriginal.jpg?w=800&rect=0%2C3%2C478%2C239&s=404acebaa04f9a3eb8973d768d60619c",
   venue_name: "Nu Brand Gaming LLC.",
   place_id: "ChIJg4ZiKsJawokRsHzPE-1hdBM",
-  max_seats: 15
+  num_tickets: 15,
+  ticket_price: 3.25
 )
 Event.create!(
   title: "Game Night",
@@ -269,7 +278,8 @@ Event.create!(
   end_time: "20:00",
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24058343%2F33575586337%2F1%2Foriginal.jpg?w=800&rect=0%2C30%2C960%2C480&s=35bcb395966a47924c9a874617367465",
   venue_name: "Satellite Comics & Games",
-  place_id: "ChIJTUvaNw2vw4kRSSuBColx-vs"
+  place_id: "ChIJTUvaNw2vw4kRSSuBColx-vs",
+  ticket_price: 4.25
 )
 Event.create!(
   title: "BOOTLEG KARAOKE",
@@ -285,7 +295,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F23238283%2F21182949900%2F1%2Foriginal.jpg?w=800&rect=0%2C400%2C1700%2C850&s=37d8c2c5419227b972447ad8f5fe2f3c",
   venue_name: "Bar One Tap Room",
   place_id: "ChIJdZ67am2WwoARUbMeGMOuqvQ",
-  max_seats: 50
+  num_tickets: 50,
+  ticket_price: 0
 )
 Event.create!(
   title: "Who's Who in Music Tech",
@@ -301,7 +312,8 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F23496337%2F148971855107%2F1%2Foriginal.jpg?w=800&rect=0%2C19%2C600%2C300&s=3c36142fda13a4348574292f5e8d491b",
   venue_name: "2112 inc",
   place_id: "ChIJtfD-TjbMD4gRWYATzd1Qrkg",
-  max_seats: 2
+  num_tickets: 2,
+  ticket_price: 0.50
 )
 
 

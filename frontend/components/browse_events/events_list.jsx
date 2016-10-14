@@ -7,7 +7,6 @@ export default class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.requestEvents();
     if (this.props.currentUser) {
       this.props.requestBookmarks(this.props.currentUser);
     }
@@ -19,6 +18,10 @@ export default class EventsList extends React.Component {
     const events = Object.keys(this.props.events).map(key => {
       return this.props.events[key];
     });
+
+    if (!events.length) {
+      return <div className="no-events"><h1>No Events</h1></div>;
+    }
 
     const eventsIndex = events.map(thisEvent => {
       const type = types[thisEvent.type_id];

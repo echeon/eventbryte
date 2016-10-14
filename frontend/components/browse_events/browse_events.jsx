@@ -7,11 +7,6 @@ export default class BrowseEvents extends React.Component {
     super(props);
   }
 
-  // To be added when adding filters
-  // componentWillMount() {
-  //   this.props.updateFilter('user_id', this.props.currentUser.id);
-  // }
-
   componentDidMount() {
     this.props.requestEvents();
     this.props.requestTypes();
@@ -19,12 +14,17 @@ export default class BrowseEvents extends React.Component {
   }
 
   render() {
-    const { types, categories, events, updateFilter } = this.props;
+    const { types, categories, events, updateFilter, requestEvents } = this.props;
+    const { typeId, categoryId, subcategoryId } = this.props;
+
     return (
       <div className="browse-events-container">
         <aside className="browse-events-filter">
           <FilterForm types={types}
                       categories={categories}
+                      typeId={typeId}
+                      categoryId={categoryId}
+                      subcategoryId={subcategoryId}
                       updateFilter={updateFilter}/>
         </aside>
         <div className="browse-events-list-container">

@@ -10,7 +10,10 @@ const mapStateToProps = state => {
   return {
     events: state.events,
     types: state.types,
-    categories: state.categories
+    categories: state.categories,
+    typeId: state.filters.typeId,
+    categoryId: state.filters.categoryId,
+    subcategoryId: state.filters.subcategoryId
   };
 };
 

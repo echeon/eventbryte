@@ -9,10 +9,10 @@ import TicketsReducer from './tickets_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
+  filters: FiltersReducer,
   events: EventsReducer,
   types: TypesReducer,
   categories: CategoriesReducer,
-  filters: FiltersReducer,
   bookmarks: BookmarksReducer,
   tickets: TicketsReducer,
 });

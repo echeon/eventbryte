@@ -39,7 +39,8 @@ class Api::EventsController < ApplicationController
     params.require(:event).permit(
       :title, :description, :organizer_id, :type_id, :category_id,
       :subcategory_id, :start_date, :start_time, :end_date, :end_time,
-      :venue_name, :place_id, :image_url, :address_detail, :max_seats
+      :venue_name, :place_id, :image_url, :address_detail, :num_tickets,
+      :ticket_price
     )
   end
 

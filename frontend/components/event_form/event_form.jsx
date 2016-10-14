@@ -33,14 +33,14 @@ export default class Eventform extends React.Component {
       address_detail: "",
       image_url: "",
       place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU",
-      max_seats: 0
+      num_tickets: 0,
+      ticket_price: "0.00"
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleRemoveImage = this.handleRemoveImage.bind(this);
-    this.handleUpdateNumber = this.handleUpdateNumber.bind(this);
   }
 
   initMap() {
@@ -179,11 +179,6 @@ export default class Eventform extends React.Component {
     document.getElementById('image-preview').innerHTML = box;
   }
 
-  handleUpdateNumber(e) {
-    e.preventDefault();
-    this.setState({ max_seats: parseInt(e.currentTarget.value) });
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
@@ -288,12 +283,20 @@ export default class Eventform extends React.Component {
       </div>
     );
 
-    const maxNumSeats = (
+    const ticketsInfo = (
       <div className="event-detail-container">
-        <h3>number of seats</h3>
+        <h3>ticket price</h3>
         <input type="number"
                className="number"
-               onChange={this.handleUpdateNumber}/>
+               step="0.01"
+               onChange={this.handleChange("ticket_price")}
+               value={this.state.ticket_price}/>
+
+        <h3>number of tickets</h3>
+        <input type="number"
+               className="number"
+               onChange={this.handleChange("num_tickets")}
+               value={this.state.num_tickets}/>
       </div>
     );
 
@@ -320,10 +323,15 @@ export default class Eventform extends React.Component {
 
 
           <div className="title-container">
+            <span className="index">2</span>
+            <span className="title">Tickets Info</span>
+          </div>
+          {ticketsInfo}
+
+          <div className="title-container">
             <span className="index">3</span>
             <span className="title">Additional Settings</span>
           </div>
-          {maxNumSeats}
 
           <TypeSelector types={types}
                         value={this.state.type_id}

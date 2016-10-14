@@ -29,9 +29,10 @@ export const updateEvent = (id, thisEvent) => {
   };
 };
 
-export const requestEvents = () => {
+export const requestEvents = (newFilter) => {
   return {
-    type: t.REQUEST_EVENTS
+    type: t.REQUEST_EVENTS,
+    newFilter: newFilter || {}
   };
 };
 
