@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFormat from 'dateformat';
 import EventMap from './event_map';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 export default class EventDetail extends React.Component {
   constructor(props) {
@@ -53,8 +53,8 @@ export default class EventDetail extends React.Component {
         });
       }
     } else {
-      window.alert("LOGIN FIRST!!!!");
-      //redirect to login page;
+      window.alert("Please log in to register.");
+      hashHistory.push("login");
     }
   }
 
