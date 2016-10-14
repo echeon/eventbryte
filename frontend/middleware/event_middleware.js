@@ -16,6 +16,7 @@ export default({ getState, dispatch }) => next => action => {
 
     case types.REQUEST_EVENTS:
       const filters = getState().filters;
+      console.log(filters);
       success = data => dispatch(actions.receiveEvents(data));
       API.fetchEvents(filters, success);
       break;

@@ -7,12 +7,32 @@
 }
 
 .browse-events-filter {
-  width: calc(25% - 30px);
-  background: pink;
+  width: calc(30% - 30px);
+}
+
+.browse-events-filter > div {
+  background: #ffffff;
+  padding: 10px;
+}
+
+.browse-events-filter h2 {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #999;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.browse-events-filter h3 {
+  font-size: 16px;
+  color: #00a1ee;
+  text-transform: uppercase;
+  padding: 15px 10px 5px 10px;
+
 }
 
 .browse-events-list-container {
-  width: 75%;
+  width: 70%;
 }
 
 .browse-results-container {

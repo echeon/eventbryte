@@ -7,7 +7,7 @@ export default class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestEvents();
+    // this.props.requestEvents();
     if (this.props.currentUser) {
       this.props.requestBookmarks(this.props.currentUser);
     }

@@ -1,6 +1,10 @@
 import * as types from '../actions/ActionTypes';
 
-const FiltersReducer = (state = {}, action) => {
+const _defaultFilters = {
+
+};
+
+const FiltersReducer = (state = _defaultFilters, action) => {
   Object.freeze(state);
 
   switch(action.type) {
