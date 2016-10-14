@@ -3,6 +3,7 @@ import EventDetail from './event_detail';
 import { requestCategories } from '../../actions/category_actions';
 import { requestBookmarks, destroyBookmark, createBookmark } from '../../actions/bookmark_actions';
 import { requestTickets, destroyTicket, createTicket } from '../../actions/ticket_actions';
+import { updateFilter } from '../../actions/filter_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
     requestBookmarks: user => dispatch(requestBookmarks(user)),
     destroyBookmark: id => dispatch(destroyBookmark(id)),
     createBookmark: bookmark => dispatch(createBookmark(bookmark)),

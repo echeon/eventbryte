@@ -6,6 +6,8 @@ export default class EventItem extends React.Component {
   constructor(props) {
     super(props);
     this.toggleBookmark = this.toggleBookmark.bind(this);
+    this.handleTypeClick = this.handleTypeClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
 
   toggleBookmark() {
@@ -19,6 +21,22 @@ export default class EventItem extends React.Component {
         });
       }
     }
+  }
+
+  handleTypeClick(typeId) {
+    return e => {
+      this.props.updateFilter('typeId', typeId);
+      this.props.updateFilter('categoryId', 0);
+      this.props.updateFilter('subcategoryId', 0);
+    };
+  }
+
+  handleCategoryClick(categoryId) {
+    return e => {
+      this.props.updateFilter('typeId', 0);
+      this.props.updateFilter('categoryId', categoryId);
+      this.props.updateFilter('subcategoryId', 0);
+    };
   }
 
   render() {
@@ -36,6 +54,9 @@ export default class EventItem extends React.Component {
                             bookmark_border
                           </i>;
     const bookmarkButton = bookmarkId ? bookmarked : notBookmarked;
+
+    const ticketPrice = thisEvent.ticket_price ?
+                        `$${thisEvent.ticket_price.toFixed(2)}` : "FREE";
 
     return (
       <div className="single-event-container">
@@ -55,12 +76,16 @@ export default class EventItem extends React.Component {
         </Link>
         <div className="single-event-bottom-row">
           <div className="single-event-price-info">
-            FREE
+            {ticketPrice}
           </div>
           <div className="single-event-others">
             <div className="single-event-tags">
-              <a>#{typeName}</a>
-              <a>#{categoryName}</a>
+              <span onClick={this.handleTypeClick(thisEvent.type_id)}>
+                #{typeName}
+              </span>
+              <span onClick={this.handleCategoryClick(thisEvent.category_id)}>
+                #{categoryName}
+              </span>
             </div>
             <div className="bookmark-action">
               {bookmarkButton}

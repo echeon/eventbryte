@@ -17,6 +17,24 @@ export default class EventDetail extends React.Component {
     this.translateLatLng = this.translateLatLng.bind(this);
     this.toggleBookmark = this.toggleBookmark.bind(this);
     this.toggleTicket = this.toggleTicket.bind(this);
+    this.handleTypeClick = this.handleTypeClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+  }
+
+  handleTypeClick(typeId) {
+    return e => {
+      this.props.updateFilter('typeId', typeId);
+      this.props.updateFilter('categoryId', 0);
+      this.props.updateFilter('subcategoryId', 0);
+    };
+  }
+
+  handleCategoryClick(categoryId) {
+    return e => {
+      this.props.updateFilter('typeId', 0);
+      this.props.updateFilter('categoryId', categoryId);
+      this.props.updateFilter('subcategoryId', 0);
+    };
   }
 
   componentDidMount() {
@@ -179,9 +197,12 @@ export default class EventDetail extends React.Component {
               <h3>description</h3>
               <p>{thisEvent.description}</p>
               <h3>tags</h3>
-              <Link to="/">{`Things to do in ${this.state.city}, ${this.state.state}`}</Link>
-              <Link to="/">{typeName}</Link>
-              <Link to="/">{categoryName}</Link>
+              <Link to="/browse"
+                    onClick={this.handleTypeClick(thisEvent.type_id)}>
+                    {typeName}</Link>
+              <Link to="/browse"
+                    onClick={this.handleCategoryClick(thisEvent.category_id)}>
+                    {categoryName}</Link>
             </div>
             <div className="event-detail-right">
               <h3>date and time</h3>

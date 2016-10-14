@@ -28,8 +28,10 @@ export const selectUpcomingEvents = (events, tickets = {}) => {
   const parsedToday = [year, month, date].join("-");
 
   Object.keys(tickets).forEach(key => {
-    if (events[tickets[key].event_id].start_date >= parsedToday) {
-      upcomingEvents[key] = events[tickets[key].event_id];
+    if (events[tickets[key].event_id]) {
+      if (events[tickets[key].event_id].start_date >= parsedToday) {
+        upcomingEvents[key] = events[tickets[key].event_id];
+      }
     }
   });
   return upcomingEvents;
@@ -45,8 +47,10 @@ export const selectPastEvents = (events, tickets = {}) => {
   const parsedToday = [year, month, date].join("-");
 
   Object.keys(tickets).forEach(key => {
-    if (events[tickets[key].event_id].start_date < parsedToday) {
-      pastEvents[key] = events[tickets[key].event_id];
+    if (events[tickets[key].event_id]) {
+      if (events[tickets[key].event_id].start_date < parsedToday) {
+        pastEvents[key] = events[tickets[key].event_id];
+      }
     }
   });
   return pastEvents;

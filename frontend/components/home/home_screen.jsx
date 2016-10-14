@@ -13,7 +13,7 @@ const HomeScreen = () => {
 
       <div className="home-screen-content">
         <h2>Welcome</h2>
-        <p>blah blah blah blah blah blah blah blah blah blah blah blah</p>
+        <p>Promote, manage, host, or purchase tickets for successful events.</p>
         <div className="home-button-container">
           <button className="browse-events-button">
             <Link to="/browse">Browse Events</Link>

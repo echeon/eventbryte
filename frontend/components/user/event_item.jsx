@@ -1,12 +1,14 @@
 import React from 'react';
 import dateFormat from 'dateformat';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 export default class EventItem extends React.Component {
   constructor(props) {
     super(props);
     this.toggleTicket = this.toggleTicket.bind(this);
     this.toggleBookmark = this.toggleBookmark.bind(this);
+    this.handleTypeClick = this.handleTypeClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
 
   toggleTicket() {
@@ -31,6 +33,22 @@ export default class EventItem extends React.Component {
     }
   }
 
+  handleTypeClick(typeId) {
+    return e => {
+      this.props.updateFilter('typeId', typeId);
+      this.props.updateFilter('categoryId', 0);
+      this.props.updateFilter('subcategoryId', 0);
+    };
+  }
+
+  handleCategoryClick(categoryId) {
+    return e => {
+      this.props.updateFilter('typeId', 0);
+      this.props.updateFilter('categoryId', categoryId);
+      this.props.updateFilter('subcategoryId', 0);
+    };
+  }
+
   render() {
     const { formType, eventItem, typeName, categoryName, helperId } = this.props;
 
@@ -53,8 +71,6 @@ export default class EventItem extends React.Component {
       );
     }
 
-
-
     return (
       <div className="myprofile-event-item">
         <Link to={`events/${eventItem.id}`} className="myprofile-event-detail">
@@ -73,8 +89,12 @@ export default class EventItem extends React.Component {
         </Link>
         <div className="myprofile-event-footer">
           <div className="myprofile-event-tags">
-            <a href="#">#{typeName}</a>
-            <a href="#">#{categoryName}</a>
+            <Link to="/browse"
+                  onClick={this.handleTypeClick(eventItem.type_id)}>
+              #{typeName}</Link>
+            <Link to="/browse"
+                  onClick={this.handleCategoryClick(eventItem.category_id)}>
+              #{categoryName}</Link>
           </div>
           <div className="myprofile-event-action">
             {actionButton}
