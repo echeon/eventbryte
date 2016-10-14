@@ -10,7 +10,7 @@ export default class EventDetail extends React.Component {
       address1: "",
       address2: "",
       city: "",
-      state: ""
+      state: "",
     };
     this.bookmarkId = 0;
     this.ticketId = 0;
@@ -183,7 +183,10 @@ export default class EventDetail extends React.Component {
             </div>
             <div>
             </div>
-            <div className="event-price-info">{ticketPrice}</div>
+            <div className="event-price-info column">
+              <div>{ticketPrice}</div>
+              <div></div>
+            </div>
           </div>
         </div>
         <div className="event-actions-container">

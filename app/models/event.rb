@@ -30,6 +30,13 @@ class Event < ActiveRecord::Base
   validates :start_date, :start_time, :end_date, :end_time, presence: true
   validates :place_id, :num_tickets, :ticket_price, presence: true
 
+  has_many(
+    :tickets,
+    class_name: "Ticket",
+    foreign_key: :event_id,
+    primary_key: :id
+  )
+  
   belongs_to(
     :organizer,
     class_name: "User",

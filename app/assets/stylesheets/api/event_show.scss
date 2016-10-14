@@ -231,3 +231,18 @@
   background: #cccccc;
   cursor: default;
 }
+
+.event-price-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.event-price-info > div:first-child {
+  width: 30%;
+}
+
+.even-price-info > div:last-child {
+  width: 70%;
+  text-align: right;
+}
