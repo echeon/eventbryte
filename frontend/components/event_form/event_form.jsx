@@ -4,7 +4,6 @@ import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 import { hashHistory } from 'react-router';
 import ImageUpload from './image_upload';
-// import TicketEditorContainer from './ticket_editor_container';
 
 const defaultDate = () => {
   const afterOneMonth = new Date(Date.now() + (60 * 86400000));
@@ -36,8 +35,6 @@ export default class Eventform extends React.Component {
       num_tickets: 0,
       ticket_price: "0.00"
     };
-
-    this.initMap();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
