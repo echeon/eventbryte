@@ -279,6 +279,7 @@ Event.create!(
   image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24058343%2F33575586337%2F1%2Foriginal.jpg?w=800&rect=0%2C30%2C960%2C480&s=35bcb395966a47924c9a874617367465",
   venue_name: "Satellite Comics & Games",
   place_id: "ChIJTUvaNw2vw4kRSSuBColx-vs",
+  num_tickets: 20,
   ticket_price: 4.25
 )
 Event.create!(
