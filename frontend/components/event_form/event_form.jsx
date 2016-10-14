@@ -37,6 +37,8 @@ export default class Eventform extends React.Component {
       ticket_price: "0.00"
     };
 
+    this.initMap();
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
