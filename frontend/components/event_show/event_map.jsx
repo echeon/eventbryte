@@ -33,13 +33,10 @@ export default class EventMap extends React.Component {
 
   componentWillReceiveProps() {
     const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow;
     geocoder.geocode({'placeId': this.props.placeId}, (results, status) => {
       if (status === 'OK') {
         this.map.setCenter(results[0].geometry.location);
         this.addMarker(results[0].geometry.location);
-        infowindow.setContent(results[0].formatted_address);
-        infowindow.open(this.map, this.markers[0]);
       }
     });
   }
