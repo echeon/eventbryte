@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
   validates :title, :description, presence: true
   validates :organizer_id, :type_id, :category_id, :subcategory_id, presence: true
   validates :start_date, :start_time, :end_date, :end_time, presence: true
-  validates :place_id, presence: true
+  validates :place_id, :num_tickets, :ticket_price, presence: true
 
   belongs_to(
     :organizer,
