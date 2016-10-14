@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
     foreign_key: :event_id,
     primary_key: :id
   )
-  
+
   belongs_to(
     :organizer,
     class_name: "User",
@@ -79,19 +79,20 @@ class Event < ActiveRecord::Base
     subcategory_id = subcategory_id.to_i
 
     today = Date.today.strftime('%F')
+    # .where('start_date > ?', today)
 
     if type_id > 0 && category_id > 0 && subcategory_id > 0
-      return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id).where('start_date > ?', today)
+      return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id)
     elsif type_id > 0 && category_id > 0 && subcategory_id == 0
-      return self.where(type_id: type_id, category_id: category_id).where('start_date > ?', today)
+      return self.where(type_id: type_id, category_id: category_id)
     elsif type_id > 0 && category_id == 0
-      return self.where(type_id: type_id).where('start_date > ?', today)
+      return self.where(type_id: type_id)
     elsif type_id == 0 && category_id > 0 && subcategory_id > 0
-      return self.where(category_id: category_id, subcategory_id: subcategory_id).where('start_date > ?', today)
+      return self.where(category_id: category_id, subcategory_id: subcategory_id)
     elsif type_id == 0 && category_id > 0 && subcategory_id == 0
-      return self.where(category_id: category_id).where('start_date > ?', today)
+      return self.where(category_id: category_id)
     else
-      return self.where('start_date > ?', today)
+      return self
     end
   end
 end
