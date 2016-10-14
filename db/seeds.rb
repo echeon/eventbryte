@@ -338,7 +338,6 @@ Ticket.destroy_all
 Ticket.create!(user_id: 1, event_id: 10)
 Ticket.create!(user_id: 1, event_id: 3)
 Ticket.create!(user_id: 1, event_id: 1)
-Ticket.create!(user_id: 2, event_id: 3)
-Ticket.create!(user_id: 2, event_id: 5)
+Ticket.create!(user_id: 2, event_id: 2)
 Ticket.create!(user_id: 2, event_id: 7)
 Ticket.create!(user_id: 2, event_id: 9)
