@@ -158,7 +158,7 @@ export default class EventDetail extends React.Component {
               <p className="event-month">{dateFormat(startDate, "mmm")}</p>
               <p className="event-date">{dateFormat(startDate, "dd")}</p>
               <h1>{thisEvent.title}</h1>
-              <h4>by SOMEONE</h4>
+              <h4>by <span>{thisEvent.organizer_email}</span></h4>
             </div>
             <div>
             </div>

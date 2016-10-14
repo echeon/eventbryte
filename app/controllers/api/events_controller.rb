@@ -1,14 +1,10 @@
 class Api::EventsController < ApplicationController
   def index
-    if params[:user_id]
-      @events = Event.all.where(organizer_id: params[:user_id])
-    else
-      @events = Event.all
-    end
+    @events = Event.by_type_and_category_and_subcategory(params[:typeId], params[:categoryId], params[:subcategoryId])
   end
 
   def show
-    @event = Event.find_by_id(params[:id])
+    @event = Event.includes(:organizer).find_by_id(params[:id])
   end
 
   def create
