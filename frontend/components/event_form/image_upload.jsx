@@ -11,8 +11,10 @@ export default class ImageUpload extends React.Component {
     e.preventDefault();
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, (error, results) => {
       if (!error) {
-        this.props.onUpload(results[0].secure_url);
-        const img = `<img src=${results[0].secure_url} />`;
+        let url = "http://res.cloudinary.com/dldbslv2a/image/upload/w_720,h_360,c_crop,c_fill/";
+        url += results[0].path;
+        this.props.onUpload(url);
+        const img = `<img src=${url} />`;
         document.getElementById('image-preview').innerHTML = img;
       }
     });

@@ -73,7 +73,7 @@ export default class EventItem extends React.Component {
 
     return (
       <div className="myprofile-event-item">
-        <Link to={`events/${eventItem.id}`} className="myprofile-event-detail">
+        <Link to={`/events/${eventItem.id}`} className="myprofile-event-detail">
           <div className="myprofile-event-thumbnail">
             <img src={eventItem.image_url}/>
           </div>

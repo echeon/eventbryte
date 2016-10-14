@@ -154,3 +154,23 @@
 .myprofile-event-action:hover i.ticket {
   color: #26bdff;
 }
+
+.empty-item-image-container {
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+}
+
+.empty-item-image-container h4 {
+  margin: 30px 0;
+  color: #666A73;
+}
+
+.empty-item-image-container a {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #00a8f2;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 3px;
+}

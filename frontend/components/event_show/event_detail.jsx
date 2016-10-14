@@ -165,6 +165,9 @@ export default class EventDetail extends React.Component {
 
     this.translateLatLng(thisEvent.place_id);
 
+    const ticketPrice = thisEvent.ticket_price ?
+                        `$${thisEvent.ticket_price.toFixed(2)}` : "FREE";
+
     return (
       <section className="event-show-detail-container">
         <div className="event-detail-header">
@@ -180,7 +183,7 @@ export default class EventDetail extends React.Component {
             </div>
             <div>
             </div>
-            <div className="event-price-info">FREE</div>
+            <div className="event-price-info">{ticketPrice}</div>
           </div>
         </div>
         <div className="event-actions-container">
