@@ -92,7 +92,7 @@ class Event < ActiveRecord::Base
     elsif type_id == 0 && category_id > 0 && subcategory_id == 0
       return self.where(category_id: category_id)
     else
-      return self
+      return self.all
     end
   end
 end
