@@ -113,6 +113,23 @@ end
 
 Event.destroy_all
 Event.create!(
+  title: "Yoga with Cats",
+  description: "YOGA WITH CATS",
+  organizer_id: 2,
+  type_id: 3,
+  category_id: 10,
+  subcategory_id: 81,
+  start_date: "2016-10-23",
+  start_time: "09:00",
+  end_date: "2016-10-23",
+  end_time: "10:00",
+  image_url: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F24713291%2F155848813185%2F1%2Foriginal.jpg?w=800&rect=153%2C112%2C1940%2C970&s=d8bbff85be56ce644344f13ebce84c6d",
+  venue_name: "PSPCA",
+  place_id: "ChIJEQIy52rIxokRQXjnurw6Gec",
+  num_tickets: 50,
+  ticket_price: 0
+)
+Event.create!(
   title: "4th Annual Transplantation Symposium",
   description: "395 Lenox Rd, Brooklyn, NY 11203",
   organizer_id: 1,
@@ -317,23 +334,10 @@ Event.create!(
   ticket_price: 0.50
 )
 
-
-Bookmark.destroy_all
-Bookmark.create!(user_id: 2, event_id: 1)
-Bookmark.create!(user_id: 2, event_id: 2)
-Bookmark.create!(user_id: 2, event_id: 5)
-Bookmark.create!(user_id: 2, event_id: 7)
-Bookmark.create!(user_id: 1, event_id: 8)
-Bookmark.create!(user_id: 1, event_id: 1)
-Bookmark.create!(user_id: 1, event_id: 6)
-Bookmark.create!(user_id: 1, event_id: 9)
-
-
 Ticket.destroy_all
 Ticket.create!(user_id: 1, event_id: 10)
 Ticket.create!(user_id: 1, event_id: 3)
 Ticket.create!(user_id: 1, event_id: 1)
-Ticket.create!(user_id: 2, event_id: 1)
 Ticket.create!(user_id: 2, event_id: 3)
 Ticket.create!(user_id: 2, event_id: 5)
 Ticket.create!(user_id: 2, event_id: 7)

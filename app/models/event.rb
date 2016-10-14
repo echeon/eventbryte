@@ -22,6 +22,7 @@
 #  num_tickets    :integer
 #  ticket_price   :float            not null
 #
+require 'date'
 
 class Event < ActiveRecord::Base
   validates :title, :description, presence: true
@@ -70,18 +71,20 @@ class Event < ActiveRecord::Base
     category_id = category_id.to_i
     subcategory_id = subcategory_id.to_i
 
+    today = Date.today.strftime('%F')
+
     if type_id > 0 && category_id > 0 && subcategory_id > 0
-      return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id)
+      return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id).where('start_date > ?', today)
     elsif type_id > 0 && category_id > 0 && subcategory_id == 0
-      return self.where(type_id: type_id, category_id: category_id)
+      return self.where(type_id: type_id, category_id: category_id).where('start_date > ?', today)
     elsif type_id > 0 && category_id == 0
-      return self.where(type_id: type_id)
+      return self.where(type_id: type_id).where('start_date > ?', today)
     elsif type_id == 0 && category_id > 0 && subcategory_id > 0
-      return self.where(category_id: category_id, subcategory_id: subcategory_id)
+      return self.where(category_id: category_id, subcategory_id: subcategory_id).where('start_date > ?', today)
     elsif type_id == 0 && category_id > 0 && subcategory_id == 0
-      return self.where(category_id: category_id)
+      return self.where(category_id: category_id).where('start_date > ?', today)
     else
-      return self.all
+      return self.where('start_date > ?', today)
     end
   end
 end
