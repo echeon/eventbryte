@@ -4,13 +4,11 @@ const EventsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case types.RECEIVE_EVENTS:
-      // debugger
       const newEvents = {};
       action.events.forEach(thisEvent => {
         newEvents[thisEvent.id] = thisEvent;
       });
       return newEvents;
-      // return Object.assign({}, state, newEvents);
 
     case types.RECEIVE_EVENT:
       const newEvent = {[action.thisEvent.id]: action.thisEvent};
