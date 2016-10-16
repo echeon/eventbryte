@@ -27,10 +27,6 @@ const Root = ({ store }) => {
     }
   };
 
-  const _redirectIfNotOrganizer = () => {
-
-  };
-
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
@@ -41,7 +37,7 @@ const Root = ({ store }) => {
           <Route path="events/create" component={EventFormContainer} onEnter={_redirectIfNotLoggedIn} />
           <Route path="events/manage" component={ManageEventsContainer} onEnter={_redirectIfNotLoggedIn} />
           <Route path="events/:eventId" component={EventShowContainer} />
-          <Route path="events/:eventId/edit" component={EventFormContainer} onEnter={_redirectIfNotOrganizer} />
+          <Route path="events/:eventId/edit" component={EventFormContainer} />
           <Route path="browse" component={BrowseEventsContainer} />
           <Route path="myprofile" component={UserProfileContainer} onEnter={_redirectIfNotLoggedIn}>
             <IndexRoute component={UpcomingEventsContainer} />

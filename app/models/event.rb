@@ -79,7 +79,6 @@ class Event < ActiveRecord::Base
     subcategory_id = subcategory_id.to_i
 
     today = Date.today.strftime('%F')
-    # .where('start_date > ?', today)
 
     if type_id > 0 && category_id > 0 && subcategory_id > 0
       return self.where(type_id: type_id, category_id: category_id, subcategory_id: subcategory_id)

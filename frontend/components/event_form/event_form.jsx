@@ -121,7 +121,6 @@ export default class Eventform extends React.Component {
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({'placeId': thisEvent.place_id}, (results, status) => {
           if (status === 'OK') {
-            //Populating address inputs
             document.querySelectorAll('.address input').forEach(el => {
               el.setAttribute('type', 'text');
             });

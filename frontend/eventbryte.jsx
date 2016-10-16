@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore(preloadedState);
   }
 
-  window.store = store;
-
   Modal.setAppElement(document.body);
 
   ReactDOM.render(<Root store={store} />, root);
