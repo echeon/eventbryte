@@ -1,126 +1,59 @@
 # Eventbryte
 
-[Eventbryte Live](http://eventbryte.herokuapp.com/)
+[Eventbryte LIVE][http://www.eventbryte.us]
 
 
-## Minimum Viable Product
-
-Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.eventbrite.com). It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
-
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Events
-- [ ] Registration / Tickets
-- [ ] Categories
-- [ ] Bookmark events
-- [ ] [Production README](#)
 
 
-## Design Docs
-* [Wireframes](docs/wireframes)
-* [React Components](docs/component-hierarchy.md)
-* [Sample State](docs/sample-state.md)
-* [Redux Architecture](docs/redux-structure.md)
-* [DB Schema](docs/schema.md)
-* [API Endpoints](docs/api-endpoints.md)
+FresherNote is a full-stack web application inspired by Evernote.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.  
 
+## Features & Implementation
 
-## Implementation Timeline
+ **NB**: don't copy and paste any of this.  Many folks will implement similar features, and many employers will see the READMEs of a lot of a/A grads.  You must write in a way that distinguishes your README from that of other students', but use this as a guide for what topics to cover.  
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+### Note Rendering and Editing
 
-**Objective:** Functioning rails project with front-end Authentication
+  On the database side, the notes are stored in one table in the database, which contains columns for `id`, `user_id`, `content`, and `updated_at`.  Upon login, an API call is made to the database which joins the user table and the note table on `user_id` and filters by the current user's `id`.  These notes are held in the `NoteStore` until the user's session is destroyed.  
 
-- [x] New Rails project
-- [x] `User` model/migration
-- [x] Back end authentication (session/password)
-- [x] `StaticPages` controller and root view
-- [x] Webpack & react/redux modules
-- [x] `APIUtil` to interact with the API
-- [x] Redux cycle for frontend authentication
-- [x] User signup/signin components
-- [x] Blank landing component after signup/login
-- [ ] Blank landing component or redirect to login after logout
-- [x] Style signup/signin components
-- [x] Style navbar component'
-- [x] error message for login
-- [x] error message for signup
-- [ ] clear error messages after closing modal
-- [x] Style welcome screen for root view
-- [x] Add slideshow for the home screen
-- [x] Seed users
-- [ ] Review phase 1
-- [x] Change username to email
-- [ ] (BONUS) add signup button to login and login button to signup
-- [ ] (BONUS) add special effect for invalid email and password in forms
+  Notes are rendered in two different components: the `CondensedNote` components, which show the title and first few words of the note content, and the `ExpandedNote` components, which are editable and show all note text.  The `NoteIndex` renders all of the `CondensedNote`s as subcomponents, as well as one `ExpandedNote` component, which renders based on `NoteStore.selectedNote()`. The UI of the `NoteIndex` is taken directly from Evernote for a professional, clean look:  
 
+![image of notebook index](wireframes/home-logged-in.jpg)
 
-### Phase 2: Events Model, API, and components (2 days)
+Note editing is implemented using the Quill.js library, allowing for a Word-processor-like user experience.
 
-**Objective:** Events can be created, read, edited and destroyed through the API.
+### Notebooks
 
-- [x] `Event` model
-- [x] Seed database with a small amount of test event data
-- [ ] CRUD API for events (EventsController)
-- [x] JBuilder views for events
-- [x] Event components and respective redux loops
-- [x] Style event components
-- [x] Seed database with types/categories/subcategories
-- [x] Create event
-- [ ] Review phase 2
+Implementing Notebooks started with a notebook table in the database.  The `Notebook` table contains two columns: `title` and `id`.  Additionally, a `notebook_id` column was added to the `Note` table.  
 
+The React component structure for notebooks mirrored that of notes: the `NotebookIndex` component renders a list of `CondensedNotebook`s as subcomponents, along with one `ExpandedNotebook`, kept track of by `NotebookStore.selectedNotebook()`.  
 
-### Phase 3: Categories, bookmarks, and tickets (2 days)
+`NotebookIndex` render method:
 
-**Objective:** Events are created with types, categories, subcategories, and tickets. Users can also bookmark events.
+```javascript
+render: function () {
+  return ({this.state.notebooks.map(function (notebook) {
+    return <CondensedNotebook notebook={notebook} />
+  }
+  <ExpandedNotebook notebook={this.state.selectedNotebook} />)
+}
+```
 
-- [x] Modify `EventForm` so users can select correct type and categories
-- [ ] Add bookmark button
-- [ ] Seed database with types, categories, subcategories, and bookmarks
-- [ ] Add ticket-adding feature to `EventForm`
-- [ ] Create user profile pages
-  - [ ] `UpcomingEvents` pane
-  - [ ] `SavedEvents` pane
-  - [ ] `PastEvents` pane
-- [ ] Style user profile page
-- [ ] Update event component accordingly
-- [ ] Style added features for event
+### Tags
 
+As with notebooks, tags are stored in the database through a `tag` table and a join table.  The `tag` table contains the columns `id` and `tag_name`.  The `tagged_notes` table is the associated join table, which contains three columns: `id`, `tag_id`, and `note_id`.  
 
-### Phase 4: More Tickets (1 days)
+Tags are maintained on the frontend in the `TagStore`.  Because creating, editing, and destroying notes can potentially affect `Tag` objects, the `NoteIndex` and the `NotebookIndex` both listen to the `TagStore`.  It was not necessary to create a `Tag` component, as tags are simply rendered as part of the individual `Note` components.  
 
-**Objective:** Users can register or purchase tickets and can view them on their profiles.
+![tag screenshot](wireframes/tag-search.jpg)
 
-- [ ] Add register or purchase ticket button to `EventContainer`
-- [ ] Style tickets component
-- [ ] Seed events with tickets info
-- [ ] Seed registered tickets
-- [ ] Review ticketing feature:
-  - [ ] Works with limited number of tickets?
-  - [ ] Tickets are added to users correctly?
-  - [ ] User profile shows upcoming events and past events with no problem?
-- [ ] Review the styling up to phase 4
-- [ ] Review phase 3 and phase 4
+## Future Directions for the Project
 
+In addition to the features already implemented, I plan to continue work on this project.  The next steps for FresherNote are outlined below.
 
-### Phase 5: Browse (2 days)
+### Search
 
-- [ ] Add geolocation feature to get the city and state
-- [ ] Show events in local area by default
-- [ ] Add filters
-  - [ ] Category & Subcategory
-  - [ ] Price
-  - [ ] Date
-  - [ ] Type
-- [ ] Add `order by price` and `order by date` feature
-- [ ] Style browse page
-- [ ] Make sure all browse event buttons are working from different pages
-- [ ] Review phase 5
+Searching notes is a standard feature of Evernote.  I plan to utilize the Fuse.js library to create a fuzzy search of notes and notebooks.  This search will look go through tags, note titles, notebook titles, and note content.  
 
+### Direct Messaging
 
-## Bonus Features (if time allows)
-- [ ] Google Map API
-- [ ] Responsive web design
-- [ ] Search event
-- [ ] Search by area in the map
-- [ ] Share with friends feature via facebook/twitter/email
+Although this is less essential functionality, I also plan to implement messaging between FresherNote users.  To do this, I will use WebRTC so that notifications of messages happens seamlessly.  
