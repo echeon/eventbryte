@@ -14,14 +14,8 @@ const HomeScreen = () => {
       <div className="home-screen-content">
         <h2>Welcome</h2>
         <p>Promote, manage, host, or purchase tickets for successful events.</p>
-        <div className="home-button-container">
-          <button className="browse-events-button">
-            <Link to="/browse">Browse Events</Link>
-          </button>
-          <button className="create-event-button">
-            <Link to="/events/create">Create Event</Link>
-          </button>
-        </div>
+        <Link to="/browse">Browse Events</Link>
+        <Link to="/events/create">Create Event</Link>
       </div>
     </section>
   );
