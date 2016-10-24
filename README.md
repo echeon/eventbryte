@@ -1,6 +1,6 @@
 # Eventbryte
 
-[Eventbryte LIVE][http://www.eventbryte.us]
+[Eventbryte LIVE](http://www.eventbryte.us)
 
 
 
