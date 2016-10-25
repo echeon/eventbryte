@@ -30,4 +30,33 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
   ![Browse Event Image](docs/img/browse_event.gif)
 
 
-### Bookmarks/Tags/Register
+### Bookmarks
+
+  Another main feature of Eventbryte is bookmarking. A user can bookmark event by clicking a bookmark icon. When a user clicks a bookmark icon, the color will change to indicate that the event is bookmarked. To undo bookmarking, a user can simply click the bookmark icon again. Each bookmark will be stored in `bookmarks` table in the database with `user_id` and `event_id`. Thus, bookmarking action requires a user to be logged in.
+
+  A user also can see his or her bookmarks in the profile page. By hovering over the user icon at the top of page, a dropdown menu will show. Then, the user can click `saved` and it will redirect the user to profile page which contains all bookmarked events.
+
+  ![Bookmark](docs/img/bookmark.jpg)
+
+  In the profile page, a user also can undo bookmarking easily by clicking the bookmark icon and it will re-render the page and the event will disappear from the page.
+
+### Register
+
+  Registering for events work in a very similar way as bookmarking. In each event's detail page is a toggle button for registration. A user can simply click the register button to register for the event. Once registered for the event, the button will toggle to `unregister` button.
+
+  ![Event Detail](docs/img/event_detail.jpg)
+
+  A user also can find all registered events in his/her profile easily. All upcoming events will show and each event also has toggle button so that the user can easily unregister for the event. Once the user unregisters, the page will be re-rendered and the event will disppaer.
+
+  ![Upcoming Events](docs/img/ticket.jpg)
+
+  Also, if a user wants to see the past registered events, the user can click `past events` and it will show all the past events.
+
+
+### Manage Events
+
+  ![Manage](docs/img/manage.jpg)
+
+  A user can also manage events through `manage my events` page. On the page, only the events that the user hosts will appear with `edit`, `view`, `delete` options.
+
+  `edit` will redirect to event form pages. Once submitted with updated information, AJAX request with `PATCH` action will be sent. Similarly, `delete` button will send AJAX request with `DELETE` action.
