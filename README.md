@@ -2,24 +2,30 @@
 
 [Eventbryte LIVE](http://www.eventbryte.site)
 
+![Mainpage](docs/img/home.jpg)
 
-
-
-FresherNote is a full-stack web application inspired by Evernote.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.  
+Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.eventbrite.com). It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the front end.
 
 ## Features & Implementation
 
- **NB**: don't copy and paste any of this.  Many folks will implement similar features, and many employers will see the READMEs of a lot of a/A grads.  You must write in a way that distinguishes your README from that of other students', but use this as a guide for what topics to cover.  
+### Events
 
-### Note Rendering and Editing
+  One of the main features of Eventbryte is CRUD of events. In the database, the events are stored in `events` table which contains `title`, `description`, `organizer_id`, `type_id`, `category_id`, `subcategory_id`, `start_date`, `start_time`, `end_date`, `end_time`, `image_url`, `venue_name`, `place_id`, `address_detail`, `num_tickets`, `ticket_price` columns. Users must be logged in for creating events, but not for browsing events.
 
-  On the database side, the notes are stored in one table in the database, which contains columns for `id`, `user_id`, `content`, and `updated_at`.  Upon login, an API call is made to the database which joins the user table and the note table on `user_id` and filters by the current user's `id`.  These notes are held in the `NoteStore` until the user's session is destroyed.  
+  Once the form is submitted with successful AJAX request, the user will be redirected to the event page and will be able to see the event details.
 
-  Notes are rendered in two different components: the `CondensedNote` components, which show the title and first few words of the note content, and the `ExpandedNote` components, which are editable and show all note text.  The `NoteIndex` renders all of the `CondensedNote`s as subcomponents, as well as one `ExpandedNote` component, which renders based on `NoteStore.selectedNote()`. The UI of the `NoteIndex` is taken directly from Evernote for a professional, clean look:  
+  Event form pages employ two 3rd party APIs. The first one is Google Maps API. The app utilizes its autocomplete and place id feature to improve UX. Once the user enters the address of the venue, it auto-populates all other input fields of the address and it retrieves Google Maps API's `place_id` and uses that information in the database which allows simpler schema.
 
-![image of notebook index](wireframes/home-logged-in.jpg)
+  ![Create Event Image](docs/img/create_event.gif)
 
-Note editing is implemented using the Quill.js library, allowing for a Word-processor-like user experience.
+  This app also integrates a remote asset hosting service called Cloudinary which reduces the server load and improves scalability of the app. The event image is not required. If the user does not provide the image.
+
+
+### Browse Events
+
+  ![Browse Event Image](docs/img/browse_event.gif)
+
+### Bookmarks/Tags/Register
 
 ### Notebooks
 
