@@ -55,8 +55,8 @@ Eventbryte is a full-stack web application inspired by [Eventbrite](http://www.e
 
 ### Manage Events
 
-  ![Manage](docs/img/manage.jpg)
-
   A user can also manage events through `manage my events` page. On the page, only the events that the user hosts will appear with `edit`, `view`, `delete` options.
+
+  ![Manage](docs/img/manage.jpg)
 
   `edit` will redirect to event form pages. Once submitted with updated information, AJAX request with `PATCH` action will be sent. Similarly, `delete` button will send AJAX request with `DELETE` action.
