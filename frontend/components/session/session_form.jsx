@@ -13,7 +13,6 @@ export default class SessionForm extends React.Component {
     };
   }
 
-
   componentDidUpdate() {
     if (this.props.loggedIn) {
       hashHistory.push("/");
@@ -37,42 +36,3 @@ export default class SessionForm extends React.Component {
     );
   }
 }
-
-
-
-// render() {
-//   let header, otherHeader, link, errors;
-//
-//   if (this.props.formType === 'login') {
-//     header = "Log in";
-//     otherHeader = "login";
-//     link = <Link to="/signup">Sign Up</Link>;
-//   } else {
-//     header = "Sign up";
-//     otherHeader = "signup";
-//     link = <Link to="/login">Log In</Link>;
-//   }
-//
-//   if (this.props.errors.length) {
-//     errors = (
-//       <ul>
-//         { this.props.errors.map( (error, i) => <li key={i}>{error}</li> ) }
-//       </ul>
-//     );
-//   }
-//
-//   return (
-//     <div>
-//
-//       <h1>{header}</h1>
-//       <span>Please {otherHeader} or {link} instead</span>
-//       {errors}
-//       <form onSubmit={this.handleSubmit}>
-//         Email <input type="text" onChange={this.handleChange("email")}/><br/>
-//         Password <input type="password" onChange={this.handleChange("password")}/><br/>
-//         <button>Submit</button>
-//         <button onClick={this.handleGuestLogin}>Guest Login</button>
-//       </form>
-//     </div>
-//   );
-// }
