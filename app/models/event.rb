@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  title          :string           not null
-#  description    :text             not null
+#  description    :text
 #  organizer_id   :integer          not null
 #  type_id        :integer          not null
 #  category_id    :integer          not null
@@ -22,10 +22,11 @@
 #  num_tickets    :integer
 #  ticket_price   :float            not null
 #
+
 require 'date'
 
 class Event < ActiveRecord::Base
-  validates :title, :description, presence: true
+  validates :title, presence: true
   validates :organizer_id, :type_id, :category_id, :subcategory_id, presence: true
   validates :start_date, :start_time, :end_date, :end_time, presence: true
   validates :place_id, :num_tickets, :ticket_price, presence: true
