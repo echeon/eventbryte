@@ -17,10 +17,13 @@ export default class TypeSelector extends React.Component {
       <div className="event-detail-container">
         <h3>event type</h3>
         <div className="type-selector-container">
-          <select value={this.props.value} onChange={this.props.onTypeChange}>
+          <select id="event-form-type"
+                  value={this.props.value}
+                  onChange={this.props.onTypeChange}>
             <option value="0" disabled>Select the type of event</option>
             {typeList}
           </select>
+          <span className="event-form-error"></span>
         </div>
       </div>
     );

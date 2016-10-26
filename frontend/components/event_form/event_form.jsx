@@ -4,6 +4,7 @@ import TypeSelector from './type_selector';
 import CategorySelector from './category_selector';
 import { hashHistory } from 'react-router';
 import ImageUpload from './image_upload';
+import { validateField, validateForm } from './validate';
 
 const defaultDate = () => {
   const afterOneMonth = new Date(Date.now() + (60 * 86400000));
@@ -21,18 +22,18 @@ export default class Eventform extends React.Component {
       title: "",
       description: "",
       organizer_id: this.props.currentUser.id,
-      type_id: 0,
-      category_id: 0,
-      subcategory_id: 0,
+      type_id: "0",
+      category_id: "0",
+      subcategory_id: "0",
       start_date: defaultDate(),
       start_time: "19:00",
       end_date: defaultDate(),
-      end_time: "21:00",
+      end_time: "22:00",
       venue_name: "",
       address_detail: "",
       image_url: "",
-      place_id: "ChIJvXNwoJpZwokRkJt6r4SugkU",
-      num_tickets: 0,
+      place_id: "",
+      num_tickets: "0",
       ticket_price: "0.00"
     };
 
@@ -83,6 +84,7 @@ export default class Eventform extends React.Component {
       const addressState = document.getElementById('address-state');
       const addressZip = document.getElementById('address-zip');
 
+      validateField("place_id", place.place_id);
       this.setState({ place_id: place.place_id, address_detail: "" });
       if (place.types.includes("point_of_interest")) {
         this.setState({ venue_name: place.name });
@@ -159,10 +161,15 @@ export default class Eventform extends React.Component {
   handleChange(prop) {
     return e => {
       e.preventDefault();
+
+      const value = e.currentTarget.value;
+
+      validateField(prop, value);
+
       if (prop === "category_id") {
         this.setState({ subcategory_id: 0 });
       }
-      this.setState({ [prop]: e.currentTarget.value });
+      this.setState({ [prop]: value });
     };
   }
 
@@ -180,10 +187,13 @@ export default class Eventform extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const thisEvent = this.state;
-    if (this.props.formType === 'create') {
-      this.props.createEvent(thisEvent);
-    } else if (this.props.formType === 'edit') {
-      this.props.updateEvent(this.props.eventId, thisEvent);
+    const isFormReady = validateForm(thisEvent);
+    if (isFormReady) {
+      if (this.props.formType === 'create') {
+        this.props.createEvent(thisEvent);
+      } else if (this.props.formType === 'edit') {
+        this.props.updateEvent(this.props.eventId, thisEvent);
+      }
     }
   }
 
@@ -191,10 +201,12 @@ export default class Eventform extends React.Component {
     const eventTitle = (
       <div className="event-detail-container">
         <h3>event title</h3>
-        <input type="text"
+        <input id="event-form-title"
+               type="text"
                placeholder="Give it a short distinct name"
                onChange={this.handleChange("title")}
-               value={this.state.title}/>
+               value={this.state.title} required/>
+        <span className="event-form-error"></span>
       </div>
     );
 
@@ -225,6 +237,8 @@ export default class Eventform extends React.Component {
                      id="address-zip"
                      disabled />
             </div>
+            <span className="event-form-error"
+                  id="event-form-address-error"></span>
           </div>
           <div className="map-container">
             <div id="thumb-map" ref="map"></div>
@@ -238,32 +252,52 @@ export default class Eventform extends React.Component {
       <div className="event-detail-container column date-time">
         <div>
           <h3>starts</h3>
-          <input type="date"
-                 className="date-picker"
-                 value={this.state.start_date}
-                 onChange={this.handleChange("start_date")}/>
-          <input type="time"
-                 className="time-picker"
-                 value={this.state.start_time}
-                 onChange={this.handleChange("start_time")}/>
+          <div className="flex">
+            <div>
+              <input type="date"
+                     id="event-form-start-date"
+                     className="date-picker"
+                     value={this.state.start_date}
+                     onChange={this.handleChange("start_date")}/>
+              <span className="event-form-error"></span>
+            </div>
+            <div>
+              <input type="time"
+                     id="event-form-start-time"
+                     className="time-picker"
+                     value={this.state.start_time}
+                     onChange={this.handleChange("start_time")}/>
+              <span className="event-form-error"></span>
+            </div>
+          </div>
         </div>
         <div>
           <h3>ends</h3>
-          <input type="date"
-                 className="date-picker"
-                 value={this.state.end_date}
-                 onChange={this.handleChange("end_date")}/>
-          <input type="time"
-                 className="time-picker"
-                 value={this.state.end_time}
-                 onChange={this.handleChange("end_time")}/>
+          <div className="flex">
+            <div>
+              <input type="date"
+                     id="event-form-end-date"
+                     className="date-picker"
+                     value={this.state.end_date}
+                     onChange={this.handleChange("end_date")}/>
+              <span className="event-form-error"></span>
+            </div>
+            <div>
+              <input type="time"
+                     id="event-form-end-time"
+                     className="time-picker"
+                     value={this.state.end_time}
+                     onChange={this.handleChange("end_time")}/>
+              <span className="event-form-error"></span>
+            </div>
+          </div>
         </div>
       </div>
     );
 
     const eventImage = (
       <div className="event-detail-container">
-          <h3>event image</h3>
+          <h3>event image (optional)</h3>
           <ImageUpload onUpload={this.handleImageUpload}/>
           <button className="image-remove" onClick={this.handleRemoveImage}>
             <i className="material-icons">delete_forever</i> Remove Image
@@ -273,7 +307,7 @@ export default class Eventform extends React.Component {
 
     const eventDescription = (
       <div className="event-detail-container">
-        <h3>event description</h3>
+        <h3>event description (optional)</h3>
         <textarea
           placeholder="Give it a short distinct name"
           onChange={this.handleChange("description")}
@@ -285,16 +319,21 @@ export default class Eventform extends React.Component {
       <div className="event-detail-container">
         <h3>ticket price</h3>
         <input type="number"
+               id="event-form-ticket-price"
                className="number"
                step="0.01"
                onChange={this.handleChange("ticket_price")}
                value={this.state.ticket_price}/>
+        <span className="event-form-error"></span>
 
         <h3>number of tickets</h3>
         <input type="number"
+               id="event-form-num-tickets"
                className="number"
+               step="1"
                onChange={this.handleChange("num_tickets")}
                value={this.state.num_tickets}/>
+        <span className="event-form-error"></span>
       </div>
     );
 
@@ -308,7 +347,7 @@ export default class Eventform extends React.Component {
       <section className="event-form-section">
         <h1>{this.props.formType} An Event</h1>
         <hr/>
-        <form className="create-event-form">
+        <form className="create-event-form" data-toggle="validator" role="form">
           <div className="title-container">
             <span className="index">1</span>
             <span className="title">Event Details</span>
@@ -318,7 +357,6 @@ export default class Eventform extends React.Component {
           {dateTime}
           {eventImage}
           {eventDescription}
-
 
           <div className="title-container">
             <span className="index">2</span>

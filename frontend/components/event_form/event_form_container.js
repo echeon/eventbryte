@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   const eventId = parseInt(ownProps.params.eventId);
   const thisEvent = selectEvent(state.events, eventId);
   return {
+    errors: state.events.errors,
     currentUser: state.session.currentUser,
     types: state.types,
     categories: state.categories,

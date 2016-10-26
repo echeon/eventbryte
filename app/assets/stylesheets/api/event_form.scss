@@ -260,3 +260,17 @@ button.image-remove:hover {
 input.number {
   width: 110px;
 }
+
+div.flex {
+  display: flex;
+}
+
+span.event-form-error {
+  font-size: 12px;
+  color: #f00;
+  display: flex;
+}
+
+div.hiddenSelector {
+  display: none;
+}
