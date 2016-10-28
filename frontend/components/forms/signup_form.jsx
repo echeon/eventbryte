@@ -28,7 +28,6 @@ export default class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // const { email, password } = this.state;
     const user = this.state;
     this.props.signup(user);
   }
