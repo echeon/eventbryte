@@ -22,8 +22,14 @@ export default class SavedEvents extends React.Component {
     }
 
     let savedEventsList = Object.keys(savedEvents).map(key => {
-      const eventItem = savedEvents[key];
+      return savedEvents[key];
+    });
 
+    savedEventsList.sort((eventA, eventB) => {
+      return eventA.start_date < eventB.start_date ? -1 : 1;
+    });
+
+    savedEventsList = savedEventsList.map(eventItem => {
       if (eventItem) {
         const type = types[eventItem.type_id];
         const typeName = type ? type.name : "";
@@ -39,7 +45,7 @@ export default class SavedEvents extends React.Component {
         });
 
         return <EventItemContainer formType="bookmark"
-                                   key={key}
+                                   key={eventItem.id}
                                    eventItem={eventItem}
                                    typeName={typeName}
                                    categoryName={categoryName}

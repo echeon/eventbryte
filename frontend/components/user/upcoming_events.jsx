@@ -22,8 +22,14 @@ export default class UpcomingEvents extends React.Component {
     }
 
     let upcomingEventsList = Object.keys(upcomingEvents).map(key => {
-      const eventItem = upcomingEvents[key];
+      return upcomingEvents[key];
+    });
 
+    upcomingEventsList.sort((eventA, eventB) => {
+      return eventA.start_date < eventB.start_date ? -1 : 1;
+    });
+
+    upcomingEventsList = upcomingEventsList.map(eventItem => {
       if (eventItem) {
         const type = types[eventItem.type_id];
         const typeName = type ? type.name : "";
@@ -39,7 +45,7 @@ export default class UpcomingEvents extends React.Component {
         });
 
         return <EventItemContainer formType="upcoming"
-                                   key={key}
+                                   key={eventItem.id}
                                    eventItem={eventItem}
                                    typeName={typeName}
                                    categoryName={categoryName}

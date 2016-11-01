@@ -21,8 +21,14 @@ export default class PastEvents extends React.Component {
     }
 
     let pastEventsList = Object.keys(pastEvents).map(key => {
-      const eventItem = pastEvents[key];
+      return pastEvents[key];
+    });
 
+    pastEventsList.sort((eventA, eventB) => {
+      return eventA.start_date > eventB.start_date ? -1 : 1;
+    });
+
+    pastEventsList = pastEventsList.map(eventItem => {
       if (eventItem) {
         const type = types[eventItem.type_id];
         const typeName = type ? type.name : "";
@@ -38,7 +44,7 @@ export default class PastEvents extends React.Component {
         });
 
         return <EventItemContainer formType="past"
-                                   key={key}
+                                   key={eventItem.id}
                                    eventItem={eventItem}
                                    typeName={typeName}
                                    categoryName={categoryName}

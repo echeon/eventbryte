@@ -18,6 +18,10 @@ export default class EventsList extends React.Component {
     const events = Object.keys(this.props.events).map(key => {
       return this.props.events[key];
     });
+    
+    events.sort((eventA, eventB) => {
+      return eventA.start_date < eventB.start_date ? -1 : 1;
+    });
 
     if (!events.length) {
       return <div className="no-events"><h1>No Events</h1></div>;
