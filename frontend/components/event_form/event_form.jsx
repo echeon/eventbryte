@@ -7,10 +7,10 @@ import ImageUpload from './image_upload';
 import { validateField, validateForm } from './validate';
 
 const defaultDate = () => {
-  const afterOneMonth = new Date(Date.now() + (60 * 86400000));
+  const afterOneMonth = new Date(Date.now() + (30 * 86400000));
   let year, month, date;
   year = afterOneMonth.getFullYear();
-  month = `0${afterOneMonth.getMonth()}`.slice(-2);
+  month = `0${afterOneMonth.getMonth() + 1}`.slice(-2);
   date = `0${afterOneMonth.getDate()}`.slice(-2);
   return `${year}-${month}-${date}`;
 };
@@ -36,6 +36,7 @@ export default class Eventform extends React.Component {
       num_tickets: "0",
       ticket_price: "0.00"
     };
+    console.log(defaultDate());
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
