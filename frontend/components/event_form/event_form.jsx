@@ -36,7 +36,6 @@ export default class Eventform extends React.Component {
       num_tickets: "0",
       ticket_price: "0.00"
     };
-    console.log(defaultDate());
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
